@@ -35,7 +35,7 @@ export default function PrestigiousClients() {
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true }}
                transition={{ duration: 0.5, delay: item * 0.1 }}
-               className="w-[120px] h-[120px] md:w-[180px] md:h-[180px] bg-white rounded-2xl flex items-center justify-center p-8 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 border border-slate-100/50"
+               className="w-[120px] h-[120px] md:w-[180px] md:h-[180px] bg-white rounded-2xl flex items-center justify-center p-8 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-slate-100/50"
             >
               <div className="relative w-full h-full opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
                 <Image 

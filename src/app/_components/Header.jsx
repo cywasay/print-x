@@ -91,7 +91,7 @@ export default function Header() {
               <div className="flex flex-col items-start leading-none">
                 <div className={`font-black tracking-[-0.04em] flex items-baseline text-[#1a1f24] transition-all duration-300 ${isScrolled ? 'text-[28px]' : 'text-[32px]'}`}>
                   PRINT
-                  <span className="relative bg-gradient-to-br from-amber-400 via-pink-500 to-rose-500 bg-clip-text text-transparent italic font-black ml-[-1px] group-hover:scale-110 transition-transform duration-300 origin-bottom-left" style={{ fontSize: '1.15em' }}>
+                  <span className="relative bg-gradient-to-br from-amber-400 via-pink-500 to-rose-500 bg-clip-text text-transparent italic font-black ml-[-1px] transition-transform duration-300 origin-bottom-left" style={{ fontSize: '1.15em' }}>
                     X
                     <span className="absolute -bottom-[1px] left-0 w-full h-[2px] bg-gradient-to-r from-amber-400 to-pink-500 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                   </span>
@@ -198,7 +198,7 @@ export default function Header() {
                 >
                   <span>{link.label}</span>
                   {link.hasDropdown && (
-                    <ChevronDown size={13} strokeWidth={2.5} className="text-slate-400 group-hover:text-[#146b9a] transition-all duration-200 group-hover:translate-y-[1px]" />
+                    <ChevronDown size={13} strokeWidth={2.5} className="text-slate-400 group-hover:text-[#146b9a] transition-all duration-200" />
                   )}
                   {/* Hover underline */}
                   <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-gradient-to-r from-[#146b9a] to-[#1a8bc4] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>

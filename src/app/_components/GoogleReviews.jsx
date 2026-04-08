@@ -75,7 +75,7 @@ export default function GoogleReviews() {
                    ))}
                 </div>
                 <p className="text-[11px] text-slate-400 font-bold uppercase tracking-widest">Based on 54 reviews</p>
-                <div className="mt-8 opacity-40 hover:opacity-80 transition-opacity grayscale">
+                <div className="mt-8 opacity-40 transition-opacity grayscale">
                    {/* Google Text Logo styling */}
                    <div className="flex items-center tracking-tighter text-[24px] font-bold">
                     <span className="text-slate-800">Google</span>

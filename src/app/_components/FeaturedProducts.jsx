@@ -76,7 +76,7 @@ export default function FeaturedProducts() {
             <motion.div key={idx} variants={itemVariants}>
               <Link
                 href="#"
-                className="group flex flex-col items-center bg-white rounded-2xl p-5 md:p-6 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1.5 transition-all duration-500 text-center border border-slate-100/50"
+                className="group flex flex-col items-center bg-white rounded-2xl p-5 md:p-6 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 text-center border border-slate-100/50"
               >
                 {/* Compact Title */}
                 <h3 className="text-[15px] md:text-[17px] font-bold text-[#0d2b3e] mb-6 group-hover:text-[#146b9a] transition-colors duration-300">

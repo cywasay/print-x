@@ -85,7 +85,7 @@ export default function CompletePrintingSolution() {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="bg-white rounded-2xl p-6 flex flex-col items-center text-center shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-1.5 border border-slate-100/50"
+              className="bg-white rounded-2xl p-6 flex flex-col items-center text-center shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 border border-slate-100/50"
             >
               <h3 className="text-[17px] font-bold text-[#0d2b3e] leading-snug mb-2 group-hover:text-[#146b9a] transition-colors">
                 {item.title}
@@ -95,7 +95,7 @@ export default function CompletePrintingSolution() {
               </p>
 
               <div className="w-[140px] h-[140px] rounded-full bg-slate-50 flex items-center justify-center relative mb-6 border border-slate-100/50 shadow-inner overflow-hidden">
-                <div className="relative w-[100px] h-[100px] transform hover:scale-110 transition-transform duration-700">
+                <div className="relative w-[100px] h-[100px] transition-transform duration-700">
                   <Image
                     src={item.img}
                     alt={item.title}

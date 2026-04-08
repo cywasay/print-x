@@ -22,7 +22,7 @@ export default function Services() {
           
           <Link 
             href="#" 
-            className="inline-block w-full max-w-[280px] py-4 bg-[#0d2b3e] text-white rounded-2xl shadow-xl hover:shadow-[#0d2b3e]/20 hover:-translate-y-1 transition-all duration-300 text-[13px] font-black uppercase tracking-widest"
+            className="inline-block w-full max-w-[280px] py-4 bg-[#0d2b3e] text-white rounded-2xl shadow-xl hover:shadow-[#0d2b3e]/20 transition-all duration-300 text-[13px] font-black uppercase tracking-widest"
           >
             Sign in securely
           </Link>

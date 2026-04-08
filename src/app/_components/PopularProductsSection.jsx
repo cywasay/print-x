@@ -69,8 +69,8 @@ export default function PopularProductsSection() {
         >
           {popularProductsData.map((item, idx) => (
             <motion.div key={idx} variants={itemVariants} className="flex flex-col items-start group">
-              <div className="w-full aspect-square bg-slate-50 rounded-2xl border border-slate-100 p-6 flex items-center justify-center relative mb-4 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500">
-                <div className="relative w-full h-full transform group-hover:scale-110 transition-transform duration-700">
+              <div className="w-full aspect-square bg-slate-50 rounded-2xl border border-slate-100 p-6 flex items-center justify-center relative mb-4 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] transition-all duration-500">
+                <div className="relative w-full h-full transition-transform duration-700">
                   <Image 
                     src={item.img} 
                     alt={item.name} 

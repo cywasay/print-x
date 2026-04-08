@@ -62,7 +62,7 @@ export default function GetAQuote() {
             
             <div className="mt-2">
               <button 
-                className="w-full bg-white text-[#0d2b3e] font-black uppercase tracking-widest text-[13px] py-4 rounded-2xl hover:bg-white/90 transition-all shadow-xl hover:-translate-y-1"
+                className="w-full bg-white text-[#0d2b3e] font-black uppercase tracking-widest text-[13px] py-4 rounded-2xl hover:bg-white/90 transition-all shadow-xl"
               >
                 Send Request
               </button>

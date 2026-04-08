@@ -86,14 +86,14 @@ export default function BlogsSection() {
           viewport={{ once: true, margin: "-100px" }}
         >
           {blogData.map((blog, idx) => (
-            <motion.div key={idx} variants={itemVariants} className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] flex flex-col group hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2">
+            <motion.div key={idx} variants={itemVariants} className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] flex flex-col group hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12)] transition-all duration-500">
               
               <div className="w-full aspect-[16/10] relative overflow-hidden bg-slate-50 border-b border-slate-50">
                 <Image 
                   src={blog.img} 
                   alt={blog.title} 
                   fill 
-                  className="object-cover group-hover:scale-110 transition-transform duration-1000 cubic-bezier(0.16, 1, 0.3, 1)" 
+                  className="object-cover transition-transform duration-1000 cubic-bezier(0.16, 1, 0.3, 1)" 
                 />
               </div>
               

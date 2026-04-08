@@ -47,7 +47,7 @@ export default function Footer() {
           <ul className="space-y-4 text-[13.5px] text-blue-100/60 font-medium">
             {['Tech & Accessories', 'Eco-Friendly Gifts', 'Drinkware Series', 'Stationery Systems', 'Recognition Awards'].map(link => (
               <li key={link}>
-                <Link href="#" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">{link}</Link>
+                <Link href="#" className="hover:text-white transition-colors inline-block transform duration-300">{link}</Link>
               </li>
             ))}
           </ul>
@@ -59,7 +59,7 @@ export default function Footer() {
           <ul className="space-y-4 text-[13.5px] text-blue-100/60 font-medium">
             {['Graphic Designing', 'Promotional Gifts', 'Large Format Printing', 'Digital & Offset', 'Brand Consultation'].map(link => (
               <li key={link}>
-                <Link href="#" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">{link}</Link>
+                <Link href="#" className="hover:text-white transition-colors inline-block transform duration-300">{link}</Link>
               </li>
             ))}
           </ul>
