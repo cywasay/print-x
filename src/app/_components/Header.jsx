@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Search, ShoppingCart, MessageSquare, ChevronDown, Menu, X, Phone, Mail, MapPin, Clock, User } from 'lucide-react';
 
 const navLinks = [
@@ -88,18 +89,14 @@ export default function Header() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-0 shrink-0 group select-none">
-              <div className="flex flex-col items-start leading-none">
-                <div className={`font-black tracking-[-0.04em] flex items-baseline text-[#1a1f24] transition-all duration-300 ${isScrolled ? 'text-[28px]' : 'text-[32px]'}`}>
-                  PRINT
-                  <span className="relative bg-gradient-to-br from-amber-400 via-pink-500 to-rose-500 bg-clip-text text-transparent italic font-black ml-[-1px] transition-transform duration-300 origin-bottom-left" style={{ fontSize: '1.15em' }}>
-                    X
-                    <span className="absolute -bottom-[1px] left-0 w-full h-[2px] bg-gradient-to-r from-amber-400 to-pink-500 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                  </span>
-                </div>
-                <span className="text-[8px] tracking-[0.38em] font-bold text-slate-500 uppercase ml-[2px] mt-[1px]">
-                  Advertising
-                </span>
-              </div>
+              <Image
+                src="/logo-web.png"
+                alt="PrintX Logo"
+                width={160}
+                height={50}
+                className={`transition-all duration-300 object-contain ${isScrolled ? 'h-10 w-auto' : 'h-12 w-auto'}`}
+                priority
+              />
             </Link>
 
             {/* Search Bar */}
@@ -226,13 +223,15 @@ export default function Header() {
       >
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
-          <div className="flex flex-col leading-none">
-            <div className="text-[26px] font-black tracking-[-0.04em] text-[#1a1f24] flex items-baseline">
-              PRINT
-              <span className="bg-gradient-to-br from-amber-400 via-pink-500 to-rose-500 bg-clip-text text-transparent italic font-black ml-[-1px]" style={{ fontSize: '1.15em' }}>X</span>
-            </div>
-            <span className="text-[7px] tracking-[0.38em] font-bold text-slate-500 uppercase ml-[2px]">Advertising</span>
-          </div>
+          <Link href="/" className="flex flex-col leading-none" onClick={() => setIsMobileMenuOpen(false)}>
+            <Image
+              src="/logo-web.png"
+              alt="PrintX Logo"
+              width={140}
+              height={44}
+              className="h-10 w-auto object-contain"
+            />
+          </Link>
           <button
             onClick={() => setIsMobileMenuOpen(false)}
             className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"

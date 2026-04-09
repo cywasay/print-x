@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function SeoContent() {
   return (
-    <section className="py-24 bg-[#f8fafc] relative overflow-hidden">
+    <section className="py-24 bg-white relative overflow-hidden">
       {/* Background Polish */}
       <div className="absolute inset-0 opacity-[0.012] pointer-events-none" 
            style={{ backgroundImage: 'radial-gradient(#146b9a 1px, transparent 1px)', backgroundSize: '40px 40px' }} />

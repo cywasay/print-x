@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 export default function Services() {
   return (
     <div className="flex flex-col mb-16">
-      <section className="py-12 bg-white border-y border-slate-100 flex flex-col items-center text-center w-full relative overflow-hidden">
+      <section className="py-12 bg-[#f8fafc] border-y border-slate-200/50 flex flex-col items-center text-center w-full relative overflow-hidden">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-[0.01] pointer-events-none" 
              style={{ backgroundImage: 'radial-gradient(#146b9a 1px, transparent 1px)', backgroundSize: '32px 32px' }} />

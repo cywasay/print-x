@@ -44,7 +44,7 @@ const itemVariants = {
 
 export default function BlogsSection() {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-[#f8fafc] border-y border-slate-200/50 relative overflow-hidden">
       {/* Background Polish */}
       <div className="absolute inset-0 opacity-[0.012] pointer-events-none" 
            style={{ backgroundImage: 'radial-gradient(#146b9a 1px, transparent 1px)', backgroundSize: '32px 32px' }} />

@@ -7,23 +7,27 @@ import { ArrowRight } from "lucide-react";
 const solutionsData = [
   {
     title: "Large Format Printing",
-    desc: "Eye-catching banners and vinyl prints delivered with speed and precision.",
-    img: "/hero_printing_1775637492071.png",
+    desc: "High-impact billboards, retail displays, and vinyl graphics engineered for maximum brand visibility.",
+    img: "/services/tech-gear.jpg",
+    accent: "#51A9FF"
   },
   {
     title: "Digital & Offset Printing",
-    desc: "High-definition professional prints for all your corporate stationery and marketing collateral.",
-    img: "/hero_products_1775637475637.png",
+    desc: "Precision corporate stationery and premium marketing collateral with world-class finishes.",
+    img: "/services/note-book.jpg",
+    accent: "#FF51A9"
   },
   {
     title: "Custom Promotional Gifts",
-    desc: "Bespoke branded gifts meticulously crafted to leave a lasting impact.",
-    img: "/hero_gifts_1775637506200.png",
+    desc: "Bespoke branded items and luxury sets meticulously crafted to leave a lasting impression.",
+    img: "/services/gift-set.jpg",
+    accent: "#FFB551"
   },
   {
     title: "Expert Graphic Design",
-    desc: "Creative, world-class designs that bring your brand's unique vision to life.",
-    img: "/hero_products_1775637475637.png",
+    desc: "Visionary brand identities and visual stories that resonate with your global audience.",
+    img: "/services/special-pens.jpg",
+    accent: "#51FFB5"
   },
 ];
 
@@ -31,12 +35,12 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: 40, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -46,36 +50,47 @@ const itemVariants = {
 
 export default function CompletePrintingSolution() {
   return (
-    <section className="py-20 bg-[#f8fafc] border-y border-slate-200/50 relative overflow-hidden">
-      {/* Background Polish */}
-      <div className="absolute inset-0 opacity-[0.012] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#146b9a 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+    <section className="py-24 bg-white relative overflow-hidden">
+      {/* Dynamic Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-blue-50/50 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-slate-50 rounded-full blur-[120px]" />
+      </div>
 
-      <div className="max-w-[1300px] mx-auto px-6 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         
-        {/* Header - Consistent with Section Themes */}
-        <div className="flex flex-col items-center text-center mb-16 max-w-3xl mx-auto">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="max-w-2xl"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-[48px] font-extrabold leading-[1.1] tracking-tight text-[#0d2b3e] mb-4">
+            <span className="text-[12px] font-black tracking-[0.4em] text-[#51A9FF] uppercase mb-4 block">Our Expertise</span>
+            <h2 className="text-4xl md:text-5xl lg:text-[60px] font-bold leading-[1.05] tracking-tighter text-[#0d2b3e]">
               Complete Printing{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#146b9a] to-[#00a9e0]">
                 Solutions.
               </span>
             </h2>
-            <p className="text-sm md:text-base text-slate-500/90 font-medium leading-relaxed">
-              From large-format billboards to professional corporate stationery, we deliver precision at every scale.
-            </p>
           </motion.div>
+          
+          <motion.p 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-slate-500 text-lg md:text-xl font-medium max-w-md pb-2"
+          >
+            Delivering precision at every scale, from massive billboards to professional stationery.
+          </motion.p>
         </div>
 
-        {/* Compact Grid */}
+        {/* Sophisticated Cards Grid */}
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -85,36 +100,45 @@ export default function CompletePrintingSolution() {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="bg-white rounded-2xl p-6 flex flex-col items-center text-center shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 border border-slate-100/50"
+              className="group relative flex flex-col h-full bg-[#fcfdfe] rounded-[2.5rem] p-8 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] border border-slate-100 hover:border-[#146b9a]/20 overflow-hidden"
             >
-              <h3 className="text-[17px] font-bold text-[#0d2b3e] leading-snug mb-2 group-hover:text-[#146b9a] transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-slate-500 text-[13px] leading-relaxed mb-6 line-clamp-2 font-medium">
-                {item.desc}
-              </p>
+              {/* Animated Accent Glow */}
+              <div 
+                className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[60px] opacity-0 group-hover:opacity-20 transition-opacity duration-700"
+                style={{ backgroundColor: item.accent }}
+              />
 
-              <div className="w-[140px] h-[140px] rounded-full bg-slate-50 flex items-center justify-center relative mb-6 border border-slate-100/50 shadow-inner overflow-hidden">
-                <div className="relative w-[100px] h-[100px] transition-transform duration-700">
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="mb-8">
+                  <h3 className="text-2xl font-semibold text-[#0d2b3e] leading-tight mb-4 group-hover:text-[#146b9a] transition-colors duration-300">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-500 text-[15px] leading-relaxed font-medium">
+                    {item.desc}
+                  </p>
+                </div>
+
+                <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-slate-50 mt-auto shadow-inner group-hover:shadow-2xl transition-shadow duration-500">
                   <Image
                     src={item.img}
                     alt={item.title}
                     fill
-                    className="object-contain drop-shadow-md"
+                    className="object-cover group-hover:scale-110 transition-transform duration-1000 cubic-bezier(0.16, 1, 0.3, 1)"
                   />
+                  {/* Subtle Image Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d2b3e]/20 to-transparent" />
+                </div>
+
+                <div className="mt-8 flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-[#51A9FF] font-black text-[12px] uppercase tracking-widest">
+                    <span>Explore More</span>
+                    <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-[#146b9a] group-hover:text-white transition-all duration-300">
+                    <ArrowRight size={18} />
+                  </div>
                 </div>
               </div>
-
-              <a
-                href="#"
-                className="mt-auto flex items-center gap-2 text-[#b0b9c1] hover:text-[#146b9a] font-bold text-[12px] uppercase tracking-widest transition-all group"
-              >
-                <span className="relative">
-                  Experience Now
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#146b9a]/20 group-hover:w-full transition-all duration-300"></span>
-                </span>
-                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-              </a>
             </motion.div>
           ))}
         </motion.div>
