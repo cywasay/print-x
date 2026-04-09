@@ -29,7 +29,7 @@ export default function ExcellenceSection() {
         className="absolute inset-x-0 -top-[30%] -bottom-[30%] w-full h-[160%] z-0 will-change-transform"
       >
         <Image
-          src="/banners/baner-image2.jpg"
+          src="/banners/banner-image2.jpg"
           alt="Excellence Background"
           fill
           className="object-cover object-center"

@@ -24,7 +24,7 @@ export default function Footer() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/banners/baner-image1.jpg" 
+          src="/banners/banner-image1.jpg" 
           alt="Footer Background" 
           fill 
           className="object-cover"

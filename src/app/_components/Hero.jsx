@@ -10,7 +10,7 @@ export default function Hero() {
     >
       {/* Background Image */}
       <Image
-        src="/web-home-page-banner.jpg"
+        src="/banners/web-home-page-banner.jpg"
         alt="PrintX Hero Banner"
         fill
         className="object-cover object-center md:object-right lg:object-center"
