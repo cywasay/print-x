@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Check, ShoppingCart, Info, Ruler, Truck, ChevronDown } from "lucide-react";
 
 const PIN_STYLES = [
@@ -344,20 +345,17 @@ export default function QuotePage() {
           <div className="w-full lg:w-[420px]">
             <div className="sticky top-32">
               <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden font-sans">
-                {/* Header with Trust Seals */}
-                <div className="p-8 pb-4 flex items-start justify-between">
-                  <h3 className="text-2xl font-bold text-black pt-2">Order Summary</h3>
-                  <div className="flex gap-2">
-                    <div className="w-14 h-14 rounded-full border-2 border-green-600/20 flex items-center justify-center p-1">
-                      <div className="w-full h-full rounded-full bg-green-50 flex items-center justify-center text-[7px] font-bold text-green-700 text-center uppercase leading-tight">
-                        Official Licensed
-                      </div>
-                    </div>
-                    <div className="w-14 h-14 rounded-full border-2 border-amber-400/20 flex items-center justify-center p-1">
-                      <div className="w-full h-full rounded-full bg-amber-50 flex items-center justify-center text-[7px] font-bold text-amber-700 text-center uppercase leading-tight">
-                        Authorize Net
-                      </div>
-                    </div>
+                {/* Header with Logo */}
+                <div className="p-8 pb-4 flex items-center justify-between gap-4">
+                  <h3 className="text-xl font-bold text-black pt-1">Order Summary</h3>
+                  <div className="shrink-0">
+                    <Image
+                      src="/logo-web.png"
+                      alt="PrintX Logo"
+                      width={100}
+                      height={32}
+                      className="h-8 w-auto object-contain"
+                    />
                   </div>
                 </div>
 
