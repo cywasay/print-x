@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function GetAQuote() {
   return (
@@ -33,40 +34,27 @@ export default function GetAQuote() {
             </div>
           </div>
 
-          {/* Right side: Form Container */}
-          <div className="flex-[1.1] flex flex-col gap-4 w-full max-w-[500px] ml-auto">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input 
-                type="text" 
-                placeholder="Name" 
-                className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-[14px] outline-none focus:bg-white/10 focus:border-white/20 placeholder:text-white/30 text-white transition-all font-medium"
-              />
-              <input 
-                type="email" 
-                placeholder="Email address" 
-                className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-[14px] outline-none focus:bg-white/10 focus:border-white/20 placeholder:text-white/30 text-white transition-all font-medium"
-              />
-            </div>
-            
-            <input 
-              type="tel" 
-              placeholder="Phone number" 
-              className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-[14px] outline-none focus:bg-white/10 focus:border-white/20 placeholder:text-white/30 text-white transition-all font-medium"
-            />
-            
-            <textarea 
-              placeholder="How can we help you?" 
-              rows="4"
-              className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-[14px] outline-none focus:bg-white/10 focus:border-white/20 placeholder:text-white/30 text-white resize-none transition-all font-medium"
-            ></textarea>
-            
-            <div className="mt-2">
-              <button 
-                className="w-full bg-white text-[#0d2b3e] font-black uppercase tracking-widest text-[13px] py-4 rounded-2xl hover:bg-white/90 transition-all shadow-xl"
-              >
-                Send Request
-              </button>
-            </div>
+          {/* Right side: CTA Container */}
+          <div className="flex-[0.8] flex flex-col gap-6 w-full max-w-[400px] ml-auto items-center text-center">
+             <div className="bg-white/10 backdrop-blur-md p-8 rounded-[2rem] border border-white/20 w-full">
+                <h3 className="text-xl font-bold text-white mb-4">Fast & Accurate Builder</h3>
+                <p className="text-blue-50/70 text-sm mb-8 leading-relaxed">
+                  Use our interactive quote builder to select styles, sizes, and quantities for an instant estimate.
+                </p>
+                <Link 
+                  href="/quote"
+                  className="w-full bg-white text-[#0d2b3e] flex items-center justify-center font-black uppercase tracking-widest text-[13px] py-4 rounded-2xl hover:bg-blue-50 transition-all shadow-xl group"
+                >
+                  Start My Quote 
+                  <motion.span 
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                    className="ml-2"
+                  >
+                    →
+                  </motion.span>
+                </Link>
+             </div>
           </div>
         </motion.div>
       </div>

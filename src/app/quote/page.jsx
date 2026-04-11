@@ -1,0 +1,437 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Header from "@/app/_components/Header";
+import Footer from "@/app/_components/Footer";
+import { motion } from "framer-motion";
+import { Check, ShoppingCart, Info, Ruler, Truck, ChevronDown } from "lucide-react";
+
+const PIN_STYLES = [
+  { id: "hard-enamel", title: "Hard Enamel Pins", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Hard+Enamel" },
+  { id: "soft-enamel", title: "Soft Enamel Pins", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Soft+Enamel" },
+  { id: "die-struck", title: "Die Struck Pin Badges", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Die+Struck" },
+  { id: "3d-cast", title: "3D Cast Pin Badges", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=3D+Cast" },
+  { id: "photo-dome", title: "Photo Dome Pins", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Photo+Dome" },
+  { id: "trading-pin", title: "Trading Pin Badges", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Trading+Pin" },
+  { id: "other", title: "Other Type", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Other" },
+];
+
+const METAL_FINISHES = [
+  { id: "gold", title: "Gold", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Gold" },
+  { id: "silver", title: "Silver", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Silver" },
+  { id: "copper", title: "Copper", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Copper" },
+  { id: "black-nickel", title: "Black Nickel", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Black+Nickel" },
+  { id: "black-metal", title: "Black Metal", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Black+Metal" },
+  { id: "antique-gold", title: "Antique Gold", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Antique+Gold" },
+  { id: "antique-silver", title: "Antique Silver", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Antique+Silver" },
+  { id: "antique-copper", title: "Antique Copper", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Antique+Copper" },
+];
+
+const QUANTITY_OPTIONS = [
+  { id: "25", label: "25 Pcs" },
+  { id: "50", label: "50 Pcs" },
+  { id: "100", label: "100 Pcs" },
+  { id: "200", label: "200 Pcs" },
+  { id: "300", label: "300 Pcs" },
+  { id: "500", label: "500 Pcs" },
+  { id: "1000", label: "1000 Pcs" },
+  { id: "2000", label: "2000 Pcs" },
+  { id: "custom", label: "Custom Quantity" },
+];
+
+const DELIVERY_OPTIONS = [
+  { id: "standard", title: "Standard Delivery", time: "20 to 30 Days", icon: <Truck size={32} /> },
+  { id: "express", title: "Express Delivery", time: "10 to 14 Days", icon: <Truck size={32} /> },
+];
+
+const BACKING_OPTIONS = [
+  { id: "pvc", title: "PVC", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=PVC" },
+  { id: "metal-butterfly", title: "Metal Butterfly", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Butterfly" },
+  { id: "magnet", title: "Magnet", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Magnet" },
+  { id: "safety-pin", title: "Safety Pin", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Safety+Pin" },
+];
+
+const COLOR_OPTIONS = [
+  { id: "5-less", title: "5 Colors or less", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=5-Colors" },
+  { id: "6-8", title: "6 to 8 Colors", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=6-8-Colors" },
+  { id: "9-12", title: "9 to 12 Colors", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=9-12-Colors" },
+  { id: "13-20", title: "13 to 20 Colors", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=13-20-Colors" },
+];
+
+export default function QuotePage() {
+  const [formData, setFormData] = useState({
+    pinStyle: "",
+    metalFinish: "",
+    unit: "Centimeter",
+    height: "",
+    width: "",
+    delivery: "standard",
+    quantity: "100",
+    backingType: "",
+    colorAmount: "",
+    designName: "",
+    details: "",
+    fullName: "",
+    email: "",
+    phone: "",
+    company: "",
+  });
+
+  const updateForm = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const selectedStyle = PIN_STYLES.find(s => s.id === formData.pinStyle);
+  const selectedFinish = METAL_FINISHES.find(f => f.id === formData.metalFinish);
+  const selectedDelivery = DELIVERY_OPTIONS.find(d => d.id === formData.delivery);
+  const selectedQuantity = QUANTITY_OPTIONS.find(q => q.id === formData.quantity);
+  const selectedBacking = BACKING_OPTIONS.find(b => b.id === formData.backingType);
+  const selectedColor = COLOR_OPTIONS.find(c => c.id === formData.colorAmount);
+
+  return (
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
+      <Header />
+      
+      <main className="flex-1 max-w-[1440px] mx-auto w-full px-6 py-12 lg:py-20">
+        <div className="flex flex-col lg:flex-row gap-16">
+          
+          {/* Left Side: Form Content */}
+          <div className="flex-1 space-y-16">
+            <div className="text-center lg:text-left">
+              <h1 className="text-3xl md:text-5xl font-bold text-[#001A33] mb-4 tracking-tight">
+                Create Your <span className="text-[#00AEEF]">Order</span>
+              </h1>
+              <p className="text-slate-500 text-base font-medium max-w-2xl">
+                Customize your pins with our interactive builder. Follow the steps below to configure your perfect product.
+              </p>
+            </div>
+
+            {/* Step 1 */}
+            <section id="step-1" className="scroll-mt-32">
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-[#001A33] mb-1">Step 1. <span className="text-[#00AEEF]">Select Pin Style</span></h2>
+                <div className="w-16 h-1 bg-[#00AEEF] rounded-full" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {PIN_STYLES.map((style) => (
+                  <div 
+                    key={style.id}
+                    onClick={() => updateForm("pinStyle", style.id)}
+                    className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
+                      formData.pinStyle === style.id ? "border-[#004C99] ring-2 ring-[#004C99]/5 shadow-sm" : "border-slate-100"
+                    }`}
+                  >
+                    <div className="flex h-full min-h-[90px]">
+                      <div className="w-[30%] relative bg-slate-50 overflow-hidden shrink-0">
+                        <img src={style.image} alt={style.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        {formData.pinStyle === style.id && (
+                          <div className="absolute inset-0 bg-[#004C99]/10 flex items-center justify-center"><Check size={16} className="text-[#004C99]" /></div>
+                        )}
+                      </div>
+                      <div className="flex-1 p-4 flex flex-col justify-center items-center text-center">
+                        <h3 className="text-sm font-semibold text-[#001A33] mb-2">{style.title}</h3>
+                        <button className={`px-6 py-1.5 rounded-full text-[10px] font-bold uppercase transition-all ${
+                          formData.pinStyle === style.id ? "bg-[#004C99] text-white" : "border border-[#004C99] text-[#004C99] hover:bg-[#004C99] hover:text-white"
+                        }`}>
+                          {formData.pinStyle === style.id ? "Selected" : "Select"}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Step 2 */}
+            <section id="step-2" className="scroll-mt-32">
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-[#001A33] mb-1">Step 2. <span className="text-[#00AEEF]">Select Metal Finish</span></h2>
+                <div className="w-16 h-1 bg-[#00AEEF] rounded-full mt-2" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {METAL_FINISHES.map((finish) => (
+                  <div 
+                    key={finish.id}
+                    onClick={() => updateForm("metalFinish", finish.id)}
+                    className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
+                      formData.metalFinish === finish.id ? "border-[#004C99] ring-2 ring-[#004C99]/5 shadow-sm" : "border-slate-100"
+                    }`}
+                  >
+                    <div className="flex h-full min-h-[90px]">
+                      <div className="w-[30%] relative bg-slate-50 overflow-hidden shrink-0">
+                        <img src={finish.image} alt={finish.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      </div>
+                      <div className="flex-1 p-4 flex items-center justify-center">
+                        <h3 className="text-sm font-semibold text-[#001A33]">{finish.title}</h3>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Dimensions */}
+              <div className="mt-12 bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                <div className="flex items-center gap-2 mb-6">
+                  <Ruler size={18} className="text-[#004C99]" />
+                  <h3 className="text-lg font-bold text-[#001A33]">Dimensions</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Unit</label>
+                    <select value={formData.unit} onChange={(e) => updateForm("unit", e.target.value)} className="w-full bg-slate-50 border border-slate-100 rounded-lg px-3 py-2 outline-none font-semibold text-xs transition-colors focus:border-[#004C99]">
+                      <option>Centimeter</option><option>Inches</option><option>Millimeter</option>
+                    </select>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Height</label>
+                    <input type="text" placeholder="Height" value={formData.height} onChange={(e) => updateForm("height", e.target.value)} className="w-full bg-slate-50 border border-slate-100 rounded-lg px-3 py-2 outline-none font-semibold text-xs transition-colors focus:border-[#004C99]" />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Width</label>
+                    <input type="text" placeholder="Width" value={formData.width} onChange={(e) => updateForm("width", e.target.value)} className="w-full bg-slate-50 border border-slate-100 rounded-lg px-3 py-2 outline-none font-semibold text-xs transition-colors focus:border-[#004C99]" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Quantity */}
+              <div className="mt-12">
+                <div className="mb-6">
+                  <h3 className="text-xl font-bold text-[#001A33] mb-1">Select Required Quantity</h3>
+                  <div className="w-12 h-1 bg-[#00AEEF] rounded-full" />
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {QUANTITY_OPTIONS.map((option) => (
+                    <div 
+                      key={option.id}
+                      onClick={() => updateForm("quantity", option.id)}
+                      className={`group cursor-pointer bg-white rounded-lg p-3.5 border transition-all duration-300 flex items-center gap-3 ${
+                        formData.quantity === option.id ? "border-[#001A33] bg-[#001A33]/5 shadow-sm" : "border-slate-100"
+                      }`}
+                    >
+                      <div className={`w-4 h-4 rounded border flex items-center justify-center ${formData.quantity === option.id ? "bg-[#001A33] border-[#001A33]" : "border-slate-200"}`}>
+                        {formData.quantity === option.id && <Check size={10} className="text-white" />}
+                      </div>
+                      <span className="font-bold text-xs text-[#001A33]">{option.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Delivery */}
+            <section id="delivery" className="scroll-mt-32">
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-[#001A33] mb-4 tracking-tight">Select <span className="text-[#00AEEF]">Delivery Option</span></h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {DELIVERY_OPTIONS.map((option) => (
+                  <div key={option.id} onClick={() => updateForm("delivery", option.id)} className={`group cursor-pointer p-4 rounded-xl border transition-all duration-300 ${formData.delivery === option.id ? "bg-[#001A33] text-white shadow-md" : "bg-white border-slate-100"}`}>
+                    <div className="flex items-center gap-4">
+                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${formData.delivery === option.id ? "bg-white/10" : "bg-slate-50"}`}>{option.icon}</div>
+                      <div>
+                        <h3 className="text-base font-bold mb-0.5">{option.title}</h3>
+                        <p className={`text-[10px] font-semibold ${formData.delivery === option.id ? "text-white/60" : "text-slate-400"}`}>{option.time}</p>
+                      </div>
+                      <div className={`ml-auto w-5 h-5 rounded-full border flex items-center justify-center ${formData.delivery === option.id ? "bg-[#00AEEF] border-[#00AEEF]" : "border-slate-200"}`}>
+                        {formData.delivery === option.id && <Check size={10} className="text-white" strokeWidth={4} />}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Step 3 */}
+            <section id="step-3" className="scroll-mt-32 pb-40">
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-[#001A33] mb-1">Step 3. <span className="text-[#00AEEF]">Select Backing Type</span></h2>
+                <div className="w-16 h-1 bg-[#00AEEF] rounded-full mt-2" />
+              </div>
+
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {BACKING_OPTIONS.map((option) => (
+                  <div 
+                    key={option.id}
+                    onClick={() => updateForm("backingType", option.id)}
+                    className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
+                      formData.backingType === option.id ? "border-[#004C99] ring-2 ring-[#004C99]/5 shadow-sm" : "border-slate-100"
+                    }`}
+                  >
+                    <div className="aspect-square relative bg-slate-50 overflow-hidden">
+                      <img src={option.image} alt={option.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      {formData.backingType === option.id && (
+                        <div className="absolute inset-0 bg-[#004C99]/10 flex items-center justify-center"><Check size={20} className="text-[#004C99]" /></div>
+                      )}
+                    </div>
+                    <div className="p-3 text-center">
+                      <h3 className="text-xs font-bold text-[#001A33]">{option.title}</h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-12">
+                <div className="mb-6">
+                  <h3 className="text-xl font-bold text-[#001A33] mb-1">Select Amount of Colors for Pin:</h3>
+                  <div className="w-12 h-1 bg-[#00AEEF] rounded-full" />
+                </div>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  {COLOR_OPTIONS.map((option) => (
+                    <div 
+                      key={option.id}
+                      onClick={() => updateForm("colorAmount", option.id)}
+                      className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
+                        formData.colorAmount === option.id ? "border-[#004C99] ring-2 ring-[#004C99]/5 shadow-sm" : "border-slate-100"
+                      }`}
+                    >
+                      <div className="aspect-square relative bg-slate-50 overflow-hidden">
+                        <img src={option.image} alt={option.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        {formData.colorAmount === option.id && (
+                          <div className="absolute inset-0 bg-[#004C99]/10 flex items-center justify-center"><Check size={20} className="text-[#004C99]" /></div>
+                        )}
+                      </div>
+                      <div className="p-3 text-center">
+                        <h3 className="text-xs font-bold text-[#001A33]">{option.title}</h3>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Design & Contact Details */}
+              <div className="mt-16 space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Design Name</label>
+                    <input type="text" value={formData.designName} onChange={(e) => updateForm("designName", e.target.value)} placeholder="Project Name" className="w-full bg-slate-50 border border-slate-100 rounded-lg px-4 py-2.5 outline-none font-medium text-xs focus:border-[#004C99] transition-colors" />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">File Attachment</label>
+                    <div className="flex-1 flex items-center justify-center border border-dashed border-slate-200 rounded-lg px-4 py-2.5 bg-slate-50/50 hover:bg-slate-50 transition-colors cursor-pointer group">
+                      <div className="flex items-center gap-2 text-slate-400 font-medium text-xs group-hover:text-[#004C99]">
+                        <div className="w-6 h-6 rounded bg-white flex items-center justify-center text-blue-400 shadow-xs text-xs">+</div>
+                        <span>Select file</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Details</label>
+                  <textarea rows="3" value={formData.details} onChange={(e) => updateForm("details", e.target.value)} placeholder="Tell us more about your project..." className="w-full bg-slate-50 border border-slate-100 rounded-lg px-4 py-2.5 outline-none font-medium text-xs focus:border-[#004C99] transition-colors resize-none"></textarea>
+                </div>
+
+                <div className="pt-6 border-t border-slate-100">
+                  <h3 className="text-lg font-bold text-[#001A33] mb-6">Account Details</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" value={formData.fullName} onChange={(e) => updateForm("fullName", e.target.value)} placeholder="Full Name" className="w-full bg-slate-50 border border-slate-100 rounded-lg px-4 py-2.5 outline-none font-medium text-xs focus:border-[#004C99] transition-colors" />
+                    <input type="tel" value={formData.phone} onChange={(e) => updateForm("phone", e.target.value)} placeholder="Phone Number" className="w-full bg-slate-50 border border-slate-100 rounded-lg px-4 py-2.5 outline-none font-medium text-xs focus:border-[#004C99] transition-colors" />
+                    <input type="email" value={formData.email} onChange={(e) => updateForm("email", e.target.value)} placeholder="Email Address" className="w-full bg-slate-50 border border-slate-100 rounded-lg px-4 py-2.5 outline-none font-medium text-xs focus:border-[#004C99] transition-colors" />
+                    <input type="text" value={formData.company} onChange={(e) => updateForm("company", e.target.value)} placeholder="Company Name" className="w-full bg-slate-50 border border-slate-100 rounded-lg px-4 py-2.5 outline-none font-medium text-xs focus:border-[#004C99] transition-colors" />
+                  </div>
+                </div>
+
+                <div className="flex justify-center pt-4">
+                  <button className="px-12 py-3.5 bg-[#004C99] hover:bg-[#001A33] text-white font-bold uppercase tracking-[0.2em] rounded-lg transition-all shadow-lg text-[11px]">
+                    Complete Quote
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          {/* Sidebar */}
+          <div className="w-full lg:w-[420px]">
+            <div className="sticky top-32">
+              <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden font-sans">
+                {/* Header with Trust Seals */}
+                <div className="p-8 pb-4 flex items-start justify-between">
+                  <h3 className="text-2xl font-bold text-black pt-2">Order Summary</h3>
+                  <div className="flex gap-2">
+                    <div className="w-14 h-14 rounded-full border-2 border-green-600/20 flex items-center justify-center p-1">
+                      <div className="w-full h-full rounded-full bg-green-50 flex items-center justify-center text-[7px] font-bold text-green-700 text-center uppercase leading-tight">
+                        Official Licensed
+                      </div>
+                    </div>
+                    <div className="w-14 h-14 rounded-full border-2 border-amber-400/20 flex items-center justify-center p-1">
+                      <div className="w-full h-full rounded-full bg-amber-50 flex items-center justify-center text-[7px] font-bold text-amber-700 text-center uppercase leading-tight">
+                        Authorize Net
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="px-8 pb-8 space-y-6">
+                  {/* Pin Style Row */}
+                  <div className="flex justify-between items-center text-sm font-semibold">
+                    <span className="text-slate-700">Pin Style:</span>
+                    <span className="text-slate-900">{selectedStyle?.title || "No Pin Style Selected"}</span>
+                  </div>
+
+                  <div className="space-y-4 pt-2">
+                    <h4 className="text-lg font-bold text-black">Customize Options:</h4>
+                    <div className="flex justify-between items-center text-sm font-semibold">
+                      <span className="text-slate-700">Size:</span>
+                      <span className="text-slate-900">{formData.height || '"'} x {formData.width || '"'} {formData.unit === "Centimeter" ? "CM" : formData.unit === "Inches" ? "IN" : "MM"}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm font-semibold">
+                      <span className="text-slate-700">Metal Finish :</span>
+                      <span className="text-slate-900">{selectedFinish?.title || ""}</span>
+                    </div>
+                  </div>
+
+                  <hr className="border-slate-100" />
+
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-bold text-black">Further Options:</h4>
+                    <div className="flex justify-between items-center text-sm font-semibold">
+                      <span className="text-slate-700">Backing Type :</span>
+                      <span className="text-slate-900">{selectedBacking?.title || ""}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm font-semibold">
+                      <span className="text-slate-700">Colors :</span>
+                      <span className="text-slate-900">{selectedColor?.title || ""}</span>
+                    </div>
+                  </div>
+
+                  <hr className="border-slate-100" />
+
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-bold text-black">Details, Artwork & Delivery :</h4>
+                    <div className="flex justify-between items-center text-sm font-semibold">
+                      <span className="text-slate-700">Design Name :</span>
+                      <span className="text-slate-900">{formData.designName || ""}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm font-semibold">
+                      <span className="text-slate-700">Delivery :</span>
+                      <span className="text-slate-900">{selectedDelivery?.title || ""}</span>
+                    </div>
+                  </div>
+
+                  <hr className="border-slate-100" />
+
+                  <div className="flex justify-between items-center pt-2">
+                    <span className="text-sm font-semibold text-slate-700">Quantity :</span>
+                    <span className="text-sm font-bold text-slate-900">{formData.quantity} Pcs</span>
+                  </div>
+
+                  {/* Trust Badge / Info (Optional but keeps it premium) */}
+                  <div className="mt-8 pt-4 bg-slate-50/50 rounded-xl border border-slate-100 p-4 text-center">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Pricing Calculated Live</p>
+                  </div>
+                </div>
+              </div>
+
+               {/* Support Button */}
+               <div className="mt-6 bg-[#25D366] px-6 py-4 rounded-xl text-white shadow-lg flex items-center justify-between cursor-pointer hover:bg-[#20bd5a] transition-all">
+                  <span className="font-bold text-sm uppercase tracking-wider">Expert Support</span>
+                  <div className="bg-white/20 p-2 rounded-lg"><Truck size={18} /></div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}

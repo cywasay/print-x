@@ -41,7 +41,7 @@ export default function Hero() {
           </p>
           <div className="pt-6 flex flex-wrap gap-5">
             <Link
-              href="#"
+              href="/quote"
               className="px-10 py-4 bg-white text-[#146b9a] hover:bg-blue-50 text-base font-bold rounded-full transition-all shadow-[0_10px_30px_rgba(255,255,255,0.2)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.3)] hover:-translate-y-1 inline-block"
             >
               Get a Quote
