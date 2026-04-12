@@ -5,14 +5,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const offerData = [
-  { name: "Note Books", img: "/services/note-book.jpg" },
-  { name: "Lapel Pins", img: "/services/lapel-pin.jpg" },
-  { name: "Drinkware", img: "/services/drinkware.jpg" },
-  { name: "Lanyards", img: "/services/laneyrd.jpg" },
-  { name: "Gift Sets", img: "/services/gift-set.jpg" },
-  { name: "Trophies", img: "/services/trophies.jpg" },
-  { name: "Special Pens", img: "/services/special-pens.jpg" },
-  { name: "Tech Gear", img: "/services/tech-gear.jpg" },
+  { name: "3D Lapel Pins", img: "/services/tech-gear.jpg" },
+  { name: "Hard Enamel Pins", img: "/services/note-book.jpg" },
+  { name: "Soft Enamel Pins", img: "/services/gift-set.jpg" },
+  { name: "Die Cast Pins", img: "/services/special-pens.jpg" },
+  { name: "Offset Pins", img: "/services/lapel-pin.jpg" },
+  { name: "UV Pins", img: "/services/drinkware.jpg" },
+  { name: "Baseball Pins", img: "/services/laneyrd.jpg" },
+  { name: "Hat Pins", img: "/services/trophies.jpg" },
 ];
 
 const containerVariants = {
@@ -52,15 +52,15 @@ export default function FeaturedProducts() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-3xl md:text-4xl lg:text-[48px] font-extrabold leading-[1.1] tracking-tight text-[#0d2b3e] mb-4">
-              What We{" "}
+              Pin{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#146b9a] to-[#00a9e0]">
-                Offer.
+                Types.
               </span>
             </h2>
             
             <p className="text-sm md:text-base text-slate-500/90 font-medium leading-relaxed max-w-2xl mx-auto">
-              Premium quality printing and branding solutions meticulously crafted 
-              to elevate your presence and leave a lasting impression.
+              Top-recommended lapel pin manufacturer all over the UAE with 100% customization.
+              From glossy soft enamel to premium die-cast finishes.
             </p>
           </motion.div>
         </div>
@@ -85,6 +85,7 @@ export default function FeaturedProducts() {
                     src={item.img}
                     alt={item.name}
                     fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

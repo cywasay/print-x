@@ -13,6 +13,7 @@ export default function Hero() {
         src="/banners/web-home-page-banner.jpg"
         alt="PrintX Hero Banner"
         fill
+        sizes="100vw"
         className="object-cover object-center md:object-right lg:object-center"
         priority
       />
@@ -24,20 +25,20 @@ export default function Hero() {
         {/* Left Content */}
         <div className="w-full md:w-[60%] flex flex-col items-start justify-center space-y-6 md:space-y-8 z-20">
           <h1 className="text-4xl md:text-5xl lg:text-[72px] font-semibold leading-[1.05] tracking-tight text-white drop-shadow-sm">
-            Print{" "}
+            Custom{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">
-              Smarter.
+              Pins.
             </span>
             <br />
-            Brand{" "}
+            Crafted{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">
-              Better.
+              Perfection.
             </span>
           </h1>
           <p className="text-base lg:text-[22px] text-white/80 font-medium leading-relaxed max-w-xl mt-2">
-            Your trusted provider of high-quality printing,
+            The UAE's premier manufacturer of custom lapel pins,
             <br className="hidden md:block" />
-            bespoke packaging, and premium promotional solutions.
+            enamel pins, and premium metal badges.
           </p>
           <div className="pt-6 flex flex-wrap gap-5">
             <Link
@@ -58,7 +59,7 @@ export default function Hero() {
     </section>
     <div className="bg-[#51A9FF] py-3.5 md:py-4 text-white">
       <div className="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-8 text-[11px] md:text-[13px] font-bold uppercase tracking-[0.05em] text-center">
-        <span className="opacity-100">Top-Quality, Affordable, Custom-Made Prints with Premium Craftsmanship</span>
+        <span className="opacity-100">Top-Quality, Affordable, Custom-Made Pin Badges with Premium Craftsmanship</span>
         
         <div className="hidden md:flex items-center gap-8">
           <div className="h-4 w-px bg-white/30" />

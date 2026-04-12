@@ -32,6 +32,7 @@ export default function ExcellenceSection() {
           src="/banners/banner-image2.jpg"
           alt="Excellence Background"
           fill
+          sizes="100vw"
           className="object-cover object-center"
           priority
         />
@@ -55,9 +56,10 @@ export default function ExcellenceSection() {
       >
         <div className="relative w-full h-full shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-[6px] border-white/95">
           <Image
-            src="/services/gift-set.jpg"
-            alt="Service Highlight"
+            src="/services/lapel-pin.jpg"
+            alt="Custom Pin Example"
             fill
+            sizes="(max-width: 768px) 170px, 240px"
             className="object-cover"
           />
         </div>
@@ -92,9 +94,10 @@ export default function ExcellenceSection() {
       >
         <div className="relative w-full h-full shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-[6px] border-white/95">
           <Image
-            src="/services/note-book.jpg"
-            alt="Service Highlight"
+            src="/services/tech-gear.jpg"
+            alt="Custom Badge Example"
             fill
+            sizes="(max-width: 768px) 180px, 260px"
             className="object-cover"
           />
         </div>

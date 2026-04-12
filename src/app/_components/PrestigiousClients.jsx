@@ -65,7 +65,7 @@ export default function PrestigiousClients() {
                 {[...clientLogos, ...clientLogos].map((logo, idx) => (
                   <div key={idx} className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-[2.5rem] bg-[#fcfdfe] border border-slate-100 flex items-center justify-center p-10 hover:border-[#51A9FF]/30 transition-all duration-500 shadow-sm hover:shadow-xl group/logo">
                     <div className="relative w-full h-full opacity-40 group-hover/logo:opacity-100 transition-opacity grayscale group-hover/logo:grayscale-0 scale-90 group-hover/logo:scale-100 duration-500">
-                      <Image src={logo} alt="Client" fill className="object-contain mix-blend-multiply" />
+                      <Image src={logo} alt="Client" fill sizes="(max-width: 768px) 160px, 200px" className="object-contain mix-blend-multiply" />
                     </div>
                   </div>
                 ))}
@@ -82,7 +82,7 @@ export default function PrestigiousClients() {
                 {[...clientLogos, ...clientLogos].map((logo, idx) => (
                   <div key={idx} className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-[2.5rem] bg-[#fcfdfe] border border-slate-100 flex items-center justify-center p-10 hover:border-[#51A9FF]/30 transition-all duration-500 shadow-sm hover:shadow-xl group/logo">
                     <div className="relative w-full h-full opacity-40 group-hover/logo:opacity-100 transition-opacity grayscale group-hover/logo:grayscale-0 scale-90 group-hover/logo:scale-100 duration-500">
-                      <Image src={logo} alt="Client" fill className="object-contain mix-blend-multiply" />
+                      <Image src={logo} alt="Client" fill sizes="(max-width: 768px) 160px, 200px" className="object-contain mix-blend-multiply" />
                     </div>
                   </div>
                 ))}

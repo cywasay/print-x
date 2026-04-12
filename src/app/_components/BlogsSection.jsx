@@ -12,15 +12,15 @@ const blogData = [
     img: "/hero_gifts_1775637506200.png"
   },
   {
-    title: "Cultural Influences in Business Card Design: Dubai Trends",
+    title: "Choosing the Right Plating Options for Enamel Badges",
     date: "April 7, 2025",
-    excerpt: "Dubai city sets high standards in networking. Business cards remain a crucial touchpoint in this luxury market.",
+    excerpt: "Discover the best metal finishes for your custom pins, from classic gold to sleek black nickel depending on your design.",
     img: "/hero_printing_1775637492071.png"
   },
   {
-    title: "The Power of First Impressions in the Digital Age",
+    title: "Why Custom Lapel Pins Are Essential for Corporate Events",
     date: "April 7, 2025",
-    excerpt: "Despite the digital shift, physical business cards still carry unmatched weight in professional introductions.",
+    excerpt: "Despite the digital shift, wearing custom branded badges carries an unmatched weight in professional brand promotion.",
     img: "/hero_products_1775637475637.png"
   }
 ];
@@ -63,7 +63,7 @@ export default function BlogsSection() {
                 Insights.
               </span>
             </h2>
-            <p className="text-sm md:text-base text-slate-500/90 font-medium">Expert advice on branding and printing trends.</p>
+            <p className="text-sm md:text-base text-slate-500/90 font-medium">Expert advice on custom pin designs and manufacturing.</p>
           </motion.div>
           
           <motion.div
@@ -93,6 +93,7 @@ export default function BlogsSection() {
                   src={blog.img} 
                   alt={blog.title} 
                   fill 
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-1000 cubic-bezier(0.16, 1, 0.3, 1)" 
                 />
               </div>

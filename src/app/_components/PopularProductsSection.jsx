@@ -4,14 +4,14 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const popularProductsData = [
-  { name: "Premium Sublimation Lanyards", img: "/hero_gifts_1775637506200.png" },
-  { name: "Barlow PU Notebooks with Pocket", img: "/hero_products_1775637475637.png" },
-  { name: "Metal Ballpen - Deluxe Series", img: "/hero_products_1775637475637.png" },
-  { name: "Round Epoxy Lapel Pins", img: "/hero_gifts_1775637506200.png" },
-  { name: "Custom Branded Lapel Badges", img: "/hero_gifts_1775637506200.png" },
-  { name: "Double Clip Lanyards", img: "/hero_gifts_1775637506200.png" },
-  { name: "Full Set Sublimation Pack", img: "/hero_gifts_1775637506200.png" },
-  { name: "Advanced USB Flash Drives", img: "/hero_printing_1775637492071.png" }
+  { name: "Premium Hard Enamel Pins", img: "/services/note-book.jpg" },
+  { name: "Custom 3D Die-Cast Pins", img: "/services/special-pens.jpg" },
+  { name: "Glitter Soft Enamel Pins", img: "/services/gift-set.jpg" },
+  { name: "Round Epoxy Lapel Pins", img: "/services/lapel-pin.jpg" },
+  { name: "Custom Branded Metal Badges", img: "/services/drinkware.jpg" },
+  { name: "Offset Printed Pins", img: "/services/laneyrd.jpg" },
+  { name: "Custom Baseball Pins", img: "/services/trophies.jpg" },
+  { name: "Custom Hat Pins", img: "/services/tech-gear.jpg" }
 ];
 
 const containerVariants = {
@@ -51,11 +51,11 @@ export default function PopularProductsSection() {
             <h2 className="text-3xl md:text-4xl lg:text-[48px] font-extrabold leading-[1.1] tracking-tight text-[#0d2b3e] mb-4">
               Popular{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#146b9a] to-[#00a9e0]">
-                Products.
+                Pins.
               </span>
             </h2>
             <p className="text-sm md:text-base text-slate-500/90 font-medium leading-relaxed">
-              Discover our most sought-after products, favored by top corporate brands for their quality and durability.
+              Discover our most sought-after custom pins, favored by top corporate brands for their vibrant details and durability.
             </p>
           </motion.div>
         </div>
@@ -75,6 +75,7 @@ export default function PopularProductsSection() {
                     src={item.img} 
                     alt={item.name} 
                     fill 
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="object-contain drop-shadow-sm" 
                   />
                 </div>

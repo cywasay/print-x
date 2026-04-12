@@ -26,7 +26,7 @@ const reviewsData = [
     initial: "K",
     bgColor: "bg-[#e87717]",
     time: "1 year ago",
-    text: "Very good quality and excellent service. Highly recommended for corporate printing solutions in Dubai and beyond.",
+    text: "Very good quality and excellent service. Highly recommended for custom lapel pins in Dubai and beyond.",
     rating: 5,
   },
   {
@@ -34,7 +34,7 @@ const reviewsData = [
     initial: "S",
     bgColor: "bg-[#146b9a]",
     time: "6 months ago",
-    text: "The bespoke gift sets exceeded our expectations. The attention to detail in packaging and finish is simply world-class.",
+    text: "The bespoke custom pins exceeded our expectations. The attention to detail in packaging and finish is simply world-class.",
     rating: 5,
   }
 ];

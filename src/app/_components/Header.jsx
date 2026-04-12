@@ -6,12 +6,22 @@ import Image from 'next/image';
 import { Search, ShoppingCart, MessageSquare, ChevronDown, Menu, X, Phone, Mail, MapPin, Clock, User } from 'lucide-react';
 
 const navLinks = [
-  { label: "Products", href: "#", hasDropdown: true },
-  { label: "Gift Ideas", href: "#", hasDropdown: true },
-  { label: "Office Products", href: "#", hasDropdown: true },
-  { label: "E-Catalogs", href: "#", hasDropdown: true },
-  { label: "Apparels & Accessories", href: "#" },
-  { label: "Large Format Prints", href: "#" },
+  { 
+    label: "Categories", 
+    href: "#", 
+    hasDropdown: true,
+    dropdownItems: [
+      { label: "Hard Enamel Pins", href: "/category/hard-enamel-pins" },
+      { label: "Soft Enamel Pins", href: "/category/soft-enamel-pins" },
+      { label: "Die Struck Pin Badges", href: "/category/die-struck-pin-badges" },
+      { label: "3D Cast Pin Badges", href: "/category/3d-cast-pin-badges" },
+      { label: "Photo Dome Pins", href: "/category/photo-dome-pins" },
+      { label: "Trading Pin Badges", href: "/category/trading-pin-badges" }
+    ]
+  },
+  { label: "Reviews", href: "#", hasDropdown: false },
+  { label: "Portfolio", href: "#", hasDropdown: false },
+  { label: "Contact Us", href: "#", hasDropdown: false },
 ];
 
 export default function Header() {
@@ -63,9 +73,9 @@ export default function Header() {
                 <Phone size={12} strokeWidth={2} />
                 <span>+971-XX-XXX-XXXX</span>
               </a>
-              <a href="mailto:info@printx.ae" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <a href="mailto:info@pinbadges.ae" className="flex items-center gap-1.5 hover:text-white transition-colors">
                 <Mail size={12} strokeWidth={2} />
-                <span>info@printx.ae</span>
+                <span>info@pinbadges.ae</span>
               </a>
               <span className="flex items-center gap-1.5">
                 <MapPin size={12} strokeWidth={2} />
@@ -78,7 +88,7 @@ export default function Header() {
                 Mon – Sat: 9AM – 7PM
               </span>
               <span className="hidden sm:inline text-white/30">|</span>
-              <span className="hidden sm:inline text-[12px] text-white/60 font-medium">Top Corporate & Promotional Gifts Supplier in Dubai</span>
+              <span className="hidden sm:inline text-[12px] text-white/60 font-medium">Leading Custom Lapel & Enamel Pins Supplier in Dubai</span>
             </div>
           </div>
         </div>
@@ -91,10 +101,11 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-0 shrink-0 group select-none">
               <Image
                 src="/logo-web.png"
-                alt="PrintX Logo"
+                alt="PinBadges Logo"
                 width={160}
                 height={50}
                 className={`transition-all duration-300 object-contain ${isScrolled ? 'h-10 w-auto' : 'h-12 w-auto'}`}
+                style={{ height: 'auto', width: 'auto' }}
                 priority
               />
             </Link>
@@ -108,7 +119,7 @@ export default function Header() {
               }`}>
                 <input
                   type="text"
-                  placeholder="Search products, gifts, printing services..."
+                  placeholder="Search custom pins, badges, styles..."
                   className="flex-1 px-5 py-2.5 text-[13.5px] text-slate-700 outline-none bg-transparent placeholder:text-slate-400 font-medium"
                   onFocus={() => setSearchFocused(true)}
                   onBlur={() => setSearchFocused(false)}
@@ -188,18 +199,36 @@ export default function Header() {
           <div className="max-w-[1440px] mx-auto px-6">
             <nav className="flex items-center gap-0">
               {navLinks.map((link, idx) => (
-                <Link
-                  key={idx}
-                  href={link.href}
-                  className="relative flex items-center gap-1 px-4 py-3 text-[13.5px] font-semibold text-slate-600 hover:text-[#146b9a] transition-colors duration-200 group"
-                >
-                  <span>{link.label}</span>
-                  {link.hasDropdown && (
-                    <ChevronDown size={13} strokeWidth={2.5} className="text-slate-400 group-hover:text-[#146b9a] transition-all duration-200" />
+                <div key={idx} className="relative group">
+                  <Link
+                    href={link.href}
+                    className="relative flex items-center gap-1 px-4 py-3 text-[13.5px] font-semibold text-slate-600 hover:text-[#146b9a] transition-colors duration-200"
+                  >
+                    <span>{link.label}</span>
+                    {link.hasDropdown && (
+                      <ChevronDown size={13} strokeWidth={2.5} className="text-slate-400 group-hover:text-[#146b9a] transition-all duration-200" />
+                    )}
+                    {/* Hover underline */}
+                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-gradient-to-r from-[#146b9a] to-[#1a8bc4] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                  </Link>
+
+                  {/* Dropdown Menu */}
+                  {link.hasDropdown && link.dropdownItems && (
+                    <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                      <div className="bg-white rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-slate-100 p-2.5 min-w-[240px] flex flex-col gap-1">
+                        {link.dropdownItems.map((item, i) => (
+                          <Link 
+                            key={i} 
+                            href={item.href}
+                            className="px-4 py-3 rounded-xl text-[13px] font-semibold text-slate-600 hover:text-[#146b9a] hover:bg-[#146b9a]/5 transition-colors"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   )}
-                  {/* Hover underline */}
-                  <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-gradient-to-r from-[#146b9a] to-[#1a8bc4] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </Link>
+                </div>
               ))}
             </nav>
           </div>
@@ -226,10 +255,11 @@ export default function Header() {
           <Link href="/" className="flex flex-col leading-none" onClick={() => setIsMobileMenuOpen(false)}>
             <Image
               src="/logo-web.png"
-              alt="PrintX Logo"
+              alt="PinBadges Logo"
               width={140}
               height={44}
               className="h-10 w-auto object-contain"
+              style={{ height: 'auto', width: 'auto' }}
             />
           </Link>
           <button
@@ -258,15 +288,31 @@ export default function Header() {
         {/* Drawer Links */}
         <nav className="flex-1 overflow-y-auto px-3 py-3">
           {navLinks.map((link, idx) => (
-            <Link
-              key={idx}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-between px-4 py-3.5 rounded-xl text-[15px] font-semibold text-slate-700 hover:bg-[#146b9a]/5 hover:text-[#146b9a] transition-all duration-200"
-            >
-              <span>{link.label}</span>
-              {link.hasDropdown && <ChevronDown size={16} className="text-slate-400 -rotate-90" />}
-            </Link>
+            <div key={idx} className="flex flex-col">
+              <Link
+                href={link.href}
+                onClick={!link.hasDropdown ? () => setIsMobileMenuOpen(false) : undefined}
+                className="flex items-center justify-between px-4 py-3.5 rounded-xl text-[15px] font-semibold text-slate-700 hover:bg-[#146b9a]/5 hover:text-[#146b9a] transition-all duration-200"
+              >
+                <span>{link.label}</span>
+                {link.hasDropdown && <ChevronDown size={16} className="text-slate-400" />}
+              </Link>
+              
+              {link.hasDropdown && link.dropdownItems && (
+                <div className="flex flex-col pl-4 pb-2">
+                  {link.dropdownItems.map((item, i) => (
+                    <Link
+                      key={i}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="px-4 py-2.5 text-[14px] font-medium text-slate-500 hover:text-[#146b9a] transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </nav>
 

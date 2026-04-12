@@ -6,26 +6,26 @@ import { ArrowRight } from "lucide-react";
 
 const solutionsData = [
   {
-    title: "Large Format Printing",
-    desc: "High-impact billboards, retail displays, and vinyl graphics engineered for maximum brand visibility.",
+    title: "Custom 3D Lapel Pins",
+    desc: "Feature your realistic, eye-catching designs with stunning 3D lapel pins that are designed with cutout 3D shapes.",
     img: "/services/tech-gear.jpg",
     accent: "#51A9FF"
   },
   {
-    title: "Digital & Offset Printing",
-    desc: "Precision corporate stationery and premium marketing collateral with world-class finishes.",
+    title: "Hard Enamel Pins",
+    desc: "Eyeing something durable and high-quality for promotion or personalized gifts? Hard enamel pins can be your best call.",
     img: "/services/note-book.jpg",
     accent: "#FF51A9"
   },
   {
-    title: "Custom Promotional Gifts",
-    desc: "Bespoke branded items and luxury sets meticulously crafted to leave a lasting impression.",
+    title: "Soft Enamel Pins",
+    desc: "Known for budget-friendly designs, these pins have glossy surfaces and are used as promotional merchandise.",
     img: "/services/gift-set.jpg",
     accent: "#FFB551"
   },
   {
-    title: "Expert Graphic Design",
-    desc: "Visionary brand identities and visual stories that resonate with your global audience.",
+    title: "Custom Die Cast Pins",
+    desc: "Opt for die-cast lapel pins if you need detailed pins for awards, branding or recognition, as they're very similar to metal badges.",
     img: "/services/special-pens.jpg",
     accent: "#51FFB5"
   },
@@ -70,9 +70,9 @@ export default function CompletePrintingSolution() {
           >
             <span className="text-[12px] font-black tracking-[0.4em] text-[#51A9FF] uppercase mb-4 block">Our Expertise</span>
             <h2 className="text-4xl md:text-5xl lg:text-[60px] font-bold leading-[1.05] tracking-tighter text-[#0d2b3e]">
-              Complete Printing{" "}
+              Premium Pin{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#146b9a] to-[#00a9e0]">
-                Solutions.
+                Collections.
               </span>
             </h2>
           </motion.div>
@@ -84,7 +84,7 @@ export default function CompletePrintingSolution() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-slate-500 text-lg md:text-xl font-medium max-w-md pb-2"
           >
-            Delivering precision at every scale, from massive billboards to professional stationery.
+            Choose from 50+ Types of Custom Enamel & Lapel Pins, crafted with premium materials.
           </motion.p>
         </div>
 
@@ -123,6 +123,7 @@ export default function CompletePrintingSolution() {
                     src={item.img}
                     alt={item.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-1000 cubic-bezier(0.16, 1, 0.3, 1)"
                   />
                   {/* Subtle Image Overlay */}

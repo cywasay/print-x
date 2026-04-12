@@ -5,27 +5,29 @@ import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { Check, ShoppingCart, Info, Ruler, Truck, ChevronDown } from "lucide-react";
+import { Suspense } from "react";
 
 const PIN_STYLES = [
-  { id: "hard-enamel", title: "Hard Enamel Pins", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Hard+Enamel" },
-  { id: "soft-enamel", title: "Soft Enamel Pins", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Soft+Enamel" },
-  { id: "die-struck", title: "Die Struck Pin Badges", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Die+Struck" },
-  { id: "3d-cast", title: "3D Cast Pin Badges", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=3D+Cast" },
-  { id: "photo-dome", title: "Photo Dome Pins", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Photo+Dome" },
-  { id: "trading-pin", title: "Trading Pin Badges", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Trading+Pin" },
-  { id: "other", title: "Other Type", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Other" },
+  { id: "hard-enamel", title: "Hard Enamel Pins", image: "/lapel-categories/hard-enamel-pin.jpg" },
+  { id: "soft-enamel", title: "Soft Enamel Pins", image: "/lapel-categories/soft-enamel-pin.jpg" },
+  { id: "die-struck", title: "Die Struck Pin Badges", image: "/lapel-categories/die-cast-pin.jpg" },
+  { id: "3d-cast", title: "3D Cast Pin Badges", image: "/lapel-categories/3d-cast-pin.jpg" },
+  { id: "epoxy-pin", title: "Epoxy Pins", image: "/lapel-categories/epoxy-pin.jpg" },
+  { id: "custom-uv", title: "Custom UV Pins", image: "/lapel-categories/custom-UV-pin.jpg" },
+  { id: "other", title: "Other pins", image: "/lapel-categories/other-pins-pin.jpg" },
 ];
 
 const METAL_FINISHES = [
-  { id: "gold", title: "Gold", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Gold" },
-  { id: "silver", title: "Silver", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Silver" },
-  { id: "copper", title: "Copper", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Copper" },
-  { id: "black-nickel", title: "Black Nickel", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Black+Nickel" },
-  { id: "black-metal", title: "Black Metal", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Black+Metal" },
-  { id: "antique-gold", title: "Antique Gold", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Antique+Gold" },
-  { id: "antique-silver", title: "Antique Silver", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Antique+Silver" },
-  { id: "antique-copper", title: "Antique Copper", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Antique+Copper" },
+  { id: "gold", title: "Gold", image: "/metal-finish/gold.png" },
+  { id: "silver", title: "Silver", image: "/metal-finish/silver.png" },
+  { id: "copper", title: "Copper", image: "/metal-finish/copper.png" },
+  { id: "black-nickel", title: "Black Nickel", image: "/metal-finish/black-nickel.png" },
+  { id: "black-metal", title: "Black Metal", image: "/metal-finish/black-metal.png" },
+  { id: "antique-gold", title: "Antique Gold", image: "/metal-finish/antique-gold.png" },
+  { id: "antique-silver", title: "Antique Silver", image: "/metal-finish/antiue-silver.png" },
+  { id: "antique-copper", title: "Antique Copper", image: "/metal-finish/antique-copper.png" },
 ];
 
 const QUANTITY_OPTIONS = [
@@ -46,20 +48,31 @@ const DELIVERY_OPTIONS = [
 ];
 
 const BACKING_OPTIONS = [
-  { id: "pvc", title: "PVC", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=PVC" },
-  { id: "metal-butterfly", title: "Metal Butterfly", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Butterfly" },
-  { id: "magnet", title: "Magnet", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Magnet" },
-  { id: "safety-pin", title: "Safety Pin", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=Safety+Pin" },
+  { id: "pvc", title: "PVC", image: "/backing-type/PVC.jpg" },
+  { id: "metal-butterfly", title: "Metal Butterfly", image: "/backing-type/butter-flay.jpg" },
+  { id: "magnet", title: "Magnet", image: "/backing-type/magnet.jpg" },
+  { id: "safety-pin", title: "Safety Pin", image: "/backing-type/saftypin.jpg.jpeg" },
 ];
 
 const COLOR_OPTIONS = [
-  { id: "5-less", title: "5 Colors or less", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=5-Colors" },
-  { id: "6-8", title: "6 to 8 Colors", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=6-8-Colors" },
-  { id: "9-12", title: "9 to 12 Colors", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=9-12-Colors" },
-  { id: "13-20", title: "13 to 20 Colors", image: "https://placehold.co/400x300/e2e8f0/1e293b?text=13-20-Colors" },
+  { id: "5-less", title: "5 Colors or less", image: "/colors-amount/5-colors.png" },
+  { id: "6-8", title: "6 to 8 Colors", image: "/colors-amount/8-colors.png" },
+  { id: "9-12", title: "9 to 12 Colors", image: "/colors-amount/12-colors.png" },
+  { id: "13-20", title: "13 to 20 Colors", image: "/colors-amount/20-colors.png" },
 ];
 
 export default function QuotePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white"><div className="w-10 h-10 border-4 border-[#00AEEF] border-t-transparent rounded-full animate-spin" /></div>}>
+      <QuotePageContent />
+    </Suspense>
+  );
+}
+
+function QuotePageContent() {
+  const searchParams = useSearchParams();
+  const styleFromUrl = searchParams.get("style");
+
   const [formData, setFormData] = useState({
     pinStyle: "",
     metalFinish: "",
@@ -77,6 +90,12 @@ export default function QuotePage() {
     phone: "",
     company: "",
   });
+
+  useEffect(() => {
+    if (styleFromUrl && PIN_STYLES.some(s => s.id === styleFromUrl)) {
+      setFormData(prev => ({ ...prev, pinStyle: styleFromUrl }));
+    }
+  }, [styleFromUrl]);
 
   const updateForm = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -122,17 +141,23 @@ export default function QuotePage() {
                       formData.pinStyle === style.id ? "border-[#004C99] ring-2 ring-[#004C99]/5 shadow-sm" : "border-slate-100"
                     }`}
                   >
-                    <div className="flex h-full min-h-[90px]">
-                      <div className="w-[30%] relative bg-slate-50 overflow-hidden shrink-0">
-                        <img src={style.image} alt={style.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="flex h-full min-h-[140px]">
+                      <div className="w-[42%] relative bg-slate-50 overflow-hidden shrink-0">
+                        <Image 
+                          src={style.image} 
+                          alt={style.title} 
+                          fill 
+                          sizes="(max-width: 768px) 40vw, 200px"
+                          className="object-cover group-hover:scale-110 transition-transform duration-500" 
+                        />
                         {formData.pinStyle === style.id && (
-                          <div className="absolute inset-0 bg-[#004C99]/10 flex items-center justify-center"><Check size={16} className="text-[#004C99]" /></div>
+                          <div className="absolute inset-0 bg-[#004C99]/10 flex items-center justify-center relative z-10"><Check size={20} className="text-[#004C99]" /></div>
                         )}
                       </div>
-                      <div className="flex-1 p-4 flex flex-col justify-center items-center text-center">
-                        <h3 className="text-sm font-semibold text-[#001A33] mb-2">{style.title}</h3>
-                        <button className={`px-6 py-1.5 rounded-full text-[10px] font-bold uppercase transition-all ${
-                          formData.pinStyle === style.id ? "bg-[#004C99] text-white" : "border border-[#004C99] text-[#004C99] hover:bg-[#004C99] hover:text-white"
+                      <div className="flex-1 p-5 flex flex-col justify-center items-center text-center">
+                        <h3 className="text-base font-bold text-[#001A33] mb-3">{style.title}</h3>
+                        <button className={`px-8 py-2 rounded-full text-[11px] font-black uppercase tracking-wider transition-all ${
+                          formData.pinStyle === style.id ? "bg-[#004C99] text-white" : "border-2 border-[#004C99] text-[#004C99] hover:bg-[#004C99] hover:text-white"
                         }`}>
                           {formData.pinStyle === style.id ? "Selected" : "Select"}
                         </button>
@@ -158,12 +183,18 @@ export default function QuotePage() {
                       formData.metalFinish === finish.id ? "border-[#004C99] ring-2 ring-[#004C99]/5 shadow-sm" : "border-slate-100"
                     }`}
                   >
-                    <div className="flex h-full min-h-[90px]">
-                      <div className="w-[30%] relative bg-slate-50 overflow-hidden shrink-0">
-                        <img src={finish.image} alt={finish.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="flex h-full min-h-[110px]">
+                      <div className="w-[35%] relative bg-slate-50 overflow-hidden shrink-0">
+                        <Image 
+                          src={finish.image} 
+                          alt={finish.title} 
+                          fill 
+                          sizes="(max-width: 768px) 30vw, 150px"
+                          className="object-cover group-hover:scale-110 transition-transform duration-500" 
+                        />
                       </div>
                       <div className="flex-1 p-4 flex items-center justify-center">
-                        <h3 className="text-sm font-semibold text-[#001A33]">{finish.title}</h3>
+                        <h3 className="text-base font-bold text-[#001A33]">{finish.title}</h3>
                       </div>
                     </div>
                   </div>
@@ -259,9 +290,15 @@ export default function QuotePage() {
                     }`}
                   >
                     <div className="aspect-square relative bg-slate-50 overflow-hidden">
-                      <img src={option.image} alt={option.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <Image 
+                        src={option.image} 
+                        alt={option.title} 
+                        fill 
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-500" 
+                      />
                       {formData.backingType === option.id && (
-                        <div className="absolute inset-0 bg-[#004C99]/10 flex items-center justify-center"><Check size={20} className="text-[#004C99]" /></div>
+                        <div className="absolute inset-0 bg-[#004C99]/10 flex items-center justify-center relative z-10"><Check size={20} className="text-[#004C99]" /></div>
                       )}
                     </div>
                     <div className="p-3 text-center">
@@ -286,9 +323,15 @@ export default function QuotePage() {
                       }`}
                     >
                       <div className="aspect-square relative bg-slate-50 overflow-hidden">
-                        <img src={option.image} alt={option.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <Image 
+                          src={option.image} 
+                          alt={option.title} 
+                          fill 
+                          sizes="(max-width: 768px) 50vw, 25vw"
+                          className="object-cover group-hover:scale-110 transition-transform duration-500" 
+                        />
                         {formData.colorAmount === option.id && (
-                          <div className="absolute inset-0 bg-[#004C99]/10 flex items-center justify-center"><Check size={20} className="text-[#004C99]" /></div>
+                          <div className="absolute inset-0 bg-[#004C99]/10 flex items-center justify-center relative z-10"><Check size={20} className="text-[#004C99]" /></div>
                         )}
                       </div>
                       <div className="p-3 text-center">
@@ -355,6 +398,7 @@ export default function QuotePage() {
                       width={100}
                       height={32}
                       className="h-8 w-auto object-contain"
+                      style={{ height: 'auto', width: 'auto' }}
                     />
                   </div>
                 </div>

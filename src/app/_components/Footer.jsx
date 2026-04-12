@@ -27,6 +27,7 @@ export default function Footer() {
           src="/banners/banner-image1.jpg" 
           alt="Footer Background" 
           fill 
+          sizes="100vw"
           className="object-cover"
         />
         {/* Minimal gradient for readability */}
@@ -62,14 +63,15 @@ export default function Footer() {
              <Link href="/" className="inline-block">
                <Image
                  src="/logo-web.png"
-                 alt="PrintX Logo"
+                 alt="PinBadges Logo"
                  width={160}
                  height={50}
                  className="h-12 w-auto object-contain brightness-0 invert"
+                 style={{ height: 'auto', width: 'auto' }}
                />
              </Link>
              <p className="text-[14px] text-blue-100/40 font-medium leading-relaxed max-w-sm">
-                Middle East's leading high-precision branding partner, delivering world-class printing solutions since 2004.
+                Middle East's leading lapel pin manufacturer, delivering custom badges and premium pins since 2014.
              </p>
 
              <div className="space-y-4">
@@ -79,11 +81,11 @@ export default function Footer() {
                    </div>
                    <span className="font-bold text-[13px] tracking-tight">+971 4 223 6434</span>
                 </a>
-                <a href="mailto:info@printx.ae" className="flex items-center gap-4 text-blue-100/60 group">
+                <a href="mailto:info@pinbadges.ae" className="flex items-center gap-4 text-blue-100/60 group">
                    <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
                       <Mail size={14} />
                    </div>
-                   <span className="font-bold text-[13px] tracking-tight">info@printx.ae</span>
+                   <span className="font-bold text-[13px] tracking-tight">info@pinbadges.ae</span>
                 </a>
              </div>
           </div>
@@ -92,7 +94,7 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h4 className="font-bold text-[11px] uppercase tracking-[0.4em] mb-10 text-white/20">Solutions</h4>
             <ul className="space-y-5 text-[14px] text-blue-100/40 font-medium">
-              {['Tech Accessories', 'Eco-Friendly Gifts', 'Drinkware Series', 'Stationery Systems', 'Recognition Awards'].map(link => (
+              {['Hard Enamel Pins', 'Soft Enamel Pins', 'Die-Cast Badges', 'Custom 3D Pins', 'Offset Printed Pins'].map(link => (
                 <li key={link}>
                   <Link href="#" className="flex items-center gap-2">
                     {link}
@@ -106,7 +108,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <h4 className="font-bold text-[11px] uppercase tracking-[0.4em] mb-10 text-white/20">Services</h4>
             <ul className="space-y-5 text-[14px] text-blue-100/40 font-medium">
-              {['Graphic Design', 'Logo Branding', 'Large Format', 'Digital Print', 'Offset Print'].map(link => (
+              {['Free Custom Design', 'Express Shipping', 'Premium Plating', 'Attachment Upgrades', 'Quality Assurance'].map(link => (
                 <li key={link}>
                   <Link href="#" className="flex items-center gap-2">
                     {link}
@@ -149,7 +151,7 @@ export default function Footer() {
       <div className="bg-black/20 py-10">
         <div className="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-[11px] font-bold text-blue-200/20 uppercase tracking-[0.3em]">
-            © 2024 PrintX Advertising LLC. Crafting perfection in Dubai.
+            © 2026 PinBadges AE. Crafting custom pins in Dubai.
           </p>
           
           <div className="flex items-center gap-8 text-[11px] font-bold text-blue-200/20 uppercase tracking-[0.2em]">
