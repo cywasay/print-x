@@ -236,7 +236,7 @@ function QuotePageContent() {
                       placeholder="e.g. 2.5" 
                       value={formData.height} 
                       onChange={(e) => updateForm("height", e.target.value)} 
-                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white placeholder:text-white/20 focus:border-[#51A9FF] transition-colors shadow-inner" 
+                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white placeholder:text-white/40 placeholder:font-medium focus:border-[#51A9FF] transition-colors shadow-inner" 
                     />
                   </div>
                   <div className="flex flex-col gap-2.5">
@@ -246,7 +246,7 @@ function QuotePageContent() {
                       placeholder="e.g. 1.5" 
                       value={formData.width} 
                       onChange={(e) => updateForm("width", e.target.value)} 
-                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white placeholder:text-white/20 focus:border-[#51A9FF] transition-colors shadow-inner" 
+                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white placeholder:text-white/40 placeholder:font-medium focus:border-[#51A9FF] transition-colors shadow-inner" 
                     />
                   </div>
                 </div>
@@ -374,7 +374,7 @@ function QuotePageContent() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="flex flex-col gap-3">
                     <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Design Name</label>
-                    <input type="text" value={formData.designName} onChange={(e) => updateForm("designName", e.target.value)} placeholder="Project Name" className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-300 focus:border-[#004C99] transition-colors shadow-sm" />
+                    <input type="text" value={formData.designName} onChange={(e) => updateForm("designName", e.target.value)} placeholder="Project Name" className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-500 placeholder:font-medium focus:border-[#004C99] transition-colors shadow-sm" />
                   </div>
                   <div className="flex flex-col gap-3">
                     <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">File Attachment</label>
@@ -389,7 +389,7 @@ function QuotePageContent() {
 
                 <div className="flex flex-col gap-3">
                   <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Additional Details</label>
-                  <textarea rows="4" value={formData.details} onChange={(e) => updateForm("details", e.target.value)} placeholder="Tell us more about your project requirements..." className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-300 focus:border-[#004C99] transition-colors resize-none shadow-sm"></textarea>
+                  <textarea rows="4" value={formData.details} onChange={(e) => updateForm("details", e.target.value)} placeholder="Tell us more about your project requirements..." className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-500 placeholder:font-medium focus:border-[#004C99] transition-colors resize-none shadow-sm"></textarea>
                 </div>
 
                 <div className="pt-10 border-t border-slate-200">
@@ -397,19 +397,19 @@ function QuotePageContent() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2.5">
                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Full Name</label>
-                       <input type="text" value={formData.fullName} onChange={(e) => updateForm("fullName", e.target.value)} placeholder="Enter your name" className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-300 focus:border-[#004C99] transition-colors shadow-sm" />
+                       <input type="text" value={formData.fullName} onChange={(e) => updateForm("fullName", e.target.value)} placeholder="Enter your name" className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-500 placeholder:font-medium focus:border-[#004C99] transition-colors shadow-sm" />
                     </div>
                     <div className="flex flex-col gap-2.5">
                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Phone Number</label>
-                       <input type="tel" value={formData.phone} onChange={(e) => updateForm("phone", e.target.value)} placeholder="+1 (555) 000-0000" className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-300 focus:border-[#004C99] transition-colors shadow-sm" />
+                       <input type="tel" value={formData.phone} onChange={(e) => updateForm("phone", e.target.value)} placeholder="+1 (555) 000-0000" className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-500 placeholder:font-medium focus:border-[#004C99] transition-colors shadow-sm" />
                     </div>
                     <div className="flex flex-col gap-2.5">
                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Email Address</label>
-                       <input type="email" value={formData.email} onChange={(e) => updateForm("email", e.target.value)} placeholder="you@company.com" className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-300 focus:border-[#004C99] transition-colors shadow-sm" />
+                       <input type="email" value={formData.email} onChange={(e) => updateForm("email", e.target.value)} placeholder="you@company.com" className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-500 placeholder:font-medium focus:border-[#004C99] transition-colors shadow-sm" />
                     </div>
                     <div className="flex flex-col gap-2.5">
                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Company Name</label>
-                       <input type="text" value={formData.company} onChange={(e) => updateForm("company", e.target.value)} placeholder="Your Brand Ltd." className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-300 focus:border-[#004C99] transition-colors shadow-sm" />
+                       <input type="text" value={formData.company} onChange={(e) => updateForm("company", e.target.value)} placeholder="Your Brand Ltd." className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-500 placeholder:font-medium focus:border-[#004C99] transition-colors shadow-sm" />
                     </div>
                   </div>
                 </div>
@@ -497,10 +497,7 @@ function QuotePageContent() {
                     <span className="text-sm font-bold text-slate-900">{formData.quantity} Pcs</span>
                   </div>
 
-                  {/* Trust Badge / Info (Optional but keeps it premium) */}
-                  <div className="mt-8 pt-4 bg-slate-50/50 rounded-xl border border-slate-100 p-4 text-center">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Pricing Calculated Live</p>
-                  </div>
+
                 </div>
               </div>
 

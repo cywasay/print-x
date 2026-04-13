@@ -104,7 +104,7 @@ export default function Header() {
                 alt="PinBadges Logo"
                 width={160}
                 height={50}
-                className={`transition-all duration-300 object-contain ${isScrolled ? 'h-10 w-auto' : 'h-12 w-auto'}`}
+                className={`transition-all duration-300 object-contain ${isScrolled ? 'h-8 xl:h-10' : 'h-10 xl:h-12'}`}
                 style={{ height: 'auto', width: 'auto' }}
                 priority
               />

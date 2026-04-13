@@ -4,14 +4,13 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const clientLogos = [
-  "/services/drinkware.jpg",
-  "/services/gift-set.jpg",
-  "/services/laneyrd.jpg",
-  "/services/lapel-pin.jpg",
-  "/services/note-book.jpg",
-  "/services/special-pens.jpg",
-  "/services/tech-gear.jpg",
-  "/services/trophies.jpg",
+  "/lapel-categories/hard-enamel-pin.jpg",
+  "/lapel-categories/soft-enamel-pin.jpg",
+  "/lapel-categories/die-cast-pin.jpg",
+  "/lapel-categories/3d-cast-pin.jpg",
+  "/lapel-categories/epoxy-pin.jpg",
+  "/lapel-categories/custom-UV-pin.jpg",
+  "/lapel-categories/other-pins-pin.jpg",
 ];
 
 export default function PrestigiousClients() {
@@ -63,9 +62,9 @@ export default function PrestigiousClients() {
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
               >
                 {[...clientLogos, ...clientLogos].map((logo, idx) => (
-                  <div key={idx} className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-[2.5rem] bg-[#fcfdfe] border border-slate-100 flex items-center justify-center p-10 hover:border-[#51A9FF]/30 transition-all duration-500 shadow-sm hover:shadow-xl group/logo">
-                    <div className="relative w-full h-full opacity-40 group-hover/logo:opacity-100 transition-opacity grayscale group-hover/logo:grayscale-0 scale-90 group-hover/logo:scale-100 duration-500">
-                      <Image src={logo} alt="Client" fill sizes="(max-width: 768px) 160px, 200px" className="object-contain mix-blend-multiply" />
+                  <div key={idx} className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-[2.5rem] bg-[#fcfdfe] border border-slate-100 flex items-center justify-center p-0 overflow-hidden hover:border-[#51A9FF]/30 transition-all duration-500 shadow-sm hover:shadow-xl group/logo">
+                    <div className="relative w-full h-full opacity-70 group-hover:opacity-100 transition-opacity duration-500">
+                      <Image src={logo} alt="Client" fill sizes="(max-width: 768px) 160px, 200px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
                     </div>
                   </div>
                 ))}
@@ -80,9 +79,9 @@ export default function PrestigiousClients() {
                 transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
               >
                 {[...clientLogos, ...clientLogos].map((logo, idx) => (
-                  <div key={idx} className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-[2.5rem] bg-[#fcfdfe] border border-slate-100 flex items-center justify-center p-10 hover:border-[#51A9FF]/30 transition-all duration-500 shadow-sm hover:shadow-xl group/logo">
-                    <div className="relative w-full h-full opacity-40 group-hover/logo:opacity-100 transition-opacity grayscale group-hover/logo:grayscale-0 scale-90 group-hover/logo:scale-100 duration-500">
-                      <Image src={logo} alt="Client" fill sizes="(max-width: 768px) 160px, 200px" className="object-contain mix-blend-multiply" />
+                  <div key={idx} className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-[2.5rem] bg-[#fcfdfe] border border-slate-100 flex items-center justify-center p-0 overflow-hidden hover:border-[#51A9FF]/30 transition-all duration-500 shadow-sm hover:shadow-xl group/logo">
+                    <div className="relative w-full h-full opacity-70 group-hover:opacity-100 transition-opacity duration-500">
+                      <Image src={logo} alt="Client" fill sizes="(max-width: 768px) 160px, 200px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
                     </div>
                   </div>
                 ))}
