@@ -9,28 +9,28 @@ const PIN_TYPES = [
   {
     title: "Hard Enamel Pins",
     desc: "Eyeing something durable and high-quality for promotion or personalized gifts? Hard enamel pins can be your best call. They offer a smooth, jewelry-like finish.",
-    img: "https://placehold.co/600x400/0d2b3e/ffffff?text=Hard+Enamel+Pins",
+    img: "/lapel-categories/hard-enamel-pin.jpg",
     features: ["Smooth surface", "High durability", "Premium look"],
     popular: true
   },
   {
     title: "Soft Enamel Pins",
     desc: "Known for budget-friendly designs, these pins have textured surfaces and are heavily used as promotional merchandise and artistic accessories.",
-    img: "https://placehold.co/600x400/146b9a/ffffff?text=Soft+Enamel+Pins",
+    img: "/lapel-categories/soft-enamel-pin.jpg",
     features: ["Textured 3D feel", "Cost-effective", "Vibrant colors"],
     popular: false
   },
   {
     title: "3D Cast Lapel Pins",
     desc: "Feature your realistic, eye-catching designs with stunning 3D lapel pins. Perfect for sculptural logos, coins, and multifaceted designs.",
-    img: "https://placehold.co/600x400/51A9FF/ffffff?text=3D+Cast+Pins",
+    img: "/lapel-categories/3d-cast-pin.jpg",
     features: ["Multiple levels", "Classic metal look", "High detail"],
     popular: false
   },
   {
     title: "Die Cast Metal Badges",
     desc: "Opt for die-cast lapel pins if you need detailed pins for awards, branding, or recognition, as they're very similar to heavy metal badges.",
-    img: "https://placehold.co/600x400/004c99/ffffff?text=Die+Cast+Badges",
+    img: "/lapel-categories/die-cast-pin.jpg",
     features: ["Heavyweight feel", "Sharp details", "Custom shapes"],
     popular: false
   }
