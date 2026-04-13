@@ -172,6 +172,7 @@ function QuotePageContent() {
     width: "",
     delivery: "standard",
     quantity: "100",
+    customQuantity: "",
     backingType: "",
     colorAmount: "",
     designName: "",
@@ -421,6 +422,20 @@ function QuotePageContent() {
                       </span>
                     </div>
                   ))}
+
+                  {formData.quantity === "custom" && (
+                    <div className="col-span-2 md:col-span-3 mt-2">
+                      <input
+                        type="number"
+                        placeholder="Enter custom quantity (e.g. 2500)"
+                        value={formData.customQuantity}
+                        onChange={(e) =>
+                          updateForm("customQuantity", e.target.value)
+                        }
+                        className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#001A33] placeholder:text-slate-500 placeholder:font-medium focus:border-[#004C99] transition-colors shadow-sm"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </section>
@@ -769,7 +784,10 @@ function QuotePageContent() {
                       Quantity :
                     </span>
                     <span className="text-sm font-bold text-slate-900">
-                      {formData.quantity} Pcs
+                      {formData.quantity === "custom"
+                        ? formData.customQuantity || "0"
+                        : formData.quantity}{" "}
+                      Pcs
                     </span>
                   </div>
                 </div>
