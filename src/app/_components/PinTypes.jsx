@@ -10,6 +10,7 @@ const PIN_TYPES = [
     title: "Hard Enamel Pins",
     desc: "Eyeing something durable and high-quality for promotion or personalized gifts? Hard enamel pins can be your best call. They offer a smooth, jewelry-like finish.",
     img: "/lapel-categories/hard-enamel-pin.jpg",
+    href: "/category/hard-enamel-pins",
     features: ["Smooth surface", "High durability", "Premium look"],
     popular: true
   },
@@ -17,6 +18,7 @@ const PIN_TYPES = [
     title: "Soft Enamel Pins",
     desc: "Known for budget-friendly designs, these pins have textured surfaces and are heavily used as promotional merchandise and artistic accessories.",
     img: "/lapel-categories/soft-enamel-pin.jpg",
+    href: "/category/soft-enamel-pins",
     features: ["Textured 3D feel", "Cost-effective", "Vibrant colors"],
     popular: false
   },
@@ -24,6 +26,7 @@ const PIN_TYPES = [
     title: "3D Cast Lapel Pins",
     desc: "Feature your realistic, eye-catching designs with stunning 3D lapel pins. Perfect for sculptural logos, coins, and multifaceted designs.",
     img: "/lapel-categories/3d-cast-pin.jpg",
+    href: "/category/3d-cast-pin-badges",
     features: ["Multiple levels", "Classic metal look", "High detail"],
     popular: false
   },
@@ -31,6 +34,7 @@ const PIN_TYPES = [
     title: "Die Cast Metal Badges",
     desc: "Opt for die-cast lapel pins if you need detailed pins for awards, branding, or recognition, as they're very similar to heavy metal badges.",
     img: "/lapel-categories/die-cast-pin.jpg",
+    href: "/category/die-struck-pin-badges",
     features: ["Heavyweight feel", "Sharp details", "Custom shapes"],
     popular: false
   }
@@ -74,7 +78,7 @@ export default function PinTypes() {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col h-full"
             >
-              <div className="w-full aspect-[4/3] relative rounded-xl overflow-hidden mb-5 shadow-sm">
+              <Link href={type.href} className="w-full aspect-[4/3] relative rounded-xl overflow-hidden mb-5 shadow-sm block">
                 <img 
                   src={type.img} 
                   alt={type.title}
@@ -85,7 +89,7 @@ export default function PinTypes() {
                     Popular
                   </div>
                 )}
-              </div>
+              </Link>
 
               <h3 className="text-lg font-bold text-[#0d2b3e] mb-2">{type.title}</h3>
               <p className="text-slate-500 text-xs leading-relaxed font-medium mb-5 flex-1 line-clamp-3">
@@ -102,10 +106,10 @@ export default function PinTypes() {
               </div>
 
               <Link 
-                href="/quote"
+                href={type.href}
                 className="flex items-center justify-between w-full p-3 rounded-lg bg-white border border-slate-200 text-[#0d2b3e] group-hover:border-[#146b9a] group-hover:bg-[#146b9a] group-hover:text-white transition-all duration-300 font-bold text-xs"
               >
-                <span>Get Quote</span>
+                <span>Learn More</span>
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>

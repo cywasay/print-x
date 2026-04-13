@@ -14,7 +14,7 @@ const categoryData = {
     name: "Hard Enamel Pins",
     desc: "The highest quality, jewelry-like pin with a smooth finish.",
     detailedDesc: "Hard enamel pins are highly durable and offer a classic, premium look. They are baked at high temperatures to cure the enamel, then polished flat so the metal borders and enamel colors are on the exact same level. Perfect for high-end corporate gifts and creative artist pins.",
-    img: "https://placehold.co/800x600/0d2b3e/ffffff?text=Hard+Enamel+Pins",
+    img: "/lapel-categories/hard-enamel-pin.jpg",
     features: ["Smooth, flush surface", "Highest perceived value", "Extremely durable", "Bright, vivid colors"]
   },
   "soft-enamel-pins": {
@@ -22,7 +22,7 @@ const categoryData = {
     name: "Soft Enamel Pins",
     desc: "The most popular, budget-friendly pin with a textured, 3D feel.",
     detailedDesc: "Soft enamel pins have raised metal borders and recessed enamel colors, giving them a textured feel. Fast, cost-effective, and versatile, they are the most popular choice for trading pins, promotional merch, and creative designs.",
-    img: "https://placehold.co/800x600/146b9a/ffffff?text=Soft+Enamel+Pins",
+    img: "/lapel-categories/soft-enamel-pin.jpg",
     features: ["Textured 3D feel", "More cost-effective", "Great for intricate designs", "Can be combined with epoxy dome"]
   },
   "die-struck-pin-badges": {
@@ -30,7 +30,7 @@ const categoryData = {
     name: "Die Struck Pin Badges",
     desc: "Classic all-metal pins with no enamel colors, featuring raised and recessed areas.",
     detailedDesc: "Die-struck pins offer a highly sophisticated, jewelry-like finish without the use of enamel. The design is stamped into the metal, creating raised and recessed areas. Perfect for subdued branding, corporate recognition, and academic awards.",
-    img: "https://placehold.co/800x600/004c99/ffffff?text=Die+Struck+Badges",
+    img: "/lapel-categories/die-cast-pin.jpg",
     features: ["All-metal finish", "Elegant, timeless look", "Variety of metal platings", "Sandblasted options available"]
   },
   "3d-cast-pin-badges": {
@@ -38,7 +38,7 @@ const categoryData = {
     name: "3D Cast Pin Badges",
     desc: "Incredible depth and detail for sculptural, multi-level designs.",
     detailedDesc: "Unlike standard 2D pins, 3D cast pins are crafted using a mold to allow for rounded edges, complex curves, and varying levels of depth. They're perfect for recreating lifelike faces, detailed vehicles, miniature animals, or sculptural logos.",
-    img: "https://placehold.co/800x600/51A9FF/ffffff?text=3D+Cast+Pins",
+    img: "/lapel-categories/3d-cast-pin.jpg",
     features: ["Sculptural 3D levels", "High-impact realism", "Heavier, premium weight", "Ideal for complex objects"]
   },
   "photo-dome-pins": {
@@ -46,7 +46,7 @@ const categoryData = {
     name: "Photo Dome Pins",
     desc: "Offset-printed designs sealed with a protective crystal-clear epoxy dome.",
     detailedDesc: "When a design has gradients, drop shadows, or intricate photographic details that cannot be broken down into solid enamel colors, photo dome (offset printed) pins are the solution. The art is printed directly onto the metal and protected with a durable epoxy dome.",
-    img: "https://placehold.co/800x600/1a8bc4/ffffff?text=Photo+Dome+Pins",
+    img: "/lapel-categories/epoxy-pin.jpg",
     features: ["Supports full-color gradients", "Exact color matching", "Clear protective epoxy dome", "Fastest production time"]
   },
   "trading-pin-badges": {
@@ -54,7 +54,7 @@ const categoryData = {
     name: "Trading Pin Badges",
     desc: "Highly customized, interactive pins perfect for events, sports teams, and collections.",
     detailedDesc: "Trading pins are an essential part of sports tournaments and fan events. To make them truly stand out, they often incorporate special add-ons like glitters, spinners, sliders, bobbleheads, or blinking LED lights to increase their trade value.",
-    img: "https://placehold.co/800x600/0d2b3e/ffffff?text=Trading+Pin+Badges",
+    img: "/lapel-categories/custom-UV-pin.jpg",
     features: ["Interactive options (sliders, spinners)", "High collectible value", "Glow-in-the-dark & glitter options", "Perfect for youth sports"]
   }
 };
