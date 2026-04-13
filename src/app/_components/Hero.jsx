@@ -10,7 +10,7 @@ export default function Hero() {
     >
       {/* Background Image */}
       <Image
-        src="/banners/web-home-page-banner.jpg"
+        src="/banners/lapel-pin-banner.jpg"
         alt="PrintX Hero Banner"
         fill
         sizes="100vw"
