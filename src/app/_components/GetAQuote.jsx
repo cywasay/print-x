@@ -8,7 +8,7 @@ export default function GetAQuote() {
     <section className="py-24 bg-white relative overflow-hidden">
       {/* Background Polish */}
       <div className="absolute inset-0 opacity-[0.012] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#146b9a 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+           style={{ backgroundImage: 'radial-gradient(#0F6393 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         <motion.div 
@@ -16,7 +16,7 @@ export default function GetAQuote() {
            whileInView={{ opacity: 1, scale: 1 }}
            viewport={{ once: true }}
            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-           className="rounded-[3rem] overflow-hidden bg-gradient-to-br from-[#0d2b3e] to-[#146b9a] shadow-[0_30px_60px_-15px_rgba(13,43,62,0.3)] flex flex-col md:flex-row p-8 md:p-14 gap-10 md:gap-16 items-center"
+           className="rounded-[3rem] overflow-hidden bg-gradient-to-br from-[#0F6393] to-[#0F6393] shadow-[0_30px_60px_-15px_rgba(15,99,147,0.3)] flex flex-col md:flex-row p-8 md:p-14 gap-10 md:gap-16 items-center"
         >
           {/* Left side: Text content */}
           <div className="flex-1 flex flex-col justify-center text-white h-full">
@@ -43,7 +43,7 @@ export default function GetAQuote() {
                 </p>
                 <Link 
                   href="/quote"
-                  className="w-full bg-white text-[#0d2b3e] flex items-center justify-center font-black uppercase tracking-widest text-[13px] py-4 rounded-2xl hover:bg-blue-50 transition-all shadow-xl group"
+                  className="w-full bg-white text-[#0F6393] flex items-center justify-center font-black uppercase tracking-widest text-[13px] py-4 rounded-2xl hover:bg-blue-50 transition-all shadow-xl group"
                 >
                   Start My Quote 
                   <motion.span 

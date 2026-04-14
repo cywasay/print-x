@@ -32,7 +32,7 @@ const reviewsData = [
   {
     name: "Sarah J.",
     initial: "S",
-    bgColor: "bg-[#146b9a]",
+    bgColor: "bg-[#0F6393]",
     time: "6 months ago",
     text: "The bespoke custom pins exceeded our expectations. The attention to detail in packaging and finish is simply world-class.",
     rating: 5,
@@ -49,30 +49,30 @@ export default function GoogleReviews() {
     <section className="py-24 bg-[#f8fafc] border-y border-slate-200/50 relative overflow-hidden">
       {/* Background Polish */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#146b9a 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+           style={{ backgroundImage: 'radial-gradient(#0F6393 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Modern Header */}
         <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
            <div className="max-w-xl">
-              <span className="text-[12px] font-black tracking-[0.4em] text-[#51A9FF] uppercase mb-4 block">Testimonials</span>
-              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tighter text-[#0d2b3e] leading-none mb-6">
-                Voices Of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#146b9a] to-[#00a9e0]">Trust.</span>
+              <span className="text-[12px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-4 block">Testimonials</span>
+              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tighter text-[#0F6393] leading-none mb-6">
+                Voices Of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0F6393] to-[#00AEEF]">Trust.</span>
               </h2>
            </div>
 
            <div className="flex items-center gap-6 pb-2">
               <div className="text-right hidden sm:block">
-                 <div className="text-2xl font-black text-[#0d2b3e]">4.9/5</div>
+                 <div className="text-2xl font-black text-[#0F6393]">4.9/5</div>
                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Google Rating</div>
               </div>
               <div className="flex gap-2">
                  <button onClick={prev} className="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-xl hover:border-blue-100 transition-all group">
-                    <ChevronLeft className="text-slate-400 group-hover:text-[#146b9a] transition-colors" />
+                    <ChevronLeft className="text-slate-400 group-hover:text-[#0F6393] transition-colors" />
                  </button>
                  <button onClick={next} className="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-xl hover:border-blue-100 transition-all group">
-                    <ChevronRight className="text-slate-400 group-hover:text-[#146b9a] transition-colors" />
+                    <ChevronRight className="text-slate-400 group-hover:text-[#0F6393] transition-colors" />
                  </button>
               </div>
            </div>
@@ -103,7 +103,7 @@ export default function GoogleReviews() {
                                 {[...Array(5)].map((_, i) => <Star key={i} fill="currentColor" size={20} className="stroke-none" />)}
                              </div>
 
-                             <p className="text-[#0d2b3e] text-lg md:text-xl font-medium leading-relaxed italic mb-8 max-w-md px-2">
+                             <p className="text-[#0F6393] text-lg md:text-xl font-medium leading-relaxed italic mb-8 max-w-md px-2">
                                 "{review.text}"
                              </p>
 
@@ -111,7 +111,7 @@ export default function GoogleReviews() {
                                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg ${review.bgColor} mb-4`}>
                                    {review.initial}
                                 </div>
-                                <h4 className="text-[17px] font-bold text-[#0d2b3e]">{review.name}</h4>
+                                <h4 className="text-[17px] font-bold text-[#0F6393]">{review.name}</h4>
                                 <p className="text-[11px] text-slate-400 font-bold uppercase tracking-[0.3em] mt-1">{review.time}</p>
                              </div>
                           </div>
@@ -128,7 +128,7 @@ export default function GoogleReviews() {
               <button 
                  key={idx}
                  onClick={() => setActive(idx)}
-                 className={`h-2 rounded-full transition-all duration-500 ${idx === active ? 'w-12 bg-[#146b9a]' : 'w-2 bg-slate-200 hover:bg-slate-300'}`}
+                 className={`h-2 rounded-full transition-all duration-500 ${idx === active ? 'w-12 bg-[#0F6393]' : 'w-2 bg-slate-200 hover:bg-slate-300'}`}
               />
            ))}
         </div>

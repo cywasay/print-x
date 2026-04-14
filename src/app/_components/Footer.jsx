@@ -1,164 +1,266 @@
 "use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { Phone, Mail, MapPin, Globe, ArrowUpRight } from 'lucide-react';
-import { motion } from 'framer-motion';
-
-const SocialIcon = ({ d, size = 18 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d={d} />
-  </svg>
-);
-
-const socialData = [
-  { name: 'Facebook', d: "M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" },
-  { name: 'Instagram', d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01" }, // simplified Instagram path
-  { name: 'Linkedin', d: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" }, // simplified path
-  { name: 'Youtube', d: "M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.46 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.46-5.58z" }
-];
+import Link from "next/link";
+import Image from "next/image";
+import { Phone, Mail, MapPin, MessageCircle, Send } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Footer() {
+  const cataLogues = [
+    "Technology",
+    "Eco-Friendly",
+    "USB Flash",
+    "Drinkware",
+    "Wallet & Keychain",
+    "Charging Cables",
+  ];
+
+  const services = [
+    "Graphic Designing",
+    "Promotional Gifts",
+    "Large Format Printing",
+    "Digital / Offset Printing",
+  ];
+
+  const moreLinks = ["FAQS", "Reviews", "Return & Refund Policy"];
+
   return (
-    <footer className="w-full pt-24 overflow-hidden relative">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="/banners/banner-image1.jpg" 
-          alt="Footer Background" 
-          fill 
-          sizes="100vw"
-          className="object-cover"
-        />
-        {/* Minimal gradient for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d2b3e]/80 via-[#0d2b3e]/60 to-[#0d2b3e]/90" />
-      </div>
+    <footer className="w-full font-barlow">
+      {/* Main Footer Section */}
+      <div className="bg-[#0F6393] text-white pt-16 pb-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {/* Column 1: Logo & Contact */}
+            <div className="flex flex-col gap-8">
+              <Link href="/" className="inline-block">
+                <Image
+                  src="/logo-web.png"
+                  alt="PrintX Advertising"
+                  width={160}
+                  height={50}
+                  style={{ height: 'auto', width: 'auto' }}
+                />
+              </Link>
 
-      {/* Background Polish */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10 z-10" />
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="mt-1">
+                    <Phone size={18} className="text-white" />
+                  </div>
+                  <span className="text-[15px] font-medium">
+                    +971 4 223 6434
+                  </span>
+                </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        
-        {/* Top CTA Row */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 pb-20 border-b border-white/5 mb-20">
-          <div className="max-w-xl text-center lg:text-left">
-             <h3 className="text-3xl md:text-4xl font-bold mb-4 tracking-tighter">Ready to bring your brand <span className="text-[#51A9FF]">to life?</span></h3>
-             <p className="text-blue-100/40 font-medium italic">Connect with our design experts today for personal consultation.</p>
-          </div>
-          <Link 
-            href="/contact" 
-            className="flex items-center gap-3 bg-[#146b9a] text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest text-[12px] shadow-2xl"
-          >
-            Start a Project
-            <ArrowUpRight size={16} />
-          </Link>
-        </div>
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 text-[#25D366]">
+                    <MessageCircle
+                      size={18}
+                      fill="currentColor"
+                      className="text-white"
+                    />
+                  </div>
+                  <span className="text-[15px] font-medium">
+                    +971 50 718 0562
+                  </span>
+                </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-12 gap-y-16 pb-20">
-          
-          {/* Column 1: Brand & Contact (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col gap-8">
-             <Link href="/" className="inline-block">
-               <Image
-                 src="/logo-web.png"
-                 alt="PinBadges Logo"
-                 width={160}
-                 height={50}
-                 className="h-12 w-auto object-contain brightness-0 invert"
-                 style={{ height: 'auto', width: 'auto' }}
-               />
-             </Link>
-             <p className="text-[14px] text-blue-100/40 font-medium leading-relaxed max-w-sm">
-                Middle East's leading lapel pin manufacturer, delivering custom badges and premium pins since 2014.
-             </p>
+                <div className="flex items-start gap-4">
+                  <div className="mt-1">
+                    <Mail size={18} className="text-white" />
+                  </div>
+                  <span className="text-[15px] font-medium">
+                    info@printx.ae
+                  </span>
+                </div>
 
-             <div className="space-y-4">
-                <a href="tel:+97142236434" className="flex items-center gap-4 text-blue-100/60 group">
-                   <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
-                      <Phone size={14} />
-                   </div>
-                   <span className="font-bold text-[13px] tracking-tight">+971 4 223 6434</span>
-                </a>
-                <a href="mailto:info@pinbadges.ae" className="flex items-center gap-4 text-blue-100/60 group">
-                   <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
-                      <Mail size={14} />
-                   </div>
-                   <span className="font-bold text-[13px] tracking-tight">info@pinbadges.ae</span>
-                </a>
-             </div>
-          </div>
+                <div className="flex items-start gap-4">
+                  <div className="mt-1">
+                    <MapPin size={18} className="text-white" />
+                  </div>
+                  <span className="text-[15px] font-medium leading-relaxed">
+                    Shop # 6, Bin Shabib Building 29
+                    <br />
+                    Hor Al Anz, Deira, Dubai. UAE.
+                    <br />
+                    P.O. Box: 81998
+                  </span>
+                </div>
+              </div>
+            </div>
 
-          {/* Column 2: Solutions (3 cols) */}
-          <div className="lg:col-span-3">
-            <h4 className="font-bold text-[11px] uppercase tracking-[0.4em] mb-10 text-white/20">Solutions</h4>
-            <ul className="space-y-5 text-[14px] text-blue-100/40 font-medium">
-              {['Hard Enamel Pins', 'Soft Enamel Pins', 'Die-Cast Badges', 'Custom 3D Pins', 'Offset Printed Pins'].map(link => (
-                <li key={link}>
-                  <Link href="#" className="flex items-center gap-2">
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Services (2 cols) */}
-          <div className="lg:col-span-2">
-            <h4 className="font-bold text-[11px] uppercase tracking-[0.4em] mb-10 text-white/20">Services</h4>
-            <ul className="space-y-5 text-[14px] text-blue-100/40 font-medium">
-              {['Free Custom Design', 'Express Shipping', 'Premium Plating', 'Attachment Upgrades', 'Quality Assurance'].map(link => (
-                <li key={link}>
-                  <Link href="#" className="flex items-center gap-2">
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Location (3 cols) */}
-          <div className="lg:col-span-3">
-             <h4 className="font-bold text-[11px] uppercase tracking-[0.4em] mb-10 text-white/20">Our Home</h4>
-             <div className="flex gap-4 p-6 rounded-3xl bg-white/5 border border-white/5">
-                <MapPin size={20} className="text-[#51A9FF] shrink-0" />
-                <p className="text-[13px] leading-relaxed text-blue-100/60 font-medium">
-                   Bin Shabib Building 29,<br />
-                   Deira, Dubai, UAE
-                </p>
-             </div>
-             
-             <div className="mt-8 flex gap-3">
-                {socialData.map((social, i) => (
-                  <Link 
-                    key={i} 
-                    href="#" 
-                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center shadow-xl"
-                  >
-                     <SocialIcon d={social.d} size={16} className="text-white/20" />
-                  </Link>
+            {/* Column 2: E-Catalogues */}
+            <div>
+              <h4 className="text-[18px] font-bold uppercase tracking-wider mb-8">
+                E-CATALOGUES
+              </h4>
+              <ul className="space-y-4">
+                {cataLogues.map((item) => (
+                  <li key={item}>
+                    <Link
+                      href="#"
+                      className="text-blue-100/80 hover:text-white transition-colors text-[15px] font-medium"
+                    >
+                      {item}
+                    </Link>
+                  </li>
                 ))}
-                <Link href="#" className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center shadow-xl">
-                   <Globe size={16} className="text-white/20" />
-                </Link>
-             </div>
+              </ul>
+            </div>
+
+            {/* Column 3: Services & More Links */}
+            <div>
+              <h4 className="text-[18px] font-bold uppercase tracking-wider mb-8">
+                SERVICES
+              </h4>
+              <ul className="space-y-4 mb-10">
+                {services.map((item) => (
+                  <li key={item}>
+                    <Link
+                      href="#"
+                      className="text-blue-100/80 hover:text-white transition-colors text-[15px] font-medium"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <h4 className="text-[18px] font-bold uppercase tracking-wider mb-6">
+                MORE LINKS
+              </h4>
+              <ul className="space-y-4">
+                {moreLinks.map((item) => (
+                  <li key={item}>
+                    <Link
+                      href="#"
+                      className="text-blue-100/80 hover:text-white transition-colors text-[15px] font-medium"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 4: Weekly Newsletter */}
+            <div>
+              <h4 className="text-[18px] font-bold uppercase tracking-wider mb-8">
+                WEEKLY NEWSLETTER
+              </h4>
+              <div className="flex flex-col gap-4">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="w-full bg-white text-black px-4 py-3 rounded-sm outline-none placeholder:text-gray-400"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full bg-white text-black px-4 py-3 rounded-sm outline-none placeholder:text-gray-400"
+                />
+                <button className="w-full bg-[#34B3F1] hover:bg-[#2da3e0] text-white font-bold py-3 px-6 rounded-sm transition-all uppercase tracking-widest text-[14px]">
+                  SUBSCRIBE
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Legal Bar */}
-      <div className="bg-black/20 py-10">
-        <div className="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-[11px] font-bold text-blue-200/20 uppercase tracking-[0.3em]">
-            © 2026 PinBadges AE. Crafting custom pins in Dubai.
-          </p>
-          
-          <div className="flex items-center gap-8 text-[11px] font-bold text-blue-200/20 uppercase tracking-[0.2em]">
-             <Link href="#" className="hover:text-[#51A9FF] transition-colors">Privacy Policy</Link>
-             <Link href="#" className="hover:text-[#51A9FF] transition-colors">Terms of Service</Link>
+      {/* Bottom Bar Section */}
+      <div className="bg-[#00AEEF] text-white py-4">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[14px] font-medium">© All rights reserved</p>
+
+          <div className="flex items-center gap-6">
+            <Link href="#" className="hover:scale-110 transition-transform">
+              {/* Facebook SVG */}
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </Link>
+            <Link href="#" className="hover:scale-110 transition-transform">
+              {/* Instagram SVG */}
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </Link>
+            <Link href="#" className="hover:scale-110 transition-transform">
+              {/* Linkedin SVG */}
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1-2 2 2 2 0 0 1 2-2z" />
+              </svg>
+            </Link>
+            <Link href="#" className="hover:scale-110 transition-transform">
+              {/* Sitemap/Grid icon */}
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
+              </svg>
+            </Link>
+            <Link href="#" className="hover:scale-110 transition-transform">
+              {/* Behance-like stylized 'b' or similar social icon */}
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M8.228 15.01h2.203c.493 0 .858-.067 1.094-.203.238-.135.433-.338.58-.608.147-.271.221-.606.221-1.007 0-.411-.082-.746-.245-1.002-.164-.257-.396-.447-.696-.569.231-.129.407-.306.524-.53.118-.225.177-.482.177-.773 0-.341-.06-.628-.18-.859-.12-.231-.284-.41-.492-.536-.207-.126-.445-.213-.715-.261-.271-.048-.553-.072-.848-.072H8.228v6.42zm1.488-3.778h.412c.451 0 .783.076.996.228.213.153.319.418.319.794 0 .195-.034.359-.101.492-.069.133-.182.235-.339.309-.158.073-.422.11-.795.11h-.487v-1.933zm0-1.89h.286c.375 0 .647.059.815.177.168.117.252.327.252.628 0 .141-.027.26-.081.356-.053.097-.138.172-.255.226-.118.053-.321.08-.611.08h-.406v-1.467zM16.947 11.026c-.463 0-.853.082-1.171.246-.317.164-.564.398-.74.7-.176.302-.264.664-.264 1.083 0 .428.082.783.246 1.063.164.28.401.491.71.631.309.141.677.211 1.104.211.383 0 .72-.05 1.01-.15.289-.1.542-.256.758-.466l-.371-.853c-.309.245-.662.368-1.059.368-.261 0-.472-.047-.633-.14-.161-.093-.271-.233-.331-.421h2.516l.013-.231c0-.422-.09-.777-.271-1.066-.181-.29-.429-.517-.745-.681-.316-.164-.683-.245-1.103-.245zm-.827 1.63c.03-.217.118-.393.264-.526.147-.134.341-.201.583-.201.218 0 .4.062.546.187s.245.305.295.54h-1.688z" />
+              </svg>
+            </Link>
           </div>
         </div>
+      </div>
+
+      {/* Floating WhatsApp Button */}
+      <div className="fixed bottom-6 right-6 z-[9999] flex items-center gap-3">
+        <div className="bg-white px-4 py-2 rounded-lg shadow-lg hidden md:block border border-gray-100">
+          <p className="text-[13px] font-bold text-gray-800">
+            Need Quote?{" "}
+            <span className="text-gray-500 font-medium">Chat with us</span>
+          </p>
+        </div>
+        <a
+          href="https://wa.me/971507180562"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-[#25D366] text-white p-3 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 flex items-center justify-center"
+        >
+          <svg viewBox="0 0 24 24" className="w-8 h-8 fill-current">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+        </a>
       </div>
     </footer>
   );

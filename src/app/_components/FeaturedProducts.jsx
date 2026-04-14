@@ -51,9 +51,9 @@ export default function FeaturedProducts() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-[48px] font-extrabold leading-[1.1] tracking-tight text-[#0d2b3e] mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-[48px] font-extrabold leading-[1.1] tracking-tight text-[#0F6393] mb-4">
               Pin{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#146b9a] to-[#00a9e0]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0F6393] to-[#00AEEF]">
                 Types.
               </span>
             </h2>
@@ -92,11 +92,11 @@ export default function FeaturedProducts() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-[15px] md:text-[18px] font-bold text-[#0d2b3e] group-hover:text-[#146b9a] transition-colors duration-300">
+                <h3 className="text-[15px] md:text-[18px] font-bold text-[#0F6393] group-hover:text-[#0F6393] transition-colors duration-300">
                   {item.name}
                 </h3>
                 
-                <div className="mt-2 w-0 h-0.5 bg-gradient-to-r from-[#146b9a] to-[#00a9e0] group-hover:w-full transition-all duration-500 rounded-full" />
+                <div className="mt-2 w-0 h-0.5 bg-gradient-to-r from-[#0F6393] to-[#00AEEF] group-hover:w-full transition-all duration-500 rounded-full" />
               </Link>
             </motion.div>
           ))}

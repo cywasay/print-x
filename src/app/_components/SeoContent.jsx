@@ -4,38 +4,38 @@ import { motion } from 'framer-motion';
 
 export default function SeoContent() {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-24 bg-white relative overflow-hidden">
       {/* Background Polish */}
       <div className="absolute inset-0 opacity-[0.012] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#146b9a 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-
-      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
+           style={{ backgroundImage: 'radial-gradient(#0F6393 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+ 
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
            transition={{ duration: 0.8 }}
-           className="mb-16"
+           className="mb-8 md:mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-[48px] font-extrabold leading-[1.1] tracking-tight text-[#0d2b3e] mb-4">
+          <h2 className="text-2xl md:text-4xl lg:text-[48px] font-extrabold leading-[1.2] md:leading-[1.1] tracking-tight text-[#0F6393] mb-3 md:mb-4">
             Premium Custom Pins{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#146b9a] to-[#00a9e0]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0F6393] to-[#00AEEF]">
               in Dubai.
             </span>
           </h2>
-          <div className="w-16 h-1.5 bg-[#146b9a]/20 rounded-full mb-8" />
+          <div className="w-12 md:w-16 h-1 md:h-1.5 bg-[#0F6393]/20 rounded-full mb-6 md:mb-8" />
         </motion.div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 text-slate-500/90 text-[14.5px] leading-relaxed font-medium">
-          <div className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-10 lg:gap-y-12 text-slate-500/90 text-[13px] md:text-[14.5px] leading-relaxed font-medium">
+          <div className="space-y-5 md:space-y-6">
             <p>
-              Custom pins and metal badges are more impactful than they first appear. They can boost staff relations, energize your brand, and engage your audience with extras. We deliver branded <span className="text-[#146b9a] font-bold">bespoke lapel pins</span> that bring great value to your business!
+              Custom pins and metal badges are more impactful than they first appear. They can boost staff relations, energize your brand, and engage your audience with extras. We deliver branded <span className="text-[#0F6393] font-bold">bespoke lapel pins</span> that bring great value to your business!
             </p>
             <p>
               We've led the way in using custom metallic products to grab attention for over 10 years. As the top enamel pin suppliers in Dubai, UAE, we help companies connect better with their target customers through constant innovation.
             </p>
 
-            <h3 className="text-[20px] font-extrabold text-[#0d2b3e] pt-4 leading-tight">
+            <h3 className="text-[20px] font-extrabold text-[#0F6393] pt-4 leading-tight">
               High-Quality Enamel Pins That Leave a Lasting Impact
             </h3>
             <p>
@@ -44,14 +44,14 @@ export default function SeoContent() {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-[20px] font-extrabold text-[#0d2b3e] pt-0 leading-tight">
+            <h3 className="text-[20px] font-extrabold text-[#0F6393] pt-0 leading-tight">
               Promotional Products That Actually Get Used
             </h3>
             <p>
-              A simple way to promote your business is by handing out <span className="text-[#146b9a] font-bold">promotional pins</span> at events. Branded accessories and apparel pins enhance the perception of your business. Buy them to delight your customers!
+              A simple way to promote your business is by handing out <span className="text-[#0F6393] font-bold">promotional pins</span> at events. Branded accessories and apparel pins enhance the perception of your business. Buy them to delight your customers!
             </p>
 
-            <h3 className="text-[20px] font-extrabold text-[#0d2b3e] pt-4 leading-tight">
+            <h3 className="text-[20px] font-extrabold text-[#0F6393] pt-4 leading-tight">
               Beyond Basic Badges: Premium Finishing Touches
             </h3>
             <p>

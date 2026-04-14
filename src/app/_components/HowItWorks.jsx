@@ -28,12 +28,12 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-24 bg-[#0d2b3e] relative overflow-hidden">
+    <section className="py-24 bg-[#0F6393] relative overflow-hidden">
       {/* Background Ornaments */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#146b9a]/20 to-transparent pointer-events-none blur-3xl transform translate-x-1/4" />
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-t from-[#51A9FF]/10 to-transparent pointer-events-none blur-3xl transform -translate-x-1/4" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#0F6393]/20 to-transparent pointer-events-none blur-3xl transform translate-x-1/4" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-t from-[#00AEEF]/10 to-transparent pointer-events-none blur-3xl transform -translate-x-1/4" />
 
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -42,10 +42,10 @@ export default function HowItWorks() {
             transition={{ duration: 0.8 }}
             className="max-w-2xl"
           >
-            <span className="text-[12px] font-black tracking-[0.4em] text-[#51A9FF] uppercase mb-4 block">Hassle-Free Process</span>
+            <span className="text-[12px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-4 block">Hassle-Free Process</span>
             <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.05] tracking-tight text-white mb-6">
               Easy Process to Order{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-[#51A9FF]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-[#00AEEF]">
                 Custom Pins.
               </span>
             </h2>
@@ -77,7 +77,7 @@ export default function HowItWorks() {
                 <div className="hidden lg:block absolute top-[4.5rem] -right-3 w-6 h-px bg-white/20 z-0"></div>
               )}
 
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#146b9a] to-[#00a9e0] text-white flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300 relative z-10">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0F6393] to-[#00AEEF] text-white flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300 relative z-10">
                 {step.icon}
               </div>
               

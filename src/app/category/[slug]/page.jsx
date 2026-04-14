@@ -77,12 +77,12 @@ export default async function CategoryPage({ params }) {
       <main className="flex-1 w-full bg-slate-50">
         <section className="py-24 relative overflow-hidden bg-white border-b border-slate-200/50">
           <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
-               style={{ backgroundImage: 'radial-gradient(#146b9a 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+               style={{ backgroundImage: 'radial-gradient(#0F6393 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
           <div className="max-w-[1200px] mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
             <div className="flex-1 w-full">
-              <span className="text-[12px] font-black tracking-[0.4em] text-[#51A9FF] uppercase mb-4 block">Premium Category</span>
-              <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.1] tracking-tight text-[#0d2b3e] mb-6">
+              <span className="text-[12px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-4 block">Premium Category</span>
+              <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.1] tracking-tight text-[#0F6393] mb-6">
                 Custom {category.name}.
               </h1>
               <p className="text-lg text-slate-500 font-bold leading-relaxed mb-4">
@@ -95,7 +95,7 @@ export default async function CategoryPage({ params }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                 {category.features.map((feat, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <CheckCircle2 size={18} className="text-[#146b9a]" />
+                    <CheckCircle2 size={18} className="text-[#0F6393]" />
                     <span className="text-sm font-bold text-slate-700">{feat}</span>
                   </div>
                 ))}
@@ -104,7 +104,7 @@ export default async function CategoryPage({ params }) {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
                   href={`/quote?style=${category.pinStyleId}`}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#0d2b3e] text-white font-black tracking-widest text-[11px] uppercase hover:bg-[#146b9a] transition-colors shadow-lg"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#0F6393] text-white font-black tracking-widest text-[11px] uppercase hover:bg-[#0F6393] transition-colors shadow-lg"
                 >
                   Start Your Design
                   <ArrowRight size={16} />

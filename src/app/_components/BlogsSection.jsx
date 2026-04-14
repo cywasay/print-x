@@ -47,7 +47,7 @@ export default function BlogsSection() {
     <section className="py-24 bg-[#f8fafc] border-y border-slate-200/50 relative overflow-hidden">
       {/* Background Polish */}
       <div className="absolute inset-0 opacity-[0.012] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#146b9a 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+           style={{ backgroundImage: 'radial-gradient(#0F6393 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
       <div className="max-w-[1300px] mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
@@ -57,9 +57,9 @@ export default function BlogsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-[48px] font-extrabold leading-[1.1] tracking-tight text-[#0d2b3e] mb-2">
+            <h2 className="text-3xl md:text-4xl lg:text-[48px] font-extrabold leading-[1.1] tracking-tight text-[#0F6393] mb-2">
               Latest from{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#146b9a] to-[#00a9e0]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0F6393] to-[#00AEEF]">
                 Insights.
               </span>
             </h2>
@@ -72,7 +72,7 @@ export default function BlogsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <a href="#" className="flex items-center gap-2 text-[#146b9a] font-bold text-sm hover:translate-x-1 transition-all duration-300">
+            <a href="#" className="flex items-center gap-2 text-[#0F6393] font-bold text-sm hover:translate-x-1 transition-all duration-300">
               View All Articles <ArrowRight size={16} />
             </a>
           </motion.div>
@@ -104,7 +104,7 @@ export default function BlogsSection() {
                    {blog.date}
                 </div>
                 
-                <h3 className="text-[19px] font-extrabold text-[#0d2b3e] leading-snug mb-3 group-hover:text-[#146b9a] transition-colors duration-300">
+                <h3 className="text-[19px] font-extrabold text-[#0F6393] leading-snug mb-3 group-hover:text-[#0F6393] transition-colors duration-300">
                   {blog.title}
                 </h3>
                 
@@ -112,10 +112,10 @@ export default function BlogsSection() {
                   {blog.excerpt}
                 </p>
                 
-                <a href="#" className="mt-auto flex items-center gap-2 text-[#146b9a] font-bold text-[13px] group/link">
+                <a href="#" className="mt-auto flex items-center gap-2 text-[#0F6393] font-bold text-[13px] group/link">
                   <span className="relative">
                     Read Article
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#146b9a]/20 group-hover/link:w-full transition-all duration-300"></span>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0F6393]/20 group-hover/link:w-full transition-all duration-300"></span>
                   </span>
                   <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
                 </a>

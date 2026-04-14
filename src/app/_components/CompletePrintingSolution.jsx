@@ -9,7 +9,7 @@ const solutionsData = [
     title: "Custom 3D Lapel Pins",
     desc: "Feature your realistic, eye-catching designs with stunning 3D lapel pins that are designed with cutout 3D shapes.",
     img: "/services/tech-gear.jpg",
-    accent: "#51A9FF"
+    accent: "#00AEEF"
   },
   {
     title: "Hard Enamel Pins",
@@ -57,7 +57,7 @@ export default function CompletePrintingSolution() {
         <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-slate-50 rounded-full blur-[120px]" />
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
@@ -68,10 +68,10 @@ export default function CompletePrintingSolution() {
             transition={{ duration: 0.8 }}
             className="max-w-2xl"
           >
-            <span className="text-[12px] font-black tracking-[0.4em] text-[#51A9FF] uppercase mb-4 block">Our Expertise</span>
-            <h2 className="text-4xl md:text-5xl lg:text-[60px] font-bold leading-[1.05] tracking-tighter text-[#0d2b3e]">
+            <span className="text-[12px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-4 block">Our Expertise</span>
+            <h2 className="text-4xl md:text-5xl lg:text-[60px] font-bold leading-[1.05] tracking-tighter text-[#0F6393]">
               Premium Pin{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#146b9a] to-[#00a9e0]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0F6393] to-[#00AEEF]">
                 Collections.
               </span>
             </h2>
@@ -100,7 +100,7 @@ export default function CompletePrintingSolution() {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="group relative flex flex-col h-full bg-[#fcfdfe] rounded-[2.5rem] p-8 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] border border-slate-100 hover:border-[#146b9a]/20 overflow-hidden"
+              className="group relative flex flex-col h-full bg-[#fcfdfe] rounded-[2.5rem] p-8 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] border border-slate-100 hover:border-[#0F6393]/20 overflow-hidden"
             >
               {/* Animated Accent Glow */}
               <div 
@@ -110,7 +110,7 @@ export default function CompletePrintingSolution() {
 
               <div className="relative z-10 flex flex-col h-full">
                 <div className="mb-8">
-                  <h3 className="text-2xl font-semibold text-[#0d2b3e] leading-tight mb-4 group-hover:text-[#146b9a] transition-colors duration-300">
+                  <h3 className="text-2xl font-semibold text-[#0F6393] leading-tight mb-4 group-hover:text-[#0F6393] transition-colors duration-300">
                     {item.title}
                   </h3>
                   <p className="text-slate-500 text-[15px] leading-relaxed font-medium">
@@ -127,15 +127,15 @@ export default function CompletePrintingSolution() {
                     className="object-cover group-hover:scale-110 transition-transform duration-1000 cubic-bezier(0.16, 1, 0.3, 1)"
                   />
                   {/* Subtle Image Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d2b3e]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F6393]/20 to-transparent" />
                 </div>
 
                 <div className="mt-8 flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[#51A9FF] font-black text-[12px] uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-[#00AEEF] font-black text-[12px] uppercase tracking-widest">
                     <span>Explore More</span>
                     <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-[#146b9a] group-hover:text-white transition-all duration-300">
+                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-[#0F6393] group-hover:text-white transition-all duration-300">
                     <ArrowRight size={18} />
                   </div>
                 </div>

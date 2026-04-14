@@ -42,33 +42,33 @@ const PIN_TYPES = [
 
 export default function PinTypes() {
   return (
-    <section className="py-16 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-white relative overflow-hidden">
       {/* Background Polish */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#146b9a 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center text-center mb-12 max-w-3xl mx-auto">
+           style={{ backgroundImage: 'radial-gradient(#0F6393 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+ 
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="flex flex-col items-center text-center mb-8 md:mb-12 max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-[11px] font-black tracking-[0.4em] text-[#51A9FF] uppercase mb-3 block">Our Portfolio</span>
-            <h2 className="text-3xl md:text-4xl lg:text-[48px] font-bold leading-[1.1] tracking-tight text-[#0d2b3e] mb-4">
+            <span className="text-[10px] md:text-[11px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-2 md:mb-3 block">Our Portfolio</span>
+            <h2 className="text-2xl md:text-4xl lg:text-[48px] font-bold leading-[1.2] md:leading-[1.1] tracking-tight text-[#0F6393] mb-3 md:mb-4">
               Choose From 50+ Types of{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#146b9a] to-[#00a9e0]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0F6393] to-[#00AEEF]">
                 Custom Pins.
               </span>
             </h2>
-            <p className="text-sm md:text-base text-slate-500 font-medium leading-relaxed">
+            <p className="text-[13px] md:text-base text-slate-500 font-medium leading-relaxed px-1 md:px-0">
               We guarantee premium quality custom pins using high-quality material that can withstand harsh and tough conditions without eroding.
             </p>
           </motion.div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+ 
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {PIN_TYPES.map((type, idx) => (
             <motion.div
               key={idx}
@@ -76,48 +76,50 @@ export default function PinTypes() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col h-full"
+              className="bg-slate-50 rounded-2xl p-5 md:p-6 border border-slate-100 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col h-full"
             >
-              <Link href={type.href} className="w-full aspect-[4/3] relative rounded-xl overflow-hidden mb-5 shadow-sm block">
-                <img 
+              <Link href={type.href} className="w-full aspect-[4/3] relative rounded-xl overflow-hidden mb-4 md:mb-5 shadow-sm block">
+                <Image 
                   src={type.img} 
                   alt={type.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700" 
                 />
                 {type.popular && (
-                  <div className="absolute top-3 right-3 bg-amber-400 text-amber-900 text-[9px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm">
+                  <div className="absolute top-3 right-3 bg-amber-400 text-amber-900 text-[9px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm z-10">
                     Popular
                   </div>
                 )}
               </Link>
 
-              <h3 className="text-lg font-bold text-[#0d2b3e] mb-2">{type.title}</h3>
-              <p className="text-slate-500 text-xs leading-relaxed font-medium mb-5 flex-1 line-clamp-3">
+              <h3 className="text-[17px] md:text-lg font-bold text-[#0F6393] mb-2">{type.title}</h3>
+              <p className="text-slate-500 text-[11px] md:text-xs font-medium mb-4 md:mb-5 flex-1 line-clamp-3 leading-relaxed">
                 {type.desc}
               </p>
 
-              <div className="space-y-2.5 mb-6">
+              <div className="space-y-2 mb-4 md:mb-6">
                 {type.features.map((feat, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-[#146b9a]" />
-                    <span className="text-xs font-semibold text-slate-700">{feat}</span>
+                    <CheckCircle2 size={13} className="text-[#0F6393] shrink-0" />
+                    <span className="text-[11px] md:text-xs font-semibold text-slate-700">{feat}</span>
                   </div>
                 ))}
               </div>
 
               <Link 
                 href={type.href}
-                className="flex items-center justify-between w-full p-3 rounded-lg bg-white border border-slate-200 text-[#0d2b3e] group-hover:border-[#146b9a] group-hover:bg-[#146b9a] group-hover:text-white transition-all duration-300 font-bold text-xs"
+                className="flex items-center justify-between w-full p-2.5 md:p-3 rounded-xl bg-white border border-slate-200 text-[#0F6393] group-hover:border-[#0F6393] group-hover:bg-[#0F6393] group-hover:text-white transition-all duration-300 font-bold text-[11px] md:text-xs"
               >
                 <span>Learn More</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
           ))}
         </div>
         
         <div className="mt-12 text-center flex justify-center">
-             <Link href="/quote" className="inline-block px-8 py-3.5 rounded-xl bg-[#0d2b3e] text-white font-black tracking-widest text-[10px] uppercase hover:bg-[#146b9a] transition-colors shadow-lg">
+             <Link href="/quote" className="inline-block px-8 py-3.5 rounded-xl bg-[#0F6393] text-white font-black tracking-widest text-[10px] uppercase hover:bg-[#0F6393] transition-colors shadow-lg">
                  View All Pin Styles
              </Link>
         </div>

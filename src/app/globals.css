@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: #004C99;
+  --color-brand-primary: #0F6393;
   --color-brand-accent: #00AEEF;
-  --color-brand-navy: #001A33;
+  --color-brand-navy: #0F6393;
   --color-brand-gray: #F8FAFC;
   --color-brand-whatsapp: #25D366;
 }

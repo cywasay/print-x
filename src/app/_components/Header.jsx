@@ -66,8 +66,8 @@ export default function Header() {
       >
 
         {/* ───── Top Utility Bar ───── */}
-        <div className={`bg-[#0d2b3e] w-full transition-all duration-300 overflow-hidden ${isScrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'}`}>
-          <div className="max-w-[1440px] mx-auto px-6 flex items-center justify-between h-[38px]">
+        <div className={`bg-[#0F6393] w-full transition-all duration-300 overflow-hidden ${isScrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'}`}>
+          <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-[38px]">
             <div className="hidden md:flex items-center gap-6 text-[12px] text-white/70 font-medium">
               <a href="tel:+971XXXXXXXX" className="flex items-center gap-1.5 hover:text-white transition-colors">
                 <Phone size={12} strokeWidth={2} />
@@ -95,7 +95,7 @@ export default function Header() {
 
         {/* ───── Main Header Bar ───── */}
         <div className="bg-white w-full border-b border-slate-100">
-          <div className={`max-w-[1440px] mx-auto px-6 flex items-center justify-between gap-6 lg:gap-10 transition-all duration-300 ${isScrolled ? 'py-2.5' : 'py-4'}`}>
+          <div className={`max-w-7xl mx-auto px-6 flex items-center justify-between gap-6 lg:gap-10 transition-all duration-300 ${isScrolled ? 'py-2.5' : 'py-4'}`}>
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-0 shrink-0 group select-none">
@@ -114,7 +114,7 @@ export default function Header() {
             <div className={`flex-1 max-w-[680px] relative hidden md:flex transition-all duration-300 ${searchFocused ? 'max-w-[720px]' : ''}`}>
               <div className={`flex w-full rounded-full border-2 overflow-hidden transition-all duration-300 ${
                 searchFocused 
-                  ? 'border-[#146b9a] shadow-[0_0_0_3px_rgba(20,107,154,0.1)]' 
+                  ? 'border-[#0F6393] shadow-[0_0_0_3px_rgba(15,99,147,0.1)]' 
                   : 'border-slate-200 hover:border-slate-300'
               }`}>
                 <input
@@ -125,7 +125,7 @@ export default function Header() {
                   onBlur={() => setSearchFocused(false)}
                 />
                 <button className={`px-5 flex items-center justify-center text-white shrink-0 transition-all duration-300 ${
-                  searchFocused ? 'bg-[#146b9a]' : 'bg-[#146b9a]/90 hover:bg-[#146b9a]'
+                  searchFocused ? 'bg-[#0F6393]' : 'bg-[#0F6393]/90 hover:bg-[#0F6393]'
                 }`}>
                   <Search size={17} strokeWidth={2.5} />
                 </button>
@@ -138,7 +138,7 @@ export default function Header() {
               {/* Help Center */}
               <Link
                 href="#"
-                className="hidden lg:flex items-center gap-2 text-slate-500 hover:text-[#146b9a] transition-all duration-200 text-[13px] font-semibold px-3 py-2 rounded-lg hover:bg-[#146b9a]/5"
+                className="hidden lg:flex items-center gap-2 text-slate-500 hover:text-[#0F6393] transition-all duration-200 text-[13px] font-semibold px-3 py-2 rounded-lg hover:bg-[#0F6393]/5"
               >
                 <MessageSquare size={16} strokeWidth={2} />
                 <span>Help Center</span>
@@ -150,7 +150,7 @@ export default function Header() {
               {/* Account */}
               <Link
                 href="#"
-                className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full text-slate-500 hover:text-[#146b9a] hover:bg-[#146b9a]/5 transition-all duration-200"
+                className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full text-slate-500 hover:text-[#0F6393] hover:bg-[#0F6393]/5 transition-all duration-200"
                 title="Account"
               >
                 <User size={20} strokeWidth={1.8} />
@@ -159,7 +159,7 @@ export default function Header() {
               {/* Cart */}
               <Link
                 href="#"
-                className="relative flex items-center justify-center w-10 h-10 rounded-full text-slate-500 hover:text-[#146b9a] hover:bg-[#146b9a]/5 transition-all duration-200"
+                className="relative flex items-center justify-center w-10 h-10 rounded-full text-slate-500 hover:text-[#0F6393] hover:bg-[#0F6393]/5 transition-all duration-200"
                 title="Cart"
               >
                 <ShoppingCart size={20} strokeWidth={1.8} />
@@ -196,20 +196,20 @@ export default function Header() {
 
         {/* ───── Bottom Navigation Tier ───── */}
         <div className="bg-white w-full border-b border-slate-100 hidden md:block">
-          <div className="max-w-[1440px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6">
             <nav className="flex items-center gap-0">
               {navLinks.map((link, idx) => (
                 <div key={idx} className="relative group">
                   <Link
                     href={link.href}
-                    className="relative flex items-center gap-1 px-4 py-3 text-[13.5px] font-semibold text-slate-600 hover:text-[#146b9a] transition-colors duration-200"
+                    className="relative flex items-center gap-1 px-4 py-3 text-[13.5px] font-semibold text-slate-600 hover:text-[#0F6393] transition-colors duration-200"
                   >
                     <span>{link.label}</span>
                     {link.hasDropdown && (
-                      <ChevronDown size={13} strokeWidth={2.5} className="text-slate-400 group-hover:text-[#146b9a] transition-all duration-200" />
+                      <ChevronDown size={13} strokeWidth={2.5} className="text-slate-400 group-hover:text-[#0F6393] transition-all duration-200" />
                     )}
                     {/* Hover underline */}
-                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-gradient-to-r from-[#146b9a] to-[#1a8bc4] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-gradient-to-r from-[#0F6393] to-[#1a8bc4] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                   </Link>
 
                   {/* Dropdown Menu */}
@@ -220,7 +220,7 @@ export default function Header() {
                           <Link 
                             key={i} 
                             href={item.href}
-                            className="px-4 py-3 rounded-xl text-[13px] font-semibold text-slate-600 hover:text-[#146b9a] hover:bg-[#146b9a]/5 transition-colors"
+                            className="px-4 py-3 rounded-xl text-[13px] font-semibold text-slate-600 hover:text-[#0F6393] hover:bg-[#0F6393]/5 transition-colors"
                           >
                             {item.label}
                           </Link>
@@ -273,13 +273,13 @@ export default function Header() {
 
         {/* Drawer Search */}
         <div className="px-6 pt-5 pb-2">
-          <div className="flex w-full rounded-full border-2 border-slate-200 overflow-hidden focus-within:border-[#146b9a] focus-within:shadow-[0_0_0_3px_rgba(20,107,154,0.1)] transition-all">
+          <div className="flex w-full rounded-full border-2 border-slate-200 overflow-hidden focus-within:border-[#0F6393] focus-within:shadow-[0_0_0_3px_rgba(15,99,147,0.1)] transition-all">
             <input
               type="text"
               placeholder="Search..."
               className="flex-1 px-4 py-2.5 text-[13px] text-slate-700 outline-none placeholder:text-slate-400 font-medium"
             />
-            <button className="bg-[#146b9a] text-white px-4 flex items-center justify-center">
+            <button className="bg-[#0F6393] text-white px-4 flex items-center justify-center">
               <Search size={16} strokeWidth={2.5} />
             </button>
           </div>
@@ -292,7 +292,7 @@ export default function Header() {
               <Link
                 href={link.href}
                 onClick={!link.hasDropdown ? () => setIsMobileMenuOpen(false) : undefined}
-                className="flex items-center justify-between px-4 py-3.5 rounded-xl text-[15px] font-semibold text-slate-700 hover:bg-[#146b9a]/5 hover:text-[#146b9a] transition-all duration-200"
+                className="flex items-center justify-between px-4 py-3.5 rounded-xl text-[15px] font-semibold text-slate-700 hover:bg-[#0F6393]/5 hover:text-[#0F6393] transition-all duration-200"
               >
                 <span>{link.label}</span>
                 {link.hasDropdown && <ChevronDown size={16} className="text-slate-400" />}
@@ -305,7 +305,7 @@ export default function Header() {
                       key={i}
                       href={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="px-4 py-2.5 text-[14px] font-medium text-slate-500 hover:text-[#146b9a] transition-colors"
+                      className="px-4 py-2.5 text-[14px] font-medium text-slate-500 hover:text-[#0F6393] transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -321,7 +321,7 @@ export default function Header() {
           <Link
             href="#"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="flex items-center gap-3 text-[14px] font-semibold text-slate-600 hover:text-[#146b9a] transition-colors"
+            className="flex items-center gap-3 text-[14px] font-semibold text-slate-600 hover:text-[#0F6393] transition-colors"
           >
             <MessageSquare size={18} />
             <span>Help Center</span>

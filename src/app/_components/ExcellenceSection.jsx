@@ -21,7 +21,7 @@ export default function ExcellenceSection() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-[300px] md:h-[400px] lg:h-[450px] overflow-hidden flex items-center justify-center border-y border-slate-200/40 shadow-inner bg-[#0d2b3e]"
+      className="relative w-full h-[300px] md:h-[400px] lg:h-[450px] overflow-hidden flex items-center justify-center border-y border-slate-200/40 shadow-inner bg-[#0F6393]"
     >
       {/* Background Banner with Heavy Parallax (Almost Fixed) */}
       <motion.div 
