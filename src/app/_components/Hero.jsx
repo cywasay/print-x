@@ -9,14 +9,29 @@ export default function Hero() {
         style={{ minHeight: "calc(100vh - 120px)", maxHeight: "900px" }}
       >
         {/* Background Image */}
-        <Image
-          src="/banners/lapel-pin-banner.jpg"
-          alt="PrintX Hero Banner"
-          fill
-          sizes="100vw"
-          className="object-cover object-[50%_50%]"
-          priority
-        />
+        {/* Desktop Background Image */}
+        <div className="hidden md:block">
+          <Image
+            src="/banners/lapel-pin-banner.jpg"
+            alt="PrintX Hero Banner"
+            fill
+            sizes="100vw"
+            className="object-cover object-[50%_50%]"
+            priority
+          />
+        </div>
+
+        {/* Mobile Background Image */}
+        <div className="block md:hidden">
+          <Image
+            src="/banners/mobile-banner.jpg"
+            alt="PrintX Hero Banner Mobile"
+            fill
+            sizes="100vw"
+            className="object-cover object-[50%_50%]"
+            priority
+          />
+        </div>
 
         {/* Soft Overlay for readability if needed (optional) */}
         <div className="absolute inset-0 bg-[#0F6393]/15 md:bg-[#0F6393]/10 pointer-events-none" />
@@ -40,18 +55,12 @@ export default function Hero() {
               <br className="hidden md:block" />
               enamel pins, and premium metal badges.
             </p>
-            <div className="pt-4 md:pt-6 flex flex-col sm:flex-row gap-4 sm:gap-5 w-full sm:w-auto">
+            <div className="pt-4 md:pt-6 w-full sm:w-auto">
               <Link
                 href="/quote"
                 className="px-8 md:px-10 py-3.5 md:py-4 bg-white text-[#0F6393] hover:bg-blue-50 text-[15px] md:text-base font-bold rounded-full transition-all shadow-[0_10px_30px_rgba(255,255,255,0.2)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.3)] hover:-translate-y-1 inline-block text-center"
               >
                 Get a Quote
-              </Link>
-              <Link
-                href="#"
-                className="px-8 md:px-10 py-3.5 md:py-4 border-2 border-white/40 hover:border-white text-white text-[15px] md:text-base font-bold rounded-full transition-all hover:bg-white/10 backdrop-blur-md inline-block text-center"
-              >
-                Our Services
               </Link>
             </div>
           </div>

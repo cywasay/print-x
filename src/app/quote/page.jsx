@@ -358,7 +358,7 @@ function QuotePageContent() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
                   <div className="flex flex-col gap-2.5">
-                    <label className="text-[10px] font-black text-blue-100/50 uppercase tracking-[0.2em] ml-1">
+                    <label className="text-[10px] font-medium text-white/80 uppercase tracking-[0.2em] ml-1">
                       Measuring Unit
                     </label>
                     <div className="relative">
@@ -378,7 +378,7 @@ function QuotePageContent() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2.5">
-                    <label className="text-[10px] font-black text-blue-100/50 uppercase tracking-[0.2em] ml-1">
+                    <label className="text-[10px] font-medium text-white/80 uppercase tracking-[0.2em] ml-1">
                       Height
                     </label>
                     <input
@@ -386,11 +386,11 @@ function QuotePageContent() {
                       placeholder="e.g. 2.5"
                       value={formData.height}
                       onChange={(e) => updateForm("height", e.target.value)}
-                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white placeholder:text-white/40 placeholder:font-medium focus:border-[#00AEEF] transition-colors shadow-inner"
+                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white placeholder:text-white/60 placeholder:font-light focus:border-[#00AEEF] transition-colors shadow-inner"
                     />
                   </div>
                   <div className="flex flex-col gap-2.5">
-                    <label className="text-[10px] font-black text-blue-100/50 uppercase tracking-[0.2em] ml-1">
+                    <label className="text-[10px] font-medium text-white/80 uppercase tracking-[0.2em] ml-1">
                       Width
                     </label>
                     <input
@@ -398,7 +398,7 @@ function QuotePageContent() {
                       placeholder="e.g. 1.5"
                       value={formData.width}
                       onChange={(e) => updateForm("width", e.target.value)}
-                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white placeholder:text-white/40 placeholder:font-medium focus:border-[#00AEEF] transition-colors shadow-inner"
+                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white placeholder:text-white/60 placeholder:font-light focus:border-[#00AEEF] transition-colors shadow-inner"
                     />
                   </div>
                 </div>

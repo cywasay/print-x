@@ -79,7 +79,7 @@ export default async function CategoryPage({ params }) {
           <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
                style={{ backgroundImage: 'radial-gradient(#0F6393 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-          <div className="max-w-[1200px] mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+          <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
             <div className="flex-1 w-full">
               <span className="text-[12px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-4 block">Premium Category</span>
               <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.1] tracking-tight text-[#0F6393] mb-6">
@@ -113,12 +113,23 @@ export default async function CategoryPage({ params }) {
             </div>
 
             <div className="flex-1 w-full relative">
-              <div className="w-full aspect-[4/3] relative rounded-3xl overflow-hidden shadow-[0_20px_50px_-20px_rgba(0,0,0,0.15)] ring-1 ring-slate-100">
-                <img 
-                  src={category.img} 
-                  alt={category.name}
-                  className="w-full h-full object-cover" 
+              <div className="w-full aspect-[4/3] relative rounded-3xl overflow-hidden shadow-[0_20px_50px_-20px_rgba(0,0,0,0.2)] ring-1 ring-slate-100 bg-slate-100">
+                <video
+                  src="/videos/product.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
                 />
+                
+                {/* Floating Content Indicator over video if needed */}
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/20 to-transparent p-6 pointer-events-none">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-[#00AEEF] animate-pulse" />
+                    <span className="text-[10px] text-white/90 font-bold uppercase tracking-widest pl-1">Live Product Showcase</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -34,7 +34,7 @@ export default function Footer() {
             <div className="flex flex-col gap-8">
               <Link href="/" className="inline-block">
                 <Image
-                  src="/logo-web.png"
+                  src="/logo-web-white.png"
                   alt="PrintX Advertising"
                   width={160}
                   height={50}

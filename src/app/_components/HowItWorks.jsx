@@ -70,19 +70,19 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm hover:bg-white/10 transition-colors duration-300 relative group"
+              className="bg-white/10 border border-white/20 rounded-[32px] p-8 backdrop-blur-md hover:bg-white/15 hover:border-white/30 transition-all duration-300 relative group shadow-[0_20px_40px_-15px_rgba(0,0,0,0.2)] hover:-translate-y-2"
             >
               {/* Step indicator connecting line (desktop) */}
               {idx !== STEPS.length - 1 && (
-                <div className="hidden lg:block absolute top-[4.5rem] -right-3 w-6 h-px bg-white/20 z-0"></div>
+                <div className="hidden lg:block absolute top-[4.5rem] -right-3 w-6 h-px bg-white/30 z-0"></div>
               )}
 
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0F6393] to-[#00AEEF] text-white flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300 relative z-10">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0F6393] to-[#00AEEF] text-white flex items-center justify-center mb-8 shadow-[0_10px_20px_-5px_rgba(0,174,239,0.3)] group-hover:scale-110 group-hover:shadow-[0_15px_30px_-5px_rgba(0,174,239,0.5)] transition-all duration-300 relative z-10">
                 {step.icon}
               </div>
               
-              <h3 className="text-xl font-bold text-white mb-4">{step.title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed font-medium">
+              <h3 className="text-xl font-bold text-white mb-4 leading-tight">{step.title}</h3>
+              <p className="text-white/75 text-sm leading-relaxed font-medium">
                 {step.desc}
               </p>
             </motion.div>

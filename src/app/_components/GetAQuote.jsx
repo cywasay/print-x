@@ -21,7 +21,7 @@ export default function GetAQuote() {
           {/* Left side: Text content */}
           <div className="flex-1 flex flex-col justify-center text-white h-full">
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight leading-[1.1]">
-              Get a <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-400">Quote.</span>
+              Get a Quote.
             </h2>
             <p className="text-base leading-relaxed text-blue-50/80 font-medium md:pr-10">
               Our expert team is here to assist you with high-quality corporate 
