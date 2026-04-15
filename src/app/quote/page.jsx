@@ -57,33 +57,33 @@ const PIN_STYLES = [
 ];
 
 const METAL_FINISHES = [
-  { id: "gold", title: "Gold", image: "/metal-finish/gold.png" },
-  { id: "silver", title: "Silver", image: "/metal-finish/silver.png" },
-  { id: "copper", title: "Copper", image: "/metal-finish/copper.png" },
+  { id: "gold", title: "Gold", image: "/metal-finish/gold-v2.png" },
+  { id: "silver", title: "Silver", image: "/metal-finish/silver-v2.png" },
+  { id: "copper", title: "Copper", image: "/metal-finish/copper-v2.png" },
   {
     id: "black-nickel",
     title: "Black Nickel",
-    image: "/metal-finish/black-nickel.png",
+    image: "/metal-finish/real-nickelv2.png",
   },
   {
     id: "black-metal",
     title: "Black Metal",
-    image: "/metal-finish/black-metal.png",
+    image: "/metal-finish/black-metal-v2.png",
   },
   {
     id: "antique-gold",
     title: "Antique Gold",
-    image: "/metal-finish/antique-gold.png",
+    image: "/metal-finish/antique-gold-v2.png",
   },
   {
     id: "antique-silver",
     title: "Antique Silver",
-    image: "/metal-finish/antiue-silver.png",
+    image: "/metal-finish/antique-silver-v2.png",
   },
   {
     id: "antique-copper",
     title: "Antique Copper",
-    image: "/metal-finish/antique-copper.png",
+    image: "/metal-finish/copperv2.png",
   },
 ];
 
@@ -745,19 +745,14 @@ function QuotePageContent() {
           <div className="w-full lg:w-[380px]">
             <div className="sticky top-32">
               <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden font-sans">
-                {/* Header */}
-                <div className="px-6 py-5 border-b border-slate-50 flex items-center justify-between bg-slate-50/50">
-                  <h3 className="text-[12px] font-black text-slate-400 uppercase tracking-[0.2em]">
-                    Order Summary
-                  </h3>
-                  <div className="w-8 h-8 rounded-lg bg-white border border-slate-100 flex items-center justify-center p-1.5 shadow-sm">
-                    <Image
-                      src="/logo-web.png"
-                      alt="Logo"
-                      width={24}
-                      height={24}
-                      className="w-full h-full object-contain opacity-80"
-                    />
+                {/* Specialized Header Strip */}
+                <div className="bg-[#26729D] px-6 py-4 flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black text-white/70 uppercase tracking-[0.2em] leading-none mb-0.5 text-shadow-sm">Order</span>
+                    <span className="text-[13px] font-black text-white uppercase tracking-widest leading-none">Summary</span>
+                  </div>
+                  <div className="text-[9px] font-black text-white/90 uppercase tracking-widest bg-white/10 px-2 py-1.5 rounded-md border border-white/20 backdrop-blur-sm">
+                    Review Selections
                   </div>
                 </div>
 
@@ -814,16 +809,7 @@ function QuotePageContent() {
                     </div>
                   </div>
 
-                  <div className="pt-4 mt-2 border-t border-dashed border-slate-200 space-y-4">
-                    <div className="flex justify-between items-center">
-                      <div className="flex flex-col">
-                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider tracking-tighter">Total Estimation</span>
-                      </div>
-                      <span className="text-xl font-black text-[#0F6393] tracking-tight">
-                        Quoted Individually
-                      </span>
-                    </div>
-
+                  <div className="pt-4 mt-2 border-t border-dashed border-slate-200">
                     <button className="w-full bg-[#0F6393] hover:bg-[#0c537a] text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[12px] flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#0F6393]/10 group">
                       <ShoppingCart size={16} className="group-hover:-translate-y-0.5 transition-transform" />
                       Complete Quote
