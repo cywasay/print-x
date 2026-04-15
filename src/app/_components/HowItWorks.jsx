@@ -34,13 +34,13 @@ export default function HowItWorks() {
       <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-t from-[#00AEEF]/10 to-transparent pointer-events-none blur-3xl transform -translate-x-1/4" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
+        <div className="mb-20">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl"
+            className="max-w-4xl"
           >
             <span className="text-[12px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-4 block">Hassle-Free Process</span>
             <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.05] tracking-tight text-white mb-6">
@@ -49,17 +49,16 @@ export default function HowItWorks() {
                 Custom Pins.
               </span>
             </h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-white/60 text-lg md:text-xl font-medium max-w-2xl"
+            >
+              Ordering your custom enamel pins is quick, cheap, and entirely hassle-free from start to finish!
+            </motion.p>
           </motion.div>
-          
-          <motion.p 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white/60 text-lg md:text-xl font-medium max-w-md pb-2"
-          >
-            Ordering your custom enamel pins is quick, cheap, and entirely hassle-free from start to finish!
-          </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
