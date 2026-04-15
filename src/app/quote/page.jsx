@@ -91,8 +91,7 @@ const QUANTITY_OPTIONS = [
   { id: "25", label: "25 Pcs" },
   { id: "50", label: "50 Pcs" },
   { id: "100", label: "100 Pcs" },
-  { id: "200", label: "200 Pcs" },
-  { id: "300", label: "300 Pcs" },
+  { id: "250", label: "250 Pcs" },
   { id: "500", label: "500 Pcs" },
   { id: "1000", label: "1000 Pcs" },
   { id: "2000", label: "2000 Pcs" },
@@ -221,7 +220,7 @@ function QuotePageContent() {
       <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-10 md:py-16 lg:py-20">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           {/* Left Side: Form Content */}
-          <div className="flex-1 space-y-10 md:space-y-16">
+          <div className="flex-1 min-w-0 space-y-10 md:space-y-16">
             <div className="text-center lg:text-left">
               <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#0F6393] mb-3 md:mb-4 tracking-tight">
                 Create Your <span className="text-[#00AEEF]">Order</span>
@@ -298,7 +297,7 @@ function QuotePageContent() {
                 </h2>
                 <div className="w-16 h-1 bg-[#00AEEF] rounded-full mt-2" />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {METAL_FINISHES.map((finish) => (
                   <div
                     key={finish.id}
@@ -309,76 +308,76 @@ function QuotePageContent() {
                         : "border-slate-100"
                     }`}
                   >
-                    <div className="flex h-full min-h-[110px]">
-                      <div className="w-[35%] relative bg-slate-50 overflow-hidden shrink-0">
-                        <Image
-                          src={finish.image}
-                          alt={finish.title}
-                          fill
-                          sizes="(max-width: 768px) 30vw, 150px"
-                          className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                      </div>
-                      <div className="flex-1 p-4 flex items-center justify-center">
-                        <h3 className="text-base font-bold text-[#0F6393]">
-                          {finish.title}
-                        </h3>
-                      </div>
+                    <div className="aspect-square relative bg-slate-50 overflow-hidden">
+                      <Image
+                        src={finish.image}
+                        alt={finish.title}
+                        fill
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      {formData.metalFinish === finish.id && (
+                        <div className="absolute inset-0 bg-[#0F6393]/10 flex items-center justify-center relative z-10">
+                          <Check size={20} className="text-[#0F6393]" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-3 text-center">
+                      <h3 className="text-xs font-bold text-[#0F6393]">
+                        {finish.title}
+                      </h3>
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* Dimensions */}
-              <div className="mt-12 bg-[#0F6393] p-10 rounded-2xl shadow-xl relative overflow-hidden group">
-                {/* Decorative background element */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-white/10 transition-colors" />
-
-                <div className="flex items-center justify-between gap-3 mb-8">
+              <div className="mt-12 bg-white p-8 md:p-10 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-[#0F6393]/5 flex items-center justify-center">
                       <Ruler
                         size={20}
-                        className="text-[#00AEEF]"
+                        className="text-[#0F6393]"
                         strokeWidth={2.5}
                       />
                     </div>
-                    <h3 className="text-xl font-bold text-white tracking-tight">
+                    <h3 className="text-xl font-bold text-[#0F6393] tracking-tight">
                       Dimensions
                     </h3>
                   </div>
                   <button
                     onClick={() => setShowSizeGuide(true)}
-                    className="text-[#00AEEF] hover:text-white text-[12px] font-black uppercase tracking-widest flex items-center gap-2 transition-colors group/link"
+                    className="text-[#00AEEF] hover:text-[#0F6393] text-[12px] font-black uppercase tracking-widest flex items-center gap-2 transition-all duration-300 group/link"
                   >
                     <Eye size={14} className="group-hover:scale-110 transition-transform" />
                     <span>View Size Guide</span>
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-                  <div className="flex flex-col gap-2.5">
-                    <label className="text-[10px] font-medium text-white/80 uppercase tracking-[0.2em] ml-1">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
+                  <div className="flex flex-col gap-3">
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">
                       Measuring Unit
                     </label>
                     <div className="relative">
                       <select
                         value={formData.unit}
                         onChange={(e) => updateForm("unit", e.target.value)}
-                        className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white appearance-none cursor-pointer focus:border-[#00AEEF] transition-colors"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-[#0F6393] appearance-none cursor-pointer focus:border-[#0F6393] transition-colors shadow-sm"
                       >
-                        <option className="bg-[#0F6393]">Centimeter</option>
-                        <option className="bg-[#0F6393]">Inches</option>
-                        <option className="bg-[#0F6393]">Millimeter</option>
+                        <option>Centimeter</option>
+                        <option>Inches</option>
+                        <option>Millimeter</option>
                       </select>
                       <ChevronDown
                         size={16}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
                       />
                     </div>
                   </div>
-                  <div className="flex flex-col gap-2.5">
-                    <label className="text-[10px] font-medium text-white/80 uppercase tracking-[0.2em] ml-1">
+                  <div className="flex flex-col gap-3">
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">
                       Height
                     </label>
                     <input
@@ -386,11 +385,11 @@ function QuotePageContent() {
                       placeholder="e.g. 2.5"
                       value={formData.height}
                       onChange={(e) => updateForm("height", e.target.value)}
-                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white placeholder:text-white/60 placeholder:font-light focus:border-[#00AEEF] transition-colors shadow-inner"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-400 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
                     />
                   </div>
-                  <div className="flex flex-col gap-2.5">
-                    <label className="text-[10px] font-medium text-white/80 uppercase tracking-[0.2em] ml-1">
+                  <div className="flex flex-col gap-3">
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">
                       Width
                     </label>
                     <input
@@ -398,7 +397,7 @@ function QuotePageContent() {
                       placeholder="e.g. 1.5"
                       value={formData.width}
                       onChange={(e) => updateForm("width", e.target.value)}
-                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-bold text-sm text-white placeholder:text-white/60 placeholder:font-light focus:border-[#00AEEF] transition-colors shadow-inner"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-400 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
                     />
                   </div>
                 </div>
@@ -406,50 +405,59 @@ function QuotePageContent() {
 
               {/* Quantity */}
               <div className="mt-12">
-                <div className="mb-6">
+                <div className="mb-8">
                   <h3 className="text-xl font-bold text-[#0F6393] mb-1">
                     Select Required Quantity
                   </h3>
                   <div className="w-12 h-1 bg-[#00AEEF] rounded-full" />
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {QUANTITY_OPTIONS.map((option) => (
-                    <div
-                      key={option.id}
-                      onClick={() => updateForm("quantity", option.id)}
-                      className={`group cursor-pointer bg-white rounded-lg p-3.5 border transition-all duration-300 flex items-center gap-3 ${
-                        formData.quantity === option.id
-                          ? "border-[#0F6393] bg-[#0F6393]/5 shadow-sm"
-                          : "border-slate-100"
-                      }`}
-                    >
+                
+                <div className="relative w-full overflow-hidden">
+                  <div className="flex flex-nowrap overflow-x-auto gap-4 px-1 py-4 no-scrollbar scroll-smooth">
+                    {QUANTITY_OPTIONS.map((option) => (
                       <div
-                        className={`w-4 h-4 rounded border flex items-center justify-center ${formData.quantity === option.id ? "bg-[#0F6393] border-[#0F6393]" : "border-slate-200"}`}
+                        key={option.id}
+                        onClick={() => updateForm("quantity", option.id)}
+                        className={`relative cursor-pointer w-[80px] h-[80px] rounded-lg border-2 shrink-0 transition-all duration-300 flex flex-col items-center justify-center gap-0 group overflow-hidden ${
+                          formData.quantity === option.id
+                            ? "bg-[#0F6393] border-[#0F6393] shadow-lg scale-[1.05] z-10"
+                            : "bg-white border-slate-100 hover:border-[#0F6393]/30 hover:shadow-md"
+                        }`}
                       >
-                        {formData.quantity === option.id && (
-                          <Check size={10} className="text-white" />
-                        )}
-                      </div>
-                      <span className="font-bold text-xs text-[#0F6393]">
-                        {option.label}
+                      <span className={`text-lg font-black leading-tight ${
+                        formData.quantity === option.id ? "text-white" : "text-[#0F6393]"
+                      }`}>
+                        {option.id === "custom" ? "+" : option.id}
                       </span>
+                      <span className={`text-[8px] font-bold uppercase tracking-wider ${
+                        formData.quantity === option.id ? "text-white/70" : "text-slate-400"
+                      }`}>
+                        {option.id === "custom" ? "Custom" : "Pcs"}
+                      </span>
+                      
+                      {formData.quantity === option.id && (
+                        <div className="absolute bottom-1.5 animate-in fade-in zoom-in duration-300">
+                          <Check size={12} className="text-white" strokeWidth={3} />
+                        </div>
+                      )}
                     </div>
                   ))}
-
-                  {formData.quantity === "custom" && (
-                    <div className="col-span-2 md:col-span-3 mt-2">
-                      <input
-                        type="number"
-                        placeholder="Enter custom quantity (e.g. 2500)"
-                        value={formData.customQuantity}
-                        onChange={(e) =>
-                          updateForm("customQuantity", e.target.value)
-                        }
-                        className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-500 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
-                      />
-                    </div>
-                  )}
+                  </div>
                 </div>
+
+                {formData.quantity === "custom" && (
+                  <div className="mt-6 animate-in slide-in-from-top-2 duration-300">
+                    <input
+                      type="number"
+                      placeholder="Enter custom quantity (e.g. 2500)"
+                      value={formData.customQuantity}
+                      onChange={(e) =>
+                        updateForm("customQuantity", e.target.value)
+                      }
+                      className="w-full max-w-md bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-400 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
+                    />
+                  </div>
+                )}
               </div>
             </section>
 
@@ -734,123 +742,116 @@ function QuotePageContent() {
           )}
 
           {/* Sidebar */}
-          <div className="w-full lg:w-[420px]">
+          <div className="w-full lg:w-[380px]">
             <div className="sticky top-32">
-              <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden font-sans">
-                {/* Header with Logo */}
-                <div className="p-8 pb-4 flex items-center justify-between gap-4">
-                  <h3 className="text-xl font-bold text-black pt-1">
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden font-sans">
+                {/* Header */}
+                <div className="px-6 py-5 border-b border-slate-50 flex items-center justify-between bg-slate-50/50">
+                  <h3 className="text-[12px] font-black text-slate-400 uppercase tracking-[0.2em]">
                     Order Summary
                   </h3>
-                  <div className="shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-white border border-slate-100 flex items-center justify-center p-1.5 shadow-sm">
                     <Image
                       src="/logo-web.png"
-                      alt="PrintX Logo"
-                      width={100}
-                      height={32}
-                      className="h-8 w-auto object-contain"
-                      style={{ height: "auto", width: "auto" }}
+                      alt="Logo"
+                      width={24}
+                      height={24}
+                      className="w-full h-full object-contain opacity-80"
                     />
                   </div>
                 </div>
 
-                <div className="px-8 pb-8 space-y-6">
-                  {/* Pin Style Row */}
-                  <div className="flex justify-between items-center text-sm font-semibold">
-                    <span className="text-slate-700">Pin Style:</span>
-                    <span className="text-slate-900">
-                      {selectedStyle?.title || "No Pin Style Selected"}
-                    </span>
-                  </div>
-
-                  <div className="space-y-4 pt-2">
-                    <h4 className="text-lg font-bold text-black">
-                      Customize Options:
-                    </h4>
-                    <div className="flex justify-between items-center text-sm font-semibold">
-                      <span className="text-slate-700">Size:</span>
-                      <span className="text-slate-900">
-                        {formData.height || '"'} x {formData.width || '"'}{" "}
-                        {formData.unit === "Centimeter"
-                          ? "CM"
-                          : formData.unit === "Inches"
-                            ? "IN"
-                            : "MM"}
+                <div className="p-6 space-y-4">
+                  {/* Summary Rows */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-baseline gap-4">
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Product Style</span>
+                      <span className="text-[13px] font-bold text-[#0F6393] text-right truncate">
+                        {selectedStyle?.title || "TBD"}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm font-semibold">
-                      <span className="text-slate-700">Metal Finish :</span>
-                      <span className="text-slate-900">
-                        {selectedFinish?.title || ""}
+
+                    <div className="flex justify-between items-baseline gap-4">
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Order Quantity</span>
+                      <span className="text-[13px] font-bold text-[#0F6393]">
+                        {formData.quantity === "custom" ? formData.customQuantity : formData.quantity} Units
                       </span>
                     </div>
-                  </div>
 
-                  <hr className="border-slate-100" />
-
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-bold text-black">
-                      Further Options:
-                    </h4>
-                    <div className="flex justify-between items-center text-sm font-semibold">
-                      <span className="text-slate-700">Backing Type :</span>
-                      <span className="text-slate-900">
-                        {selectedBacking?.title || ""}
+                    <div className="flex justify-between items-baseline gap-4">
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Unit Size</span>
+                      <span className="text-[13px] font-bold text-[#0F6393]">
+                        {formData.height || "0"}x{formData.width || "0"} {formData.unit === "Centimeter" ? "CM" : formData.unit === "Inches" ? "IN" : "MM"}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm font-semibold">
-                      <span className="text-slate-700">Colors :</span>
-                      <span className="text-slate-900">
-                        {selectedColor?.title || ""}
+
+                    <div className="flex justify-between items-baseline gap-4">
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Metal Finish</span>
+                      <span className="text-[13px] font-bold text-[#0F6393] text-right">
+                        {selectedFinish?.title || "TBD"}
                       </span>
                     </div>
-                  </div>
 
-                  <hr className="border-slate-100" />
-
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-bold text-black">
-                      Details, Artwork & Delivery :
-                    </h4>
-                    <div className="flex justify-between items-center text-sm font-semibold">
-                      <span className="text-slate-700">Design Name :</span>
-                      <span className="text-slate-900">
-                        {formData.designName || ""}
+                    <div className="flex justify-between items-baseline gap-4">
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Backing Type</span>
+                      <span className="text-[13px] font-bold text-[#0F6393] text-right">
+                        {selectedBacking?.title || "TBD"}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm font-semibold">
-                      <span className="text-slate-700">Delivery :</span>
-                      <span className="text-slate-900">
-                        {selectedDelivery?.title || ""}
+
+                    <div className="flex justify-between items-baseline gap-4">
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Color Palette</span>
+                      <span className="text-[13px] font-bold text-[#0F6393] text-right">
+                        {selectedColor?.title || "TBD"}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between items-baseline gap-4">
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Logistics</span>
+                      <span className="text-[13px] font-bold text-[#00AEEF] text-right">
+                        {selectedDelivery?.title || "TBD"}
                       </span>
                     </div>
                   </div>
 
-                  <hr className="border-slate-100" />
+                  <div className="pt-4 mt-2 border-t border-dashed border-slate-200 space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="flex flex-col">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider tracking-tighter">Total Estimation</span>
+                      </div>
+                      <span className="text-xl font-black text-[#0F6393] tracking-tight">
+                        Quoted Individually
+                      </span>
+                    </div>
 
-                  <div className="flex justify-between items-center pt-2">
-                    <span className="text-sm font-semibold text-slate-700">
-                      Quantity :
-                    </span>
-                    <span className="text-sm font-bold text-slate-900">
-                      {formData.quantity === "custom"
-                        ? formData.customQuantity || "0"
-                        : formData.quantity}{" "}
-                      Pcs
-                    </span>
+                    <button className="w-full bg-[#0F6393] hover:bg-[#0c537a] text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[12px] flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#0F6393]/10 group">
+                      <ShoppingCart size={16} className="group-hover:-translate-y-0.5 transition-transform" />
+                      Complete Quote
+                    </button>
                   </div>
                 </div>
               </div>
 
-              {/* Support Button */}
-              <div className="mt-6 bg-[#25D366] px-6 py-4 rounded-xl text-white shadow-lg flex items-center justify-between cursor-pointer hover:bg-[#20bd5a] transition-all">
-                <span className="font-bold text-sm uppercase tracking-wider">
-                  Expert Support
-                </span>
-                <div className="bg-white/20 p-2 rounded-lg">
-                  <Truck size={18} />
+              {/* Support Mini Card */}
+              <a 
+                href="https://wa.me/971507180562" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#25D366]/10 flex items-center justify-center text-[#25D366]">
+                    <Truck size={18} />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-black text-slate-800 uppercase tracking-wider">Expert Support</span>
+                    <span className="text-[10px] font-bold text-[#25D366]">Chat on WhatsApp</span>
+                  </div>
                 </div>
-              </div>
+                <div className="text-slate-300 group-hover:text-[#0F6393] transition-colors">
+                  →
+                </div>
+              </a>
             </div>
           </div>
         </div>
