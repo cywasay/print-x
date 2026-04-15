@@ -104,8 +104,7 @@ export default function Header() {
                 alt="PinBadges Logo"
                 width={160}
                 height={50}
-                className={`transition-all duration-300 object-contain ${isScrolled ? 'h-8 xl:h-10' : 'h-10 xl:h-12'}`}
-                style={{ height: 'auto', width: 'auto' }}
+                className={`transition-all duration-500 ease-in-out w-auto object-contain ${isScrolled ? 'h-7 xl:h-8' : 'h-9 xl:h-10'}`}
                 priority
               />
             </Link>
@@ -252,14 +251,14 @@ export default function Header() {
       >
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
-          <Link href="/" className="flex flex-col leading-none" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
             <Image
               src="/logo-web.png"
               alt="PinBadges Logo"
               width={140}
               height={44}
-              className="h-10 w-auto object-contain"
-              style={{ height: 'auto', width: 'auto' }}
+              className="h-8 w-auto object-contain"
+              priority
             />
           </Link>
           <button
