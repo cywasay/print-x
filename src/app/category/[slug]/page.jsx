@@ -6,6 +6,7 @@ import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
 import GetAQuote from "@/app/_components/GetAQuote";
 import HowItWorks from "@/app/_components/HowItWorks";
+import VisualSteps from "@/app/_components/VisualSteps";
 import GoogleReviews from "@/app/_components/GoogleReviews";
 import FAQ from "@/app/_components/FAQ";
 
@@ -17,6 +18,7 @@ const categoryData = {
     detailedDesc: "Hard enamel pins are highly durable and offer a classic, premium look. They are baked at high temperatures to cure the enamel, then polished flat so the metal borders and enamel colors are on the exact same level. Perfect for high-end corporate gifts and creative artist pins.",
     img: "/lapel-categories/hard-enamel-pin.jpg",
     features: ["Smooth, flush surface", "Highest perceived value", "Extremely durable", "Bright, vivid colors"],
+    video: "/videos/hard-enamel-pin.mp4",
     faqs: [
       { question: "Is hard enamel better than soft enamel?", answer: "It's considered higher quality. Because it's polished flat, the surface is smooth and jewelry-like. It's the best option for corporate branding and high-end merchandise." },
       { question: "Can I use detailed artwork with hard enamel?", answer: "Yes, but very thin lines may be broadened slightly during the polishing process. Our designers will review your art to ensure it's hard-enamel compatible." },
@@ -146,7 +148,7 @@ export default async function CategoryPage({ params }) {
             <div className="flex-1 w-full relative">
               <div className="w-full aspect-[4/3] relative rounded-3xl overflow-hidden shadow-[0_20px_50px_-20px_rgba(0,0,0,0.2)] ring-1 ring-slate-100 bg-slate-100">
                 <video
-                  src="/videos/product.mp4"
+                  src={category.video || "/videos/product.mp4"}
                   autoPlay
                   muted
                   loop
@@ -166,6 +168,7 @@ export default async function CategoryPage({ params }) {
           </div>
         </section>
 
+        <VisualSteps />
         <HowItWorks />
         <GetAQuote />
         <FAQ faqs={category.faqs} title="Information" subtitle={`${category.name} FAQ`} />
