@@ -71,6 +71,7 @@ export default function VisualSteps() {
                     fill
                     className="object-cover transition-transform duration-700 hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 500px"
+                    quality={85}
                   />
                 </div>
               </div>

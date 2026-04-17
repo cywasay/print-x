@@ -112,6 +112,7 @@ export default function Header() {
                 height={50}
                 className={`transition-all duration-500 ease-in-out w-auto object-contain ${isScrolled ? 'h-7 xl:h-8' : 'h-9 xl:h-10'}`}
                 priority
+                quality={90}
               />
             </Link>
 

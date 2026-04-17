@@ -39,6 +39,7 @@ export default function Footer() {
                   width={160}
                   height={50}
                   style={{ height: 'auto', width: 'auto' }}
+                  quality={90}
                 />
               </Link>
 

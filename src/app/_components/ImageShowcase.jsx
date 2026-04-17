@@ -33,19 +33,21 @@ export default function ImageShowcase({ images }) {
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg border border-slate-100">
               <Image 
                 src={displayImages[0]} 
-                alt="Product showcase 1" 
+                alt="Custom lapel pin showcase 1" 
                 fill 
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 25vw"
+                quality={85}
               />
             </div>
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg border border-slate-100">
               <Image 
                 src={displayImages[4]} 
-                alt="Product showcase 2" 
+                alt="Custom lapel pin showcase 2" 
                 fill 
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 25vw"
+                quality={85}
               />
             </div>
           </div>
@@ -57,19 +59,21 @@ export default function ImageShowcase({ images }) {
               <div className="relative aspect-[3/5] rounded-3xl overflow-hidden shadow-lg border border-slate-100">
                 <Image 
                   src={displayImages[1]} 
-                  alt="Product showcase 3" 
+                  alt="Premium pin design detail 1" 
                   fill 
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
                 />
               </div>
               <div className="relative aspect-[3/5] rounded-3xl overflow-hidden shadow-lg border border-slate-100">
                 <Image 
                   src={displayImages[2]} 
-                  alt="Product showcase 4" 
+                  alt="Premium pin design detail 2" 
                   fill 
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
                 />
               </div>
             </div>
@@ -90,19 +94,21 @@ export default function ImageShowcase({ images }) {
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg border border-slate-100">
               <Image 
                 src={displayImages[3]} 
-                alt="Product showcase 5" 
+                alt="Custom badge showcase 1" 
                 fill 
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 25vw"
+                quality={85}
               />
             </div>
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg border border-slate-100">
               <Image 
                 src={displayImages[5]} 
-                alt="Product showcase 6" 
+                alt="Custom badge showcase 2" 
                 fill 
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 25vw"
+                quality={85}
               />
             </div>
           </div>

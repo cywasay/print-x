@@ -255,10 +255,11 @@ function QuotePageContent() {
                       <div className="w-[42%] relative bg-slate-50 overflow-hidden shrink-0">
                         <Image
                           src={style.image}
-                          alt={style.title}
+                          alt={`Selectable pin style: ${style.title}`}
                           fill
                           sizes="(max-width: 768px) 40vw, 200px"
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          quality={85}
                         />
                         {formData.pinStyle === style.id && (
                           <div className="absolute inset-0 bg-[#0F6393]/10 flex items-center justify-center relative z-10">
@@ -311,10 +312,11 @@ function QuotePageContent() {
                     <div className="aspect-square relative bg-slate-50 overflow-hidden">
                       <Image
                         src={finish.image}
-                        alt={finish.title}
+                        alt={`Selectable metal finish: ${finish.title}`}
                         fill
                         sizes="(max-width: 768px) 50vw, 25vw"
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        quality={85}
                       />
                       {formData.metalFinish === finish.id && (
                         <div className="absolute inset-0 bg-[#0F6393]/10 flex items-center justify-center relative z-10">
@@ -532,10 +534,11 @@ function QuotePageContent() {
                     <div className="aspect-square relative bg-slate-50 overflow-hidden">
                       <Image
                         src={option.image}
-                        alt={option.title}
+                        alt={`Selectable backing type: ${option.title}`}
                         fill
                         sizes="(max-width: 768px) 50vw, 25vw"
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        quality={85}
                       />
                       {formData.backingType === option.id && (
                         <div className="absolute inset-0 bg-[#0F6393]/10 flex items-center justify-center relative z-10">
@@ -573,10 +576,11 @@ function QuotePageContent() {
                       <div className="aspect-square relative bg-slate-50 overflow-hidden">
                         <Image
                           src={option.image}
-                          alt={option.title}
+                          alt={`Selectable color amount: ${option.title}`}
                           fill
                           sizes="(max-width: 768px) 50vw, 25vw"
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          quality={85}
                         />
                         {formData.colorAmount === option.id && (
                           <div className="absolute inset-0 bg-[#0F6393]/10 flex items-center justify-center relative z-10">
@@ -730,10 +734,11 @@ function QuotePageContent() {
                   <div className="relative w-full h-full">
                     <Image 
                       src="/banners/size-guide.jpg" 
-                      alt="Size Guide" 
+                      alt="Detailed pin size guide" 
                       fill 
                       className="object-contain rounded-2xl"
                       priority
+                      quality={85}
                     />
                   </div>
                 </div>

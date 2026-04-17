@@ -95,6 +95,7 @@ export default function BlogsSection() {
                   fill 
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-1000 cubic-bezier(0.16, 1, 0.3, 1)" 
+                  quality={85}
                 />
               </div>
               

@@ -81,10 +81,11 @@ export default function PinTypes() {
               <Link href={type.href} className="w-full aspect-[4/3] relative rounded-xl overflow-hidden mb-4 md:mb-5 shadow-sm block">
                 <Image 
                   src={type.img} 
-                  alt={type.title}
+                  alt={`Custom ${type.title} example`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                  quality={85}
                 />
                 {type.popular && (
                   <div className="absolute top-3 right-3 bg-amber-400 text-amber-900 text-[9px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm z-10">

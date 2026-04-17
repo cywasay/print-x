@@ -64,7 +64,7 @@ export default function PrestigiousClients() {
                 {[...clientLogos, ...clientLogos].map((logo, idx) => (
                   <div key={idx} className="w-[100px] h-[100px] md:w-[200px] md:h-[200px] rounded-2xl md:rounded-[2.5rem] bg-[#fcfdfe] border border-slate-100 flex items-center justify-center p-0 overflow-hidden hover:border-[#00AEEF]/30 transition-all duration-500 shadow-sm hover:shadow-xl group/logo">
                     <div className="relative w-full h-full opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-                      <Image src={logo} alt="Client" fill sizes="(max-width: 768px) 100px, 200px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <Image src={logo} alt="Client logo" fill sizes="(max-width: 768px) 100px, 200px" className="object-cover group-hover:scale-110 transition-transform duration-700" quality={80} />
                     </div>
                   </div>
                 ))}
@@ -81,7 +81,7 @@ export default function PrestigiousClients() {
                 {[...clientLogos, ...clientLogos].map((logo, idx) => (
                   <div key={idx} className="w-[100px] h-[100px] md:w-[200px] md:h-[200px] rounded-2xl md:rounded-[2.5rem] bg-[#fcfdfe] border border-slate-100 flex items-center justify-center p-0 overflow-hidden hover:border-[#00AEEF]/30 transition-all duration-500 shadow-sm hover:shadow-xl group/logo">
                     <div className="relative w-full h-full opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-                      <Image src={logo} alt="Client" fill sizes="(max-width: 768px) 100px, 200px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <Image src={logo} alt="Client logo" fill sizes="(max-width: 768px) 100px, 200px" className="object-cover group-hover:scale-110 transition-transform duration-700" quality={80} />
                     </div>
                   </div>
                 ))}

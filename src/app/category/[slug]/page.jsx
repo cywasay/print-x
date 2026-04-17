@@ -41,6 +41,7 @@ const categoryData = {
     detailedDesc: "Soft enamel pins have raised metal borders and recessed enamel colors, giving them a textured feel. Fast, cost-effective, and versatile, they are the most popular choice for trading pins, promotional merch, and creative designs.",
     img: "/lapel-categories/soft-enamel-pin.jpg",
     features: ["Textured 3D feel", "More cost-effective", "Great for intricate designs", "Can be combined with epoxy dome"],
+    video: "/videos/product.mp4",
     gallery: [
       "/soft-lapel-pins/1.jpg",
       "/soft-lapel-pins/6.jpg",
@@ -204,20 +205,34 @@ export default async function CategoryPage({ params }) {
 
             <div className="flex-1 w-full relative">
               <div className="w-full aspect-[4/3] relative rounded-3xl overflow-hidden shadow-[0_20px_50px_-20px_rgba(0,0,0,0.2)] ring-1 ring-slate-100 bg-slate-100">
-                <video
-                  src={category.video || "/videos/product.mp4"}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
+                {category.video ? (
+                  <video
+                    src={category.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={category.gallery[0]}
+                    alt={`${category.name} featured product`}
+                    fill
+                    className="object-cover"
+                    priority
+                    quality={90}
+                    sizes="(max-width: 768px) 100vw, 600px"
+                  />
+                )}
                 
-                {/* Floating Content Indicator over video if needed */}
+                {/* Floating Content Indicator over media */}
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/20 to-transparent p-6 pointer-events-none">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-[#00AEEF] animate-pulse" />
-                    <span className="text-[10px] text-white/90 font-bold uppercase tracking-widest pl-1">Live Product Showcase</span>
+                    <span className="text-[10px] text-white/90 font-bold uppercase tracking-widest pl-1">
+                      {category.video ? "Live Product Showcase" : "Featured Product"}
+                    </span>
                   </div>
                 </div>
               </div>
