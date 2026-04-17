@@ -8,7 +8,6 @@ import GetAQuote from "@/app/_components/GetAQuote";
 import HowItWorks from "@/app/_components/HowItWorks";
 import VisualSteps from "@/app/_components/VisualSteps";
 import ImageShowcase from "@/app/_components/ImageShowcase";
-import ExcellenceSection from "@/app/_components/ExcellenceSection";
 import GoogleReviews from "@/app/_components/GoogleReviews";
 import FAQ from "@/app/_components/FAQ";
 
@@ -227,7 +226,6 @@ export default async function CategoryPage({ params }) {
         </section>
 
         <ImageShowcase images={category.gallery} />
-        <ExcellenceSection />
         <VisualSteps />
         <HowItWorks />
         <GetAQuote />
