@@ -57,7 +57,8 @@ export default function PinTypes() {
           >
             <span className="text-[10px] md:text-[11px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-2 md:mb-3 block">Our Portfolio</span>
             <h2 className="text-2xl md:text-4xl lg:text-[48px] font-bold leading-[1.2] md:leading-[1.1] tracking-tight text-[#0F6393] mb-3 md:mb-4">
-              Choose From 50+ Types of{" "}
+              Choose From <br />
+              50+ Types of{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0F6393] to-[#00AEEF]">
                 Custom Pins.
               </span>

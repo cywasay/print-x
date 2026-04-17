@@ -262,8 +262,10 @@ function QuotePageContent() {
                           quality={85}
                         />
                         {formData.pinStyle === style.id && (
-                          <div className="absolute inset-0 bg-[#0F6393]/10 flex items-center justify-center relative z-10">
-                            <Check size={20} className="text-[#0F6393]" />
+                          <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
+                            <div className="w-10 h-10 bg-[#00AEEF] rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
+                              <Check size={22} className="text-white" strokeWidth={3.5} />
+                            </div>
                           </div>
                         )}
                       </div>
@@ -319,8 +321,10 @@ function QuotePageContent() {
                         quality={85}
                       />
                       {formData.metalFinish === finish.id && (
-                        <div className="absolute inset-0 bg-[#0F6393]/10 flex items-center justify-center relative z-10">
-                          <Check size={20} className="text-[#0F6393]" />
+                        <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
+                          <div className="w-8 h-8 bg-[#00AEEF] rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
+                            <Check size={18} className="text-white" strokeWidth={3.5} />
+                          </div>
                         </div>
                       )}
                     </div>
@@ -541,8 +545,10 @@ function QuotePageContent() {
                         quality={85}
                       />
                       {formData.backingType === option.id && (
-                        <div className="absolute inset-0 bg-[#0F6393]/10 flex items-center justify-center relative z-10">
-                          <Check size={20} className="text-[#0F6393]" />
+                        <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
+                          <div className="w-8 h-8 bg-[#00AEEF] rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
+                            <Check size={18} className="text-white" strokeWidth={3.5} />
+                          </div>
                         </div>
                       )}
                     </div>
@@ -583,8 +589,10 @@ function QuotePageContent() {
                           quality={85}
                         />
                         {formData.colorAmount === option.id && (
-                          <div className="absolute inset-0 bg-[#0F6393]/10 flex items-center justify-center relative z-10">
-                            <Check size={20} className="text-[#0F6393]" />
+                          <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
+                            <div className="w-8 h-8 bg-[#00AEEF] rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
+                              <Check size={18} className="text-white" strokeWidth={3.5} />
+                            </div>
                           </div>
                         )}
                       </div>
