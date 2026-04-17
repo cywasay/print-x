@@ -26,29 +26,35 @@ const navLinks = [
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
   const headerRef = useRef(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
       setIsScrolled(currentScrollY > 10);
 
-      if (currentScrollY > lastScrollY && currentScrollY > 120) {
+      // Only toggle visibility if scroll delta exceeds 5px to prevent jitter
+      if (Math.abs(delta) < 5) return;
+
+      if (delta > 0 && currentScrollY > 120) {
         setIsVisible(false);
         setIsMobileMenuOpen(false);
-      } else if (currentScrollY < lastScrollY || currentScrollY <= 120) {
+      } else if (delta < 0 || currentScrollY <= 120) {
         setIsVisible(true);
       }
-      setLastScrollY(currentScrollY);
+
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -66,7 +72,7 @@ export default function Header() {
       >
 
         {/* ───── Top Utility Bar ───── */}
-        <div className={`bg-[#0F6393] w-full transition-all duration-300 overflow-hidden ${isScrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'}`}>
+        <div className={`bg-[#0F6393] w-full transition-all duration-300 ease-in-out ${isScrolled ? 'h-0 opacity-0 overflow-hidden' : 'h-[38px] opacity-100'}`}>
           <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-[38px]">
             <div className="hidden md:flex items-center gap-6 text-[12px] text-white/70 font-medium">
               <a href="tel:+971XXXXXXXX" className="flex items-center gap-1.5 hover:text-white transition-colors">

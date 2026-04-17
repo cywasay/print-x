@@ -7,6 +7,7 @@ import Footer from "@/app/_components/Footer";
 import GetAQuote from "@/app/_components/GetAQuote";
 import HowItWorks from "@/app/_components/HowItWorks";
 import VisualSteps from "@/app/_components/VisualSteps";
+import ImageShowcase from "@/app/_components/ImageShowcase";
 import GoogleReviews from "@/app/_components/GoogleReviews";
 import FAQ from "@/app/_components/FAQ";
 
@@ -19,6 +20,14 @@ const categoryData = {
     img: "/lapel-categories/hard-enamel-pin.jpg",
     features: ["Smooth, flush surface", "Highest perceived value", "Extremely durable", "Bright, vivid colors"],
     video: "/videos/hard-enamel-pin.mp4",
+    gallery: [
+      "/hard-lapel-pins/1.jpg",
+      "/hard-lapel-pins/6.jpg",
+      "/hard-lapel-pins/5.jpg",
+      "/hard-lapel-pins/4.jpg",
+      "/hard-lapel-pins/2.jpg",
+      "/hard-lapel-pins/3.jpg",
+    ],
     faqs: [
       { question: "Is hard enamel better than soft enamel?", answer: "It's considered higher quality. Because it's polished flat, the surface is smooth and jewelry-like. It's the best option for corporate branding and high-end merchandise." },
       { question: "Can I use detailed artwork with hard enamel?", answer: "Yes, but very thin lines may be broadened slightly during the polishing process. Our designers will review your art to ensure it's hard-enamel compatible." },
@@ -32,6 +41,14 @@ const categoryData = {
     detailedDesc: "Soft enamel pins have raised metal borders and recessed enamel colors, giving them a textured feel. Fast, cost-effective, and versatile, they are the most popular choice for trading pins, promotional merch, and creative designs.",
     img: "/lapel-categories/soft-enamel-pin.jpg",
     features: ["Textured 3D feel", "More cost-effective", "Great for intricate designs", "Can be combined with epoxy dome"],
+    gallery: [
+      "/soft-lapel-pins/1.jpg",
+      "/soft-lapel-pins/6.jpg",
+      "/soft-lapel-pins/5.jpg",
+      "/soft-lapel-pins/4.jpg",
+      "/soft-lapel-pins/2.jpg",
+      "/soft-lapel-pins/3.jpg",
+    ],
     faqs: [
       { question: "What is the main difference with soft enamel?", answer: "The enamel sits lower than the metal walls, creating a textured 3D feel that many collectors prefer. It's also categorized as the most budget-friendly option." },
       { question: "What is an epoxy dome?", answer: "It's a clear protective coating we can add over soft enamel to protect the paint and give it a smooth, rounded finish like a hard enamel pin." },
@@ -45,6 +62,14 @@ const categoryData = {
     detailedDesc: "Die-struck pins offer a highly sophisticated, jewelry-like finish without the use of enamel. The design is stamped into the metal, creating raised and recessed areas. Perfect for subdued branding, corporate recognition, and academic awards.",
     img: "/lapel-categories/die-cast-pin.jpg",
     features: ["All-metal finish", "Elegant, timeless look", "Variety of metal platings", "Sandblasted options available"],
+    gallery: [
+      "/die-struck-pin-badges/1.jpg",
+      "/die-struck-pin-badges/6.jpg",
+      "/die-struck-pin-badges/5.jpg",
+      "/die-struck-pin-badges/4.jpg",
+      "/die-struck-pin-badges/2.jpg",
+      "/die-struck-pin-badges/3.jpg",
+    ],
     faqs: [
       { question: "What are die struck pins best for?", answer: "They are ideal for professional, clean branding where color isn't needed. They rely on the contrast between polished and recessed (sandblasted) metal surfaces." },
       { question: "What metal platings do you offer?", answer: "We offer Gold, Silver, Copper, Bronze, and Black Nickel in both high-polish and antique finishes." },
@@ -58,6 +83,14 @@ const categoryData = {
     detailedDesc: "Unlike standard 2D pins, 3D cast pins are crafted using a mold to allow for rounded edges, complex curves, and varying levels of depth. They're perfect for recreating lifelike faces, detailed vehicles, miniature animals, or sculptural logos.",
     img: "/lapel-categories/3d-cast-pin.jpg",
     features: ["Sculptural 3D levels", "High-impact realism", "Heavier, premium weight", "Ideal for complex objects"],
+    gallery: [
+      "/3d-cast-pin-badges/1.jpg",
+      "/3d-cast-pin-badges/6.jpg",
+      "/3d-cast-pin-badges/5.jpg",
+      "/3d-cast-pin-badges/4.jpg",
+      "/3d-cast-pin-badges/2.jpg",
+      "/3d-cast-pin-badges/3.jpg",
+    ],
     faqs: [
       { question: "How is 3D casting different from 2D?", answer: "Standard pins have two levels (raised and recessed). 3D casting allows for infinite levels of depth, rounded edges, and complex curves like a statue." },
       { question: "Is there an extra mold fee for 3D?", answer: "3D molds are more complex to create, so the initial setup cost is higher, but the final product is significantly more impressive." },
@@ -71,6 +104,14 @@ const categoryData = {
     detailedDesc: "When a design has gradients, drop shadows, or intricate photographic details that cannot be broken down into solid enamel colors, photo dome (offset printed) pins are the solution. The art is printed directly onto the metal and protected with a durable epoxy dome.",
     img: "/lapel-categories/epoxy-pin.jpg",
     features: ["Supports full-color gradients", "Exact color matching", "Clear protective epoxy dome", "Fastest production time"],
+    gallery: [
+      "/epoxy-pins/1.jpg",
+      "/epoxy-pins/6.jpg",
+      "/epoxy-pins/5.jpg",
+      "/epoxy-pins/4.jpg",
+      "/epoxy-pins/2.jpg",
+      "/epoxy-pins/3.jpg",
+    ],
     faqs: [
       { question: "When should I choose photo dome pins?", answer: "Whenever your artwork contains gradients, shadows, or photo-realistic details that can't be separated by metal lines." },
       { question: "How do you match my brand colors?", answer: "We print using CMYK or Pantone matching directly onto the metal, ensuring your brand colors are accurately represented." },
@@ -84,6 +125,14 @@ const categoryData = {
     detailedDesc: "Trading pins are an essential part of sports tournaments and fan events. To make them truly stand out, they often incorporate special add-ons like glitters, spinners, sliders, bobbleheads, or blinking LED lights to increase their trade value.",
     img: "/lapel-categories/custom-UV-pin.jpg",
     features: ["Interactive options (sliders, spinners)", "High collectible value", "Glow-in-the-dark & glitter options", "Perfect for youth sports"],
+    gallery: [
+      "/custom-UV-pins/1.jpg",
+      "/custom-UV-pins/6.jpg",
+      "/custom-UV-pins/5.jpg",
+      "/custom-UV-pins/4.jpg",
+      "/custom-UV-pins/2.jpg",
+      "/custom-UV-pins/3.jpg",
+    ],
     faqs: [
       { question: "What are the most popular add-ons for trading pins?", answer: "Glitters and glow-in-the-dark paints are the most cost-effective. For maximum trade value, we recommend sliders, spinners, or bobbleheads." },
       { question: "Can you help with team trading designs?", answer: "Yes! Our design team specializes in sports trading pins and can help incorporate your team's logo, colors, and player numbers into a highly tradable design." },
@@ -168,6 +217,7 @@ export default async function CategoryPage({ params }) {
           </div>
         </section>
 
+        <ImageShowcase images={category.gallery} />
         <VisualSteps />
         <HowItWorks />
         <GetAQuote />
