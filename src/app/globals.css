@@ -12,3 +12,14 @@ body {
   font-family: var(--font-barlow);
   background-color: #ffffff;
 }
+
+@layer utilities {
+  .animate-slow-zoom {
+    animation: slow-zoom 20s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}

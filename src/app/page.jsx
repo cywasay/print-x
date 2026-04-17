@@ -5,6 +5,7 @@ import PinTypes from "@/app/_components/PinTypes";
 import HowItWorks from "@/app/_components/HowItWorks";
 import PrestigiousClients from "@/app/_components/PrestigiousClients";
 import SeoContent from "@/app/_components/SeoContent";
+import ExcellenceSection from "@/app/_components/ExcellenceSection";
 import GoogleReviews from "@/app/_components/GoogleReviews";
 import GetAQuote from "@/app/_components/GetAQuote";
 import Footer from "@/app/_components/Footer";
@@ -27,6 +28,7 @@ export default function Home() {
         <HowItWorks />
         <PrestigiousClients />
         <SeoContent />
+        <ExcellenceSection />
         <GetAQuote />
         <FAQ faqs={HOME_FAQS} title="Knowledge Base" subtitle="General FAQ" />
         <GoogleReviews />

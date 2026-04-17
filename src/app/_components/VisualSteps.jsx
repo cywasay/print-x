@@ -64,11 +64,13 @@ export default function VisualSteps() {
 
               {/* Image Content */}
               <div className="flex-1 w-full flex justify-center">
-                <div className="rounded-xl overflow-hidden shadow-sm border border-slate-100 w-full max-w-[500px]">
-                  <img
+                <div className="rounded-xl overflow-hidden shadow-sm border border-slate-100 w-full max-w-[500px] relative aspect-[4/3]">
+                  <Image
                     src={step.img}
                     alt={step.title}
-                    className="w-full h-auto block transition-transform duration-700 hover:scale-105"
+                    fill
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 500px"
                   />
                 </div>
               </div>

@@ -8,6 +8,7 @@ import GetAQuote from "@/app/_components/GetAQuote";
 import HowItWorks from "@/app/_components/HowItWorks";
 import VisualSteps from "@/app/_components/VisualSteps";
 import ImageShowcase from "@/app/_components/ImageShowcase";
+import ExcellenceSection from "@/app/_components/ExcellenceSection";
 import GoogleReviews from "@/app/_components/GoogleReviews";
 import FAQ from "@/app/_components/FAQ";
 
@@ -158,8 +159,16 @@ export default async function CategoryPage({ params }) {
       <Header />
       <main className="flex-1 w-full bg-slate-50">
         <section className="py-24 relative overflow-hidden bg-white border-b border-slate-200/50">
-          <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
-               style={{ backgroundImage: 'radial-gradient(#0F6393 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          {/* Enhanced Banner Background */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <div className="absolute inset-0 bg-slate-50/50" />
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                 style={{ backgroundImage: 'radial-gradient(#0F6393 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            
+            {/* Subtle category-themed background element */}
+            <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-[#00AEEF]/5 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute -left-20 -bottom-20 w-[600px] h-[600px] bg-[#0F6393]/5 rounded-full blur-[100px] pointer-events-none" />
+          </div>
 
           <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
             <div className="flex-1 w-full">
@@ -218,6 +227,7 @@ export default async function CategoryPage({ params }) {
         </section>
 
         <ImageShowcase images={category.gallery} />
+        <ExcellenceSection />
         <VisualSteps />
         <HowItWorks />
         <GetAQuote />

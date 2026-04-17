@@ -16,8 +16,9 @@ export default function Hero() {
             alt="PrintX Hero Banner"
             fill
             sizes="100vw"
-            className="object-cover object-[50%_50%]"
+            className="object-cover object-[50%_50%] animate-slow-zoom"
             priority
+            quality={100}
           />
         </div>
 
@@ -28,8 +29,9 @@ export default function Hero() {
             alt="PrintX Hero Banner Mobile"
             fill
             sizes="100vw"
-            className="object-cover object-[50%_50%]"
+            className="object-cover object-[50%_50%] animate-slow-zoom"
             priority
+            quality={100}
           />
         </div>
 
