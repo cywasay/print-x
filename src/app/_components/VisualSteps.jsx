@@ -8,7 +8,7 @@ const VISUAL_STEPS = [
     step: "Step 1",
     title: "Artwork & Design",
     desc: "Share your logo, artwork, or creative idea with us. Our design team carefully prepares the layout and ensures it's fully suitable for production, giving you a clear preview before we start.",
-    img: "/steps/step-1-label-pin-size.jpg"
+    img: "/steps/artwork-sketch.jpg"
   },
   {
     step: "Step 2",
