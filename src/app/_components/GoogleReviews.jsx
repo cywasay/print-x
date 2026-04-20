@@ -46,7 +46,7 @@ export default function GoogleReviews() {
   const prev = () => setActive((prev) => (prev - 1 + reviewsData.length) % reviewsData.length);
 
   return (
-    <section className="py-24 bg-[#f8fafc] border-y border-slate-200/50 relative overflow-hidden">
+    <section className="py-12 md:py-24 bg-[#f8fafc] border-y border-slate-200/50 relative overflow-hidden">
       {/* Background Polish */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none" 
            style={{ backgroundImage: 'radial-gradient(#0F6393 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -54,10 +54,10 @@ export default function GoogleReviews() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Modern Header */}
-        <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
-           <div className="max-w-xl">
+        <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-12 md:mb-20 gap-8">
+           <div className="max-w-xl text-center md:text-left w-full">
               <span className="text-[12px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-4 block">Testimonials</span>
-              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tighter text-[#0F6393] leading-none mb-6">
+              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tighter text-[#0F6393] leading-tight md:leading-none mb-6 text-balance">
                 Voices Of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0F6393] to-[#00AEEF]">Trust.</span>
               </h2>
            </div>
@@ -68,10 +68,10 @@ export default function GoogleReviews() {
                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Google Rating</div>
               </div>
               <div className="flex gap-2">
-                 <button onClick={prev} className="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-xl hover:border-blue-100 transition-all group">
+                 <button onClick={prev} className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-xl hover:border-blue-100 transition-all group">
                     <ChevronLeft className="text-slate-400 group-hover:text-[#0F6393] transition-colors" />
                  </button>
-                 <button onClick={next} className="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-xl hover:border-blue-100 transition-all group">
+                 <button onClick={next} className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-xl hover:border-blue-100 transition-all group">
                     <ChevronRight className="text-slate-400 group-hover:text-[#0F6393] transition-colors" />
                  </button>
               </div>
@@ -79,7 +79,7 @@ export default function GoogleReviews() {
         </div>
 
         {/* 3D Spotlight Carousel */}
-        <div className="relative h-[550px] md:h-[450px] flex items-center justify-center">
+        <div className="relative h-[480px] md:h-[450px] flex items-center justify-center">
            <AnimatePresence mode="wait">
               {reviewsData.map((review, idx) => {
                  if (idx !== active) return null;
@@ -92,7 +92,7 @@ export default function GoogleReviews() {
                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                        className="absolute w-full max-w-[540px] h-full"
                     >
-                       <div className="w-full h-full bg-white rounded-[3rem] p-8 md:p-12 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] border border-white flex flex-col items-center text-center relative overflow-hidden group">
+                       <div className="w-full h-full bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] border border-white flex flex-col items-center text-center relative overflow-hidden group">
                           {/* Giant Quote Icon */}
                           <div className="absolute top-[-5%] left-[-5%] text-slate-50 opacity-[0.4] pointer-events-none">
                              <Quote size={200} fill="currentColor" />
@@ -103,7 +103,7 @@ export default function GoogleReviews() {
                                 {[...Array(5)].map((_, i) => <Star key={i} fill="currentColor" size={20} className="stroke-none" />)}
                              </div>
 
-                             <p className="text-[#0F6393] text-lg md:text-xl font-medium leading-relaxed italic mb-8 max-w-md px-2">
+                             <p className="text-[#0F6393] text-base md:text-xl font-medium leading-relaxed italic mb-8 max-w-md px-4">
                                 "{review.text}"
                              </p>
 

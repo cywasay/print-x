@@ -15,7 +15,7 @@ const GALLERY_IMAGES = [
 export default function ImageShowcase({ images }) {
   const displayImages = images && images.length > 0 ? images : GALLERY_IMAGES;
   return (
-    <section className="py-20 bg-[#F8FAFC]">
+    <section className="py-12 md:py-20 bg-[#F8FAFC]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-[#0F6393] mb-4">
@@ -29,7 +29,7 @@ export default function ImageShowcase({ images }) {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 items-start">
           
           {/* Column 1 */}
-          <div className="flex flex-col gap-4 md:gap-6">
+          <div className="flex flex-col gap-4 md:gap-6 order-1">
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg border border-slate-100">
               <Image 
                 src={displayImages[0]} 
@@ -53,7 +53,7 @@ export default function ImageShowcase({ images }) {
           </div>
 
           {/* Combined Middle Section (Col 2 & 3) */}
-          <div className="col-span-2 flex flex-col gap-4 md:gap-6">
+          <div className="col-span-2 flex flex-col gap-4 md:gap-6 order-3 lg:order-2">
             {/* The two tall images side by side */}
             <div className="grid grid-cols-2 gap-4 md:gap-6">
               <div className="relative aspect-[3/5] rounded-3xl overflow-hidden shadow-lg border border-slate-100">
@@ -79,7 +79,7 @@ export default function ImageShowcase({ images }) {
             </div>
             
             {/* The Text Block - Now directly inside the same vertical flow as the images, filling the "Empty Space" */}
-            <div className="flex flex-col items-center text-center px-4 pt-2">
+            <div className="flex flex-col items-center text-center px-4 mt-4 md:mt-2">
               <h3 className="text-xl md:text-[28px] font-bold text-[#0F6393] leading-tight mb-2">
                 Premium Craftsmanship & Quality
               </h3>
@@ -90,7 +90,7 @@ export default function ImageShowcase({ images }) {
           </div>
 
           {/* Column 4 */}
-          <div className="flex flex-col gap-4 md:gap-6">
+          <div className="flex flex-col gap-4 md:gap-6 order-2 lg:order-3">
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg border border-slate-100">
               <Image 
                 src={displayImages[3]} 

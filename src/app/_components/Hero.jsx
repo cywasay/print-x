@@ -40,7 +40,7 @@ export default function Hero() {
 
         <div className="max-w-7xl w-full mx-auto px-6 lg:px-12 relative z-10 flex items-center h-full">
           {/* Left Content */}
-          <div className="w-full md:w-[65%] lg:w-[60%] flex flex-col items-start justify-center space-y-5 md:space-y-8 z-20">
+          <div className="w-full md:w-[65%] lg:w-[60%] flex flex-col items-start justify-center space-y-5 md:space-y-8 z-20 -mt-12 md:mt-0">
             <h1 className="text-[32px] sm:text-4xl md:text-5xl lg:text-[72px] font-semibold leading-[1.1] md:leading-[1.05] tracking-tight text-white drop-shadow-md">
               Custom{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">

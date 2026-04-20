@@ -217,7 +217,7 @@ function QuotePageContent() {
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
       <Header />
 
-      <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-10 md:py-16 lg:py-20">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-6 pt-6 pb-10 md:py-16 lg:py-20">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           {/* Left Side: Form Content */}
           <div className="flex-1 min-w-0 space-y-10 md:space-y-16">

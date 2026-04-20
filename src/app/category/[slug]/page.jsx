@@ -158,7 +158,7 @@ export default async function CategoryPage({ params }) {
     <>
       <Header />
       <main className="flex-1 w-full bg-slate-50">
-        <section className="py-24 relative overflow-hidden bg-white border-b border-slate-200/50">
+        <section className="pt-12 pb-20 md:py-24 relative overflow-hidden bg-white border-b border-slate-200/50">
           {/* Enhanced Banner Background */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <div className="absolute inset-0 bg-slate-50/50" />
