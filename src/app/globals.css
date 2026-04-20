@@ -17,6 +17,21 @@ body {
   .animate-slow-zoom {
     animation: slow-zoom 20s ease-in-out infinite alternate;
   }
+
+  .thin-scrollbar::-webkit-scrollbar {
+    height: 4px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #0F6393;
+  }
 }
 
 @keyframes slow-zoom {

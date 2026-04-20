@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <>
       <section
-        className="relative w-full overflow-hidden flex items-center py-12 md:py-20 lg:py-0"
+        className="relative w-full overflow-hidden flex items-start md:items-center py-12 md:py-20 lg:py-0"
         style={{ minHeight: "calc(100vh - 120px)", maxHeight: "900px" }}
       >
         {/* Background Image */}
@@ -38,9 +38,9 @@ export default function Hero() {
         {/* Soft Overlay for readability if needed (optional) */}
         <div className="absolute inset-0 bg-[#0F6393]/15 md:bg-[#0F6393]/10 pointer-events-none" />
 
-        <div className="max-w-7xl w-full mx-auto px-6 lg:px-12 relative z-10 flex items-center h-full">
+        <div className="max-w-7xl w-full mx-auto px-6 lg:px-12 relative z-10 flex items-start md:items-center h-full pt-12 md:pt-0">
           {/* Left Content */}
-          <div className="w-full md:w-[65%] lg:w-[60%] flex flex-col items-start justify-center space-y-5 md:space-y-8 z-20 -mt-12 md:mt-0">
+          <div className="w-full md:w-[65%] lg:w-[60%] flex flex-col items-start justify-start md:justify-center space-y-5 md:space-y-8 z-20">
             <h1 className="text-[32px] sm:text-4xl md:text-5xl lg:text-[72px] font-semibold leading-[1.1] md:leading-[1.05] tracking-tight text-white drop-shadow-md">
               Custom{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">

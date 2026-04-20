@@ -419,7 +419,7 @@ function QuotePageContent() {
                 </div>
                 
                 <div className="relative w-full overflow-hidden">
-                  <div className="flex flex-nowrap overflow-x-auto gap-4 px-1 py-4 no-scrollbar scroll-smooth">
+                  <div className="flex flex-nowrap overflow-x-auto gap-4 px-1 py-4 thin-scrollbar scroll-smooth">
                     {QUANTITY_OPTIONS.map((option) => (
                       <div
                         key={option.id}
