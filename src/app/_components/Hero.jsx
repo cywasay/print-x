@@ -5,8 +5,7 @@ export default function Hero() {
   return (
     <>
       <section
-        className="relative w-full overflow-hidden flex items-center py-12 md:py-20 lg:py-0"
-        style={{ minHeight: "calc(100vh - 120px)", maxHeight: "900px" }}
+        className="relative w-full overflow-hidden flex items-center py-12 md:py-20 lg:py-0 min-h-[500px] md:min-h-[calc(100vh-120px)] max-h-[900px]"
       >
         {/* Background Image */}
         {/* Desktop Background Image */}
