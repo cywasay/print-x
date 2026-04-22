@@ -5,18 +5,18 @@ export default function Hero() {
   return (
     <>
       <section
-        className="relative w-full overflow-hidden flex items-start md:items-center py-12 md:py-20 lg:py-0"
+        className="relative w-full overflow-hidden flex items-center py-12 md:py-20 lg:py-0"
         style={{ minHeight: "calc(100vh - 120px)", maxHeight: "900px" }}
       >
         {/* Background Image */}
         {/* Desktop Background Image */}
         <div className="hidden md:block">
           <Image
-            src="/banners/lapel-pin-banner.jpg"
+            src="/banners/lapel-pin-banner-updated.jpg"
             alt="PrintX Hero Banner"
             fill
             sizes="100vw"
-            className="object-cover object-[50%_50%] animate-slow-zoom"
+            className="object-cover object-[50%_50%]"
             priority
             quality={90}
           />
@@ -25,11 +25,11 @@ export default function Hero() {
         {/* Mobile Background Image */}
         <div className="block md:hidden">
           <Image
-            src="/banners/mobile-banner.jpg"
+            src="/banners/updated-mobile-baner.jpg"
             alt="PrintX Hero Banner Mobile"
             fill
             sizes="100vw"
-            className="object-cover object-[50%_50%] animate-slow-zoom"
+            className="object-cover object-[50%_50%]"
             priority
             quality={90}
           />
@@ -38,10 +38,10 @@ export default function Hero() {
         {/* Soft Overlay for readability if needed (optional) */}
         <div className="absolute inset-0 bg-[#0F6393]/15 md:bg-[#0F6393]/10 pointer-events-none" />
 
-        <div className="max-w-7xl w-full mx-auto px-6 lg:px-12 relative z-10 flex items-start md:items-center h-full pt-12 md:pt-0">
+        <div className="max-w-7xl w-full mx-auto px-6 lg:px-12 relative z-10 flex items-center h-full">
           {/* Left Content */}
           <div className="w-full md:w-[65%] lg:w-[60%] flex flex-col items-start justify-start md:justify-center space-y-5 md:space-y-8 z-20">
-            <h1 className="text-[32px] sm:text-4xl md:text-5xl lg:text-[72px] font-semibold leading-[1.1] md:leading-[1.05] tracking-tight text-white drop-shadow-md">
+            <h1 className="text-[40px] sm:text-4xl md:text-5xl lg:text-[72px] font-semibold leading-[1.1] md:leading-[1.05] tracking-tight text-white drop-shadow-md">
               Custom{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">
                 Pins.
@@ -52,7 +52,7 @@ export default function Hero() {
                 Perfection.
               </span>
             </h1>
-            <p className="text-sm sm:text-base lg:text-[22px] text-white/90 font-medium leading-relaxed max-w-xl mt-1 md:mt-2">
+            <p className="text-[17px] sm:text-base lg:text-[22px] text-white/90 font-medium leading-relaxed max-w-xl mt-1 md:mt-2">
               The UAE's premier manufacturer of custom lapel pins,
               <br className="hidden md:block" />
               enamel pins, and premium metal badges.
