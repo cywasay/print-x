@@ -780,9 +780,9 @@ function QuotePageContent() {
                     </div>
 
                     <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Order Quantity</span>
-                      <span className="text-[13px] font-bold text-[#0F6393]">
-                        {formData.quantity === "custom" ? formData.customQuantity : formData.quantity} Units
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Metal Finish</span>
+                      <span className="text-[13px] font-bold text-[#0F6393] text-right">
+                        {selectedFinish?.title || "TBD"}
                       </span>
                     </div>
 
@@ -794,9 +794,16 @@ function QuotePageContent() {
                     </div>
 
                     <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Metal Finish</span>
-                      <span className="text-[13px] font-bold text-[#0F6393] text-right">
-                        {selectedFinish?.title || "TBD"}
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Order Quantity</span>
+                      <span className="text-[13px] font-bold text-[#0F6393]">
+                        {formData.quantity === "custom" ? formData.customQuantity : formData.quantity} Units
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between items-baseline gap-4">
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Logistics</span>
+                      <span className="text-[13px] font-bold text-[#00AEEF] text-right">
+                        {selectedDelivery?.title || "TBD"}
                       </span>
                     </div>
 
@@ -811,13 +818,6 @@ function QuotePageContent() {
                       <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Color Palette</span>
                       <span className="text-[13px] font-bold text-[#0F6393] text-right">
                         {selectedColor?.title || "TBD"}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Logistics</span>
-                      <span className="text-[13px] font-bold text-[#00AEEF] text-right">
-                        {selectedDelivery?.title || "TBD"}
                       </span>
                     </div>
                   </div>
