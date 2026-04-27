@@ -63,6 +63,7 @@ const categoryData = {
     detailedDesc: "Die-struck pins offer a highly sophisticated, jewelry-like finish without the use of enamel. The design is stamped into the metal, creating raised and recessed areas. Perfect for subdued branding, corporate recognition, and academic awards.",
     img: "/lapel-categories/die-cast-pin.jpg",
     features: ["All-metal finish", "Elegant, timeless look", "Variety of metal platings", "Sandblasted options available"],
+    video: "/videos/die-struct-pin.mp4",
     gallery: [
       "/die-struck-pin-badges/1.jpg",
       "/die-struck-pin-badges/6.jpg",
@@ -84,6 +85,7 @@ const categoryData = {
     detailedDesc: "Unlike standard 2D pins, 3D cast pins are crafted using a mold to allow for rounded edges, complex curves, and varying levels of depth. They're perfect for recreating lifelike faces, detailed vehicles, miniature animals, or sculptural logos.",
     img: "/lapel-categories/3d-cast-pin.jpg",
     features: ["Sculptural 3D levels", "High-impact realism", "Heavier, premium weight", "Ideal for complex objects"],
+    video: "/videos/3D-cast-pin.mp4",
     gallery: [
       "/3d-cast-pin-badges/1.jpg",
       "/3d-cast-pin-badges/6.jpg",
@@ -106,6 +108,7 @@ const categoryData = {
     detailedDesc: "When a design has gradients, drop shadows, or intricate photographic details that cannot be broken down into solid enamel colors, photo dome (offset printed) pins are the solution. The art is printed directly onto the metal and protected with a durable epoxy dome.",
     img: "/lapel-categories/epoxy-pin.jpg",
     features: ["Supports full-color gradients", "Exact color matching", "Clear protective epoxy dome", "Fastest production time"],
+    video: "/videos/epoxy-pin.mp4",
     gallery: [
       "/epoxy-pins/1.jpg",
       "/epoxy-pins/6.jpg",
@@ -127,6 +130,7 @@ const categoryData = {
     detailedDesc: "Trading pins are an essential part of sports tournaments and fan events. To make them truly stand out, they often incorporate special add-ons like glitters, spinners, sliders, bobbleheads, or blinking LED lights to increase their trade value.",
     img: "/lapel-categories/custom-UV-pin.jpg",
     features: ["Interactive options (sliders, spinners)", "High collectible value", "Glow-in-the-dark & glitter options", "Perfect for youth sports"],
+    video: "/videos/custom-UV-pin.mp4",
     gallery: [
       "/custom-UV-pins/1.jpg",
       "/custom-UV-pins/6.jpg",
