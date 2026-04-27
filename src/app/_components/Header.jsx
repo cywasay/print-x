@@ -15,7 +15,7 @@ const navLinks = [
       { label: "Soft Enamel Pins", href: "/category/soft-enamel-pins" },
       { label: "Die Struck Pin Badges", href: "/category/die-struck-pin-badges" },
       { label: "3D Cast Pin Badges", href: "/category/3d-cast-pin-badges" },
-      { label: "Photo Dome Pins", href: "/category/photo-dome-pins" },
+      { label: "Epoxy Pins", href: "/category/photo-dome-pins" },
       { label: "Trading Pin Badges", href: "/category/trading-pin-badges" }
     ]
   },

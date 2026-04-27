@@ -101,6 +101,7 @@ const categoryData = {
   "photo-dome-pins": {
     pinStyleId: "epoxy-pin",
     name: "Photo Dome Pins",
+    heading: "Epoxy Pins",
     desc: "Offset-printed designs sealed with a protective crystal-clear epoxy dome.",
     detailedDesc: "When a design has gradients, drop shadows, or intricate photographic details that cannot be broken down into solid enamel colors, photo dome (offset printed) pins are the solution. The art is printed directly onto the metal and protected with a durable epoxy dome.",
     img: "/lapel-categories/epoxy-pin.jpg",
@@ -174,7 +175,7 @@ export default async function CategoryPage({ params }) {
             <div className="flex-1 w-full">
               <span className="text-[12px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-4 block">Premium Category</span>
               <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.1] tracking-tight text-[#0F6393] mb-6">
-                Custom {category.name}.
+                {category.heading || `Custom ${category.name}.`}
               </h1>
               <p className="text-lg text-slate-500 font-bold leading-relaxed mb-4">
                 {category.desc}
