@@ -106,9 +106,9 @@ const categoryData = {
     heading: "Epoxy Pins",
     desc: "Offset-printed designs sealed with a protective crystal-clear epoxy dome.",
     detailedDesc: "When a design has gradients, drop shadows, or intricate photographic details that cannot be broken down into solid enamel colors, photo dome (offset printed) pins are the solution. The art is printed directly onto the metal and protected with a durable epoxy dome.",
-    img: "/lapel-categories/epoxy-pin.jpg",
+    img: "/epoxy.png",
     features: ["Supports full-color gradients", "Exact color matching", "Clear protective epoxy dome", "Fastest production time"],
-    video: "/videos/epoxy-pin.mp4",
+    video: "/videos/epoxy.mp4",
     gallery: [
       "/epoxy-pins/1.jpg",
       "/epoxy-pins/6.jpg",

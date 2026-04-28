@@ -42,7 +42,7 @@ const PIN_STYLES = [
   {
     id: "epoxy-pin",
     title: "Epoxy Pins",
-    image: "/lapel-categories/epoxy-pin.jpg",
+    image: "/epoxy.png",
   },
   {
     id: "custom-uv",
