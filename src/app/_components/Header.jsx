@@ -16,7 +16,7 @@ const navLinks = [
       { label: "Die Struck Pin Badges", href: "/category/die-struck-pin-badges" },
       { label: "3D Cast Pin Badges", href: "/category/3d-cast-pin-badges" },
       { label: "Epoxy Pins", href: "/category/photo-dome-pins" },
-      { label: "Trading Pin Badges", href: "/category/trading-pin-badges" }
+      { label: "Custom UV Pins", href: "/category/trading-pin-badges" }
     ]
   },
   { label: "Reviews", href: "#", hasDropdown: false },
@@ -105,15 +105,16 @@ export default function Header() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-0 shrink-0 group select-none">
-              <Image
-                src="/logo-web.png"
-                alt="PinBadges Logo"
-                width={160}
-                height={50}
-                className={`transition-all duration-500 ease-in-out w-auto object-contain ${isScrolled ? 'h-7 xl:h-8' : 'h-9 xl:h-10'}`}
-                priority
-                quality={90}
-              />
+              <div className={`relative transition-all duration-500 ease-in-out ${isScrolled ? 'h-7 w-24 xl:h-8 xl:w-28' : 'h-9 w-32 xl:h-10 xl:w-36'}`}>
+                <Image
+                  src="/logo-web.png"
+                  alt="PinBadges Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                  quality={90}
+                />
+              </div>
             </Link>
 
             {/* Search Bar */}
@@ -259,14 +260,15 @@ export default function Header() {
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
           <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
-            <Image
-              src="/logo-web.png"
-              alt="PinBadges Logo"
-              width={140}
-              height={44}
-              className="h-8 w-auto object-contain"
-              priority
-            />
+            <div className="relative h-8 w-28">
+              <Image
+                src="/logo-web.png"
+                alt="PinBadges Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </Link>
           <button
             onClick={() => setIsMobileMenuOpen(false)}

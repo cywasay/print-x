@@ -125,7 +125,7 @@ const categoryData = {
   },
   "trading-pin-badges": {
     pinStyleId: "custom-uv",
-    name: "Trading Pin Badges",
+    name: "Custom UV Pins",
     desc: "Highly customized, interactive pins perfect for events, sports teams, and collections.",
     detailedDesc: "Trading pins are an essential part of sports tournaments and fan events. To make them truly stand out, they often incorporate special add-ons like glitters, spinners, sliders, bobbleheads, or blinking LED lights to increase their trade value.",
     img: "/lapel-categories/custom-UV-pin.jpg",

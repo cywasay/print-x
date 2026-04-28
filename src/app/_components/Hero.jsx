@@ -9,12 +9,12 @@ export default function Hero() {
       >
         {/* Background Image */}
         {/* Desktop Background Image */}
-        <div className="hidden md:block">
+        <div className="hidden md:block absolute inset-0">
           <Image
             src="/banners/lapel-pin-banner-updated.jpg"
             alt="PrintX Hero Banner"
             fill
-            sizes="100vw"
+            sizes="(min-width: 768px) 100vw, 0vw"
             className="object-cover object-[50%_50%]"
             priority
             quality={90}
@@ -22,12 +22,12 @@ export default function Hero() {
         </div>
 
         {/* Mobile Background Image */}
-        <div className="block md:hidden">
+        <div className="block md:hidden absolute inset-0">
           <Image
             src="/banners/updated-mobile-baner.jpg"
             alt="PrintX Hero Banner Mobile"
             fill
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 0vw"
             className="object-cover object-[50%_50%]"
             priority
             quality={90}

@@ -33,14 +33,15 @@ export default function Footer() {
             {/* Column 1: Logo & Contact */}
             <div className="flex flex-col gap-8">
               <Link href="/" className="inline-block">
-                <Image
-                  src="/logo-web-white.png"
-                  alt="PrintX Advertising"
-                  width={160}
-                  height={50}
-                  style={{ height: 'auto', width: 'auto' }}
-                  quality={90}
-                />
+                <div className="relative w-[160px] h-[50px]">
+                  <Image
+                    src="/logo-web-white.png"
+                    alt="PrintX Advertising"
+                    fill
+                    className="object-contain"
+                    quality={90}
+                  />
+                </div>
               </Link>
 
               <div className="space-y-4">
