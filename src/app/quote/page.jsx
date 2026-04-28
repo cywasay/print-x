@@ -192,8 +192,45 @@ function QuotePageContent() {
     }
   }, [styleFromUrl]);
 
-  const updateForm = (field, value) => {
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    const headerOffset = 130;
+    const targetPosition = element.getBoundingClientRect().top + window.scrollY - headerOffset;
+    const startPosition = window.scrollY;
+    const distance = targetPosition - startPosition;
+    const duration = 800; // ms
+    let startTime = null;
+
+    const easeInOutCubic = (t) => {
+      return t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+
+    const animateScroll = (currentTime) => {
+      if (startTime === null) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
+
+      window.scrollTo(0, startPosition + distance * eased);
+
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
+  };
+
+  const updateForm = (field, value, nextId = null) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    if (nextId) {
+      // Small delay to let the UI update (like checkmarks appearing) before scrolling
+      setTimeout(() => scrollToSection(nextId), 350);
+    }
   };
 
   const selectedStyle = PIN_STYLES.find((s) => s.id === formData.pinStyle);
@@ -212,6 +249,12 @@ function QuotePageContent() {
   const selectedColor = COLOR_OPTIONS.find(
     (c) => c.id === formData.colorAmount,
   );
+
+  const handleDimensionBlur = () => {
+    if (formData.height && formData.width) {
+      setTimeout(() => scrollToSection("quantity-section"), 500);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
@@ -244,7 +287,7 @@ function QuotePageContent() {
                 {PIN_STYLES.map((style) => (
                   <div
                     key={style.id}
-                    onClick={() => updateForm("pinStyle", style.id)}
+                    onClick={() => updateForm("pinStyle", style.id, "step-2")}
                     className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
                       formData.pinStyle === style.id
                         ? "border-[#0F6393] ring-2 ring-[#0F6393]/5 shadow-sm"
@@ -304,7 +347,7 @@ function QuotePageContent() {
                 {METAL_FINISHES.map((finish) => (
                   <div
                     key={finish.id}
-                    onClick={() => updateForm("metalFinish", finish.id)}
+                    onClick={() => updateForm("metalFinish", finish.id, "dimensions-section")}
                     className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
                       formData.metalFinish === finish.id
                         ? "border-[#0F6393] ring-2 ring-[#0F6393]/5 shadow-sm"
@@ -338,7 +381,7 @@ function QuotePageContent() {
               </div>
 
               {/* Dimensions */}
-              <div className="mt-12 bg-white p-8 md:p-10 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group">
+              <div id="dimensions-section" className="scroll-mt-32 mt-12 bg-white p-8 md:p-10 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-[#0F6393]/5 flex items-center justify-center">
@@ -391,6 +434,7 @@ function QuotePageContent() {
                       placeholder="e.g. 2.5"
                       value={formData.height}
                       onChange={(e) => updateForm("height", e.target.value)}
+                      onBlur={handleDimensionBlur}
                       className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-400 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
                     />
                   </div>
@@ -403,6 +447,7 @@ function QuotePageContent() {
                       placeholder="e.g. 1.5"
                       value={formData.width}
                       onChange={(e) => updateForm("width", e.target.value)}
+                      onBlur={handleDimensionBlur}
                       className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-400 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
                     />
                   </div>
@@ -410,7 +455,7 @@ function QuotePageContent() {
               </div>
 
               {/* Quantity */}
-              <div className="mt-12">
+              <div id="quantity-section" className="scroll-mt-32 mt-12">
                 <div className="mb-8">
                   <h3 className="text-xl font-bold text-[#0F6393] mb-1">
                     Select Required Quantity
@@ -423,7 +468,13 @@ function QuotePageContent() {
                     {QUANTITY_OPTIONS.map((option) => (
                       <div
                         key={option.id}
-                        onClick={() => updateForm("quantity", option.id)}
+                        onClick={() => {
+                          if (option.id === "custom") {
+                            updateForm("quantity", option.id);
+                          } else {
+                            updateForm("quantity", option.id, "delivery");
+                          }
+                        }}
                         className={`relative cursor-pointer w-[80px] h-[80px] rounded-lg border-2 shrink-0 transition-all duration-300 flex flex-col items-center justify-center gap-0 group overflow-hidden ${
                           formData.quantity === option.id
                             ? "bg-[#0F6393] border-[#0F6393] shadow-lg scale-[1.05] z-10"
@@ -460,6 +511,11 @@ function QuotePageContent() {
                       onChange={(e) =>
                         updateForm("customQuantity", e.target.value)
                       }
+                      onBlur={() => {
+                        if (formData.customQuantity) {
+                          scrollToSection("delivery");
+                        }
+                      }}
                       className="w-full max-w-md bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-400 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
                     />
                   </div>
@@ -478,7 +534,7 @@ function QuotePageContent() {
                 {DELIVERY_OPTIONS.map((option) => (
                   <div
                     key={option.id}
-                    onClick={() => updateForm("delivery", option.id)}
+                    onClick={() => updateForm("delivery", option.id, "step-3")}
                     className={`group cursor-pointer p-4 rounded-xl border transition-all duration-300 ${formData.delivery === option.id ? "bg-[#0F6393] text-white shadow-md" : "bg-white border-slate-100"}`}
                   >
                     <div className="flex items-center gap-4">
@@ -528,7 +584,7 @@ function QuotePageContent() {
                 {BACKING_OPTIONS.map((option) => (
                   <div
                     key={option.id}
-                    onClick={() => updateForm("backingType", option.id)}
+                    onClick={() => updateForm("backingType", option.id, "color-palette-section")}
                     className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
                       formData.backingType === option.id
                         ? "border-[#0F6393] ring-2 ring-[#0F6393]/5 shadow-sm"
@@ -561,7 +617,7 @@ function QuotePageContent() {
                 ))}
               </div>
 
-              <div className="mt-12">
+              <div id="color-palette-section" className="scroll-mt-32 mt-12">
                 <div className="mb-6">
                   <h3 className="text-xl font-bold text-[#0F6393] mb-1">
                     Select Amount of Colors for Pin:
@@ -572,7 +628,7 @@ function QuotePageContent() {
                   {COLOR_OPTIONS.map((option) => (
                     <div
                       key={option.id}
-                      onClick={() => updateForm("colorAmount", option.id)}
+                      onClick={() => updateForm("colorAmount", option.id, "design-details-section")}
                       className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
                         formData.colorAmount === option.id
                           ? "border-[#0F6393] ring-2 ring-[#0F6393]/5 shadow-sm"
@@ -607,7 +663,7 @@ function QuotePageContent() {
               </div>
 
               {/* Design & Contact Details */}
-              <div className="mt-16 space-y-10">
+              <div id="design-details-section" className="scroll-mt-32 mt-16 space-y-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="flex flex-col gap-3">
                     <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">

@@ -8,6 +8,10 @@
   --color-brand-whatsapp: #25D366;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-barlow);
   background-color: #ffffff;
