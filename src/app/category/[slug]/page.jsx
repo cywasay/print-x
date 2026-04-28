@@ -111,7 +111,7 @@ const categoryData = {
     video: "/videos/epoxy.mp4",
     gallery: [
       "/epoxy-pins/1.jpg",
-      "/epoxy-pins/6.jpg",
+      "/epoxy.png",
       "/epoxy-pins/5.jpg",
       "/epoxy-pins/4.jpg",
       "/epoxy-pins/2.jpg",

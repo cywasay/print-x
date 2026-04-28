@@ -42,7 +42,7 @@ const PIN_STYLES = [
   {
     id: "epoxy-pin",
     title: "Epoxy Pins",
-    image: "/epoxy.png",
+    image: "/epoxy-pins/6.jpg",
   },
   {
     id: "custom-uv",
@@ -858,7 +858,7 @@ function QuotePageContent() {
 
                     <div className="flex justify-between items-baseline gap-4">
                       <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Logistics</span>
-                      <span className="text-[13px] font-bold text-[#00AEEF] text-right">
+                      <span className="text-[13px] font-bold text-[#0F6393] text-right">
                         {selectedDelivery?.title || "TBD"}
                       </span>
                     </div>
