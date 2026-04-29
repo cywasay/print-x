@@ -108,7 +108,7 @@ const DELIVERY_OPTIONS = [
   {
     id: "express",
     title: "Express Delivery",
-    time: "10 to 14 Days",
+    time: "10 to 20 Days",
     icon: <Truck size={32} />,
   },
 ];

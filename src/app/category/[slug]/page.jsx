@@ -142,7 +142,7 @@ const categoryData = {
     faqs: [
       { question: "What are the most popular add-ons for trading pins?", answer: "Glitters and glow-in-the-dark paints are the most cost-effective. For maximum trade value, we recommend sliders, spinners, or bobbleheads." },
       { question: "Can you help with team trading designs?", answer: "Yes! Our design team specializes in sports trading pins and can help incorporate your team's logo, colors, and player numbers into a highly tradable design." },
-      { question: "How fast can I get custom trading pins?", answer: "Standard production is 10-14 days, but for peak tournament seasons, we recommend ordering at least 4 weeks in advance to ensure on-time delivery." }
+      { question: "How fast can I get custom trading pins?", answer: "Standard production is 10-20 days, but for peak tournament seasons, we recommend ordering at least 4 weeks in advance to ensure on-time delivery." }
     ]
   }
 };
