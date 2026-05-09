@@ -73,10 +73,10 @@ export default function ExcellenceSection() {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-black/40 backdrop-blur-xl px-8 py-10 md:px-16 md:py-14 rounded-[2.5rem] border border-white/20 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.7)] flex flex-col items-center relative overflow-hidden"
+          className="bg-white/10 backdrop-blur-2xl px-8 py-10 md:px-16 md:py-14 rounded-[2.5rem] border border-white/30 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] flex flex-col items-center relative overflow-hidden"
         >
           {/* Inner Glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
           
           <h3 className="relative z-10 text-[11px] md:text-[15px] font-black text-cyan-400 tracking-[0.6em] uppercase mb-4 leading-none">
             IT'S ALL ABOUT

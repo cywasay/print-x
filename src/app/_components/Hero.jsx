@@ -41,15 +41,9 @@ export default function Hero() {
           {/* Left Content */}
           <div className="w-full md:w-[65%] lg:w-[60%] flex flex-col items-start justify-start md:justify-center space-y-5 md:space-y-8 z-20">
             <h1 className="text-[40px] sm:text-4xl md:text-5xl lg:text-[72px] font-semibold leading-[1.1] md:leading-[1.05] tracking-tight text-white drop-shadow-md">
-              Custom{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">
-                Pins.
-              </span>
+              Custom Pins.
               <br />
-              Crafted{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">
-                Perfection.
-              </span>
+              Crafted Perfection.
             </h1>
             <p className="text-[17px] sm:text-base lg:text-[22px] text-white/90 font-medium leading-relaxed max-w-xl mt-1 md:mt-2">
               The UAE's premier manufacturer of custom lapel pins,
