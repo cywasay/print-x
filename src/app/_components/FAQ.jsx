@@ -4,16 +4,18 @@ import { useState } from "react";
 import { Plus, Minus, HelpCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const FAQItem = ({ question, answer, isOpen, onClick }) => {
+const FAQItem = ({ question, answer, isOpen, onClick, index }) => {
+  const formattedIndex = String(index + 1).padStart(2, '0');
+
   return (
     <div className={`border-b border-slate-100 last:border-0 transition-colors duration-300 ${isOpen ? 'bg-slate-50/50' : ''}`}>
       <button
         onClick={onClick}
-        className="w-full py-6 flex items-center justify-between text-left gap-4 group"
+        className="w-full py-6 px-6 md:px-8 flex items-center justify-between text-left gap-4 group"
       >
         <div className="flex items-center gap-4">
-          <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-[#0F6393] text-white shadow-lg' : 'bg-slate-50 text-slate-400 group-hover:bg-slate-100'}`}>
-            <HelpCircle size={16} />
+          <div className={`w-8 h-8 rounded-lg flex shrink-0 items-center justify-center transition-all duration-300 ${isOpen ? 'bg-[#0F6393] text-white shadow-lg' : 'bg-slate-50 text-slate-400 group-hover:bg-slate-100'}`}>
+            <span className="text-[13px] font-black">{formattedIndex}</span>
           </div>
           <span className={`text-[15px] font-bold tracking-tight transition-colors duration-300 ${isOpen ? 'text-[#0F6393]' : 'text-slate-700'}`}>
             {question}
@@ -33,7 +35,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
             transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
             className="overflow-hidden"
           >
-            <div className="pb-8 pl-12 pr-6">
+            <div className="pb-8 pl-[72px] md:pl-[80px] pr-6 md:pr-8">
               <p className="text-[14px] leading-relaxed text-slate-500 font-medium whitespace-pre-line">
                 {answer}
               </p>
@@ -67,6 +69,7 @@ export default function FAQ({ faqs, title = "Common Questions", subtitle = "Freq
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}
+              index={index}
               question={faq.question}
               answer={faq.answer}
               isOpen={openIndex === index}
