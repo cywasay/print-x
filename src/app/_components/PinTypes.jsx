@@ -87,6 +87,7 @@ export default function PinTypes() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700" 
                   quality={85}
+                  loading="lazy"
                 />
                 {type.popular && (
                   <div className="absolute top-3 right-3 bg-amber-400 text-amber-900 text-[9px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm z-10">

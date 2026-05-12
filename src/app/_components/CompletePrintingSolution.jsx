@@ -125,6 +125,7 @@ export default function CompletePrintingSolution() {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-1000 cubic-bezier(0.16, 1, 0.3, 1)"
+                    loading="lazy"
                   />
                   {/* Subtle Image Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0F6393]/20 to-transparent" />

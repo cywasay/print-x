@@ -40,6 +40,7 @@ export default function Footer() {
                     fill
                     className="object-contain"
                     quality={90}
+                    sizes="160px"
                   />
                 </div>
               </Link>

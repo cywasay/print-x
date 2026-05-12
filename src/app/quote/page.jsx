@@ -303,6 +303,7 @@ function QuotePageContent() {
                           sizes="(max-width: 768px) 40vw, 200px"
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
                           quality={85}
+                          loading="lazy"
                         />
                         {formData.pinStyle === style.id && (
                           <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
@@ -362,6 +363,7 @@ function QuotePageContent() {
                         sizes="(max-width: 768px) 50vw, 25vw"
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                         quality={85}
+                        loading="lazy"
                       />
                       {formData.metalFinish === finish.id && (
                         <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
@@ -599,6 +601,7 @@ function QuotePageContent() {
                         sizes="(max-width: 768px) 50vw, 25vw"
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                         quality={85}
+                        loading="lazy"
                       />
                       {formData.backingType === option.id && (
                         <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
@@ -643,6 +646,7 @@ function QuotePageContent() {
                           sizes="(max-width: 768px) 50vw, 25vw"
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
                           quality={85}
+                          loading="lazy"
                         />
                         {formData.colorAmount === option.id && (
                           <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
@@ -802,6 +806,7 @@ function QuotePageContent() {
                       fill 
                       className="object-contain rounded-2xl"
                       priority
+                      sizes="(max-width: 768px) 100vw, 800px"
                       quality={85}
                     />
                   </div>

@@ -26,7 +26,8 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${barlow.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${barlow.variable} h-full antialiased relative`}
+      data-scroll-behavior="smooth"
     >
       <body className={`${barlow.className} min-h-full flex flex-col relative`}>{children}</body>
     </html>

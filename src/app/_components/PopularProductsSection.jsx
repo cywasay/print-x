@@ -76,7 +76,8 @@ export default function PopularProductsSection() {
                     alt={item.name} 
                     fill 
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
-                    className="object-contain drop-shadow-sm" 
+                    quality={60}
+                    loading="lazy"
                   />
                 </div>
               </div>

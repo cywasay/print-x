@@ -38,6 +38,7 @@ export default function ImageShowcase({ images }) {
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 25vw"
                 quality={85}
+                loading="lazy"
               />
             </div>
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg border border-slate-100">
@@ -48,6 +49,7 @@ export default function ImageShowcase({ images }) {
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 25vw"
                 quality={85}
+                loading="lazy"
               />
             </div>
           </div>
@@ -64,6 +66,7 @@ export default function ImageShowcase({ images }) {
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
                   quality={85}
+                  loading="lazy"
                 />
               </div>
               <div className="relative aspect-[3/5] rounded-3xl overflow-hidden shadow-lg border border-slate-100">
@@ -74,6 +77,7 @@ export default function ImageShowcase({ images }) {
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
                   quality={85}
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -99,6 +103,7 @@ export default function ImageShowcase({ images }) {
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 25vw"
                 quality={85}
+                loading="lazy"
               />
             </div>
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg border border-slate-100">
@@ -108,7 +113,8 @@ export default function ImageShowcase({ images }) {
                 fill 
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 25vw"
-                quality={85}
+                quality={75}
+                loading="lazy"
               />
             </div>
           </div>

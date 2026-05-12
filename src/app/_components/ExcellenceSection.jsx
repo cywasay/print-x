@@ -34,7 +34,7 @@ export default function ExcellenceSection() {
           fill
           sizes="100vw"
           className="object-cover object-center"
-          priority
+          loading="lazy"
         />
       </motion.div>
       
@@ -62,6 +62,7 @@ export default function ExcellenceSection() {
             fill
             sizes="260px"
             className="object-cover"
+            loading="lazy"
           />
         </div>
       </motion.div>
@@ -105,6 +106,7 @@ export default function ExcellenceSection() {
             fill
             sizes="280px"
             className="object-cover"
+            loading="lazy"
           />
         </div>
       </motion.div>

@@ -113,6 +113,7 @@ export default function Header() {
                   className="object-contain"
                   priority
                   quality={90}
+                  sizes="(max-width: 768px) 120px, 150px"
                 />
               </div>
             </Link>
@@ -267,6 +268,7 @@ export default function Header() {
                 fill
                 className="object-contain"
                 priority
+                sizes="120px"
               />
             </div>
           </Link>

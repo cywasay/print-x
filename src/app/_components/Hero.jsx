@@ -17,7 +17,7 @@ export default function Hero() {
             sizes="(min-width: 768px) 100vw, 0vw"
             className="object-cover object-[50%_50%]"
             priority
-            quality={90}
+            quality={80}
           />
         </div>
 
@@ -30,7 +30,7 @@ export default function Hero() {
             sizes="(max-width: 768px) 100vw, 0vw"
             className="object-cover object-[50%_50%]"
             priority
-            quality={90}
+            quality={60}
           />
         </div>
 
