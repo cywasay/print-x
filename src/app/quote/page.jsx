@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import {
@@ -15,6 +15,12 @@ import {
   ChevronDown,
   X,
   Eye,
+  Upload,
+  FileText,
+  Trash2,
+  AlertCircle,
+  Clock,
+  Paperclip,
 } from "lucide-react";
 import { Suspense } from "react";
 
@@ -185,6 +191,129 @@ function QuotePageContent() {
   });
 
   const [showSizeGuide, setShowSizeGuide] = useState(false);
+  const fileInputRef = useRef(null);
+  const [designFile, setDesignFile] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [fileError, setFileError] = useState(null);
+  const [formErrors, setFormErrors] = useState({});
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      if (filePreview) {
+        URL.revokeObjectURL(filePreview);
+      }
+    };
+  }, [filePreview]);
+
+  const handleFile = (file) => {
+    setFileError(null);
+    if (!file) return;
+
+    const maxSize = 25 * 1024 * 1024; // 25 MB
+    if (file.size > maxSize) {
+      setFileError("File is too large. Maximum size allowed is 25MB.");
+      return;
+    }
+
+    setDesignFile(file);
+
+    if (file.type.startsWith("image/")) {
+      const previewUrl = URL.createObjectURL(file);
+      setFilePreview(previewUrl);
+    } else {
+      setFilePreview(null);
+    }
+
+    if (!formData.designName) {
+      const fileNameWithoutExt = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+      const cleanedName = fileNameWithoutExt
+        .replace(/[_-]/g, ' ')
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+      
+      setFormData((prev) => ({ ...prev, designName: cleanedName }));
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      handleFile(files[0]);
+    }
+  };
+
+  const removeFile = (e) => {
+    if (e) e.stopPropagation();
+    setDesignFile(null);
+    if (filePreview) {
+      URL.revokeObjectURL(filePreview);
+      setFilePreview(null);
+    }
+    setFileError(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    if (!formData.pinStyle) errors.pinStyle = "Please select a pin style.";
+    if (!formData.metalFinish) errors.metalFinish = "Please select a metal finish.";
+    if (!formData.height || isNaN(formData.height) || parseFloat(formData.height) <= 0) {
+      errors.height = "Please enter a valid height.";
+    }
+    if (!formData.width || isNaN(formData.width) || parseFloat(formData.width) <= 0) {
+      errors.width = "Please enter a valid width.";
+    }
+    if (formData.quantity === "custom") {
+      if (!formData.customQuantity || isNaN(formData.customQuantity) || parseInt(formData.customQuantity) <= 0) {
+        errors.quantity = "Please enter a valid custom quantity.";
+      }
+    } else if (!formData.quantity) {
+      errors.quantity = "Please select a quantity.";
+    }
+    if (!formData.backingType) errors.backingType = "Please select a backing type.";
+    if (!formData.colorAmount) errors.colorAmount = "Please select a color palette.";
+    if (!formData.fullName.trim()) errors.fullName = "Please enter your full name.";
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      errors.email = "Please enter your email address.";
+    } else if (!emailRegex.test(formData.email)) {
+      errors.email = "Please enter a valid email address.";
+    }
+
+    if (!formData.phone.trim()) {
+      errors.phone = "Please enter your phone number.";
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    if (e) e.preventDefault();
+    
+    if (!validateForm()) {
+      if (!formData.pinStyle) {
+        scrollToSection("step-1");
+      } else if (!formData.metalFinish || !formData.height || !formData.width || !formData.quantity || (formData.quantity === "custom" && !formData.customQuantity)) {
+        scrollToSection("step-2");
+      } else if (!formData.backingType || !formData.colorAmount) {
+        scrollToSection("step-3");
+      } else {
+        scrollToSection("design-details-section");
+      }
+      return;
+    }
+
+    setIsSubmitting(true);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setIsSubmitting(false);
+    setShowSuccessModal(true);
+  };
 
   useEffect(() => {
     if (styleFromUrl && PIN_STYLES.some((s) => s.id === styleFromUrl)) {
@@ -682,17 +811,109 @@ function QuotePageContent() {
                     />
                   </div>
                   <div className="flex flex-col gap-3">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-                      File Attachment
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center justify-between">
+                      <span>File Attachment</span>
+                      <span className="text-[9px] font-bold text-[#00AEEF] normal-case tracking-normal">
+                        Accepts Vector & Images (Max 25MB)
+                      </span>
                     </label>
-                    <div className="flex-1 flex items-center justify-center border border-dashed border-slate-300 rounded-xl px-5 py-4 bg-white hover:bg-slate-50 transition-colors cursor-pointer group shadow-sm">
-                      <div className="flex items-center gap-3 text-slate-400 font-bold text-sm group-hover:text-[#0F6393]">
-                        <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-blue-500 shadow-sm text-sm font-black">
-                          +
+                    
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      onChange={handleFileChange}
+                      accept=".jpg,.jpeg,.png,.gif,.pdf,.ai,.eps,.svg,.zip,.rar"
+                      className="hidden"
+                    />
+
+                    {!designFile ? (
+                      <div
+                        onClick={() => fileInputRef.current?.click()}
+                        onDragOver={(e) => {
+                          e.preventDefault();
+                          setIsDragging(true);
+                        }}
+                        onDragLeave={() => setIsDragging(false)}
+                        onDrop={(e) => {
+                          e.preventDefault();
+                          setIsDragging(false);
+                          const files = e.dataTransfer.files;
+                          if (files && files.length > 0) {
+                            handleFile(files[0]);
+                          }
+                        }}
+                        className={`flex-1 flex items-center justify-center border border-dashed rounded-xl px-5 py-4 bg-white transition-all cursor-pointer group shadow-sm ${
+                          isDragging
+                            ? "border-[#00AEEF] bg-[#00AEEF]/5"
+                            : "border-slate-300 hover:bg-slate-50"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3 text-slate-400 font-bold text-sm group-hover:text-[#0F6393] transition-colors">
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center shadow-sm text-sm font-black transition-colors ${
+                            isDragging
+                              ? "bg-[#00AEEF] text-white"
+                              : "bg-slate-50 text-blue-500"
+                          }`}>
+                            {isDragging ? <Upload size={14} className="animate-bounce" /> : "+"}
+                          </div>
+                          <span>
+                            {isDragging ? "Drop your file here!" : "Select design file"}
+                          </span>
                         </div>
-                        <span>Select design file</span>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="flex-1 flex items-center justify-between border border-slate-200 rounded-xl px-5 py-4 bg-white shadow-sm transition-all duration-300">
+                        <div className="flex items-center gap-3 min-w-0">
+                          {filePreview ? (
+                            <div className="w-8 h-8 relative rounded-lg overflow-hidden border border-slate-100 shadow-sm shrink-0 bg-slate-50">
+                              <img
+                                src={filePreview}
+                                alt="Design preview"
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-[#0F6393] border border-slate-100 shadow-sm shrink-0">
+                              <FileText size={16} />
+                            </div>
+                          )}
+                          <div className="min-w-0 flex flex-col justify-center">
+                            <span className="text-sm font-bold text-[#0F6393] truncate max-w-[150px] sm:max-w-[240px]">
+                              {designFile.name}
+                            </span>
+                            <span className="text-[10px] text-slate-400 font-semibold leading-none mt-0.5">
+                              {(designFile.size / (1024 * 1024)).toFixed(2)} MB • {designFile.name.split('.').pop()?.toUpperCase() || "File"}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-1 ml-4">
+                          <button
+                            type="button"
+                            onClick={() => fileInputRef.current?.click()}
+                            className="p-1.5 text-slate-400 hover:text-[#0F6393] hover:bg-slate-50 rounded-lg transition-colors"
+                            title="Change File"
+                          >
+                            <Upload size={14} />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={removeFile}
+                            className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition-colors"
+                            title="Remove File"
+                          >
+                            <Trash2 size={14} />
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {fileError && (
+                      <span className="text-rose-500 text-[10px] font-bold mt-1 flex items-center gap-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                        <AlertCircle size={10} />
+                        {fileError}
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -734,7 +955,7 @@ function QuotePageContent() {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => updateForm("phone", e.target.value)}
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="+971 50 123 4567"
                         className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-500 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
                       />
                     </div>
@@ -746,7 +967,7 @@ function QuotePageContent() {
                         type="email"
                         value={formData.email}
                         onChange={(e) => updateForm("email", e.target.value)}
-                        placeholder="you@company.com"
+                        placeholder="you@company.ae"
                         className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-500 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
                       />
                     </div>
@@ -758,19 +979,59 @@ function QuotePageContent() {
                         type="text"
                         value={formData.company}
                         onChange={(e) => updateForm("company", e.target.value)}
-                        placeholder="Your Brand Ltd."
+                        placeholder="Your Brand LLC"
                         className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-500 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
                       />
                     </div>
                   </div>
                 </div>
 
+                {/* Form Validation Feedback */}
+                {Object.keys(formErrors).length > 0 && (
+                  <div className="p-5 bg-rose-50 border border-rose-100 rounded-2xl animate-in slide-in-from-top-3 duration-300">
+                    <h4 className="text-rose-800 font-bold text-sm flex items-center gap-2 mb-3">
+                      <AlertCircle size={16} />
+                      <span>Please complete the following selections:</span>
+                    </h4>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 text-rose-600 text-xs font-semibold list-disc list-inside">
+                      {formErrors.pinStyle && <li>{formErrors.pinStyle}</li>}
+                      {formErrors.metalFinish && <li>{formErrors.metalFinish}</li>}
+                      {(formErrors.height || formErrors.width) && (
+                        <li>
+                          {formErrors.height ? formErrors.height : ""}
+                          {formErrors.height && formErrors.width ? " " : ""}
+                          {formErrors.width ? formErrors.width : ""}
+                        </li>
+                      )}
+                      {formErrors.quantity && <li>{formErrors.quantity}</li>}
+                      {formErrors.backingType && <li>{formErrors.backingType}</li>}
+                      {formErrors.colorAmount && <li>{formErrors.colorAmount}</li>}
+                      {formErrors.fullName && <li>{formErrors.fullName}</li>}
+                      {formErrors.email && <li>{formErrors.email}</li>}
+                      {formErrors.phone && <li>{formErrors.phone}</li>}
+                    </ul>
+                  </div>
+                )}
+
                 <div className="flex justify-center pt-8">
-                  <button className="px-16 py-5 bg-[#0F6393] hover:bg-[#0F6393] text-white font-black uppercase tracking-[0.3em] rounded-2xl transition-all shadow-[0_20px_40px_-10px_rgba(0,76,153,0.3)] text-[13px] group">
-                    Complete Quote
-                    <span className="inline-block ml-3 group-hover:translate-x-1 transition-transform">
-                      →
-                    </span>
+                  <button
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                    className="px-16 py-5 bg-[#0F6393] hover:bg-[#0c537a] disabled:bg-slate-400 disabled:cursor-not-allowed text-white font-black uppercase tracking-[0.3em] rounded-2xl transition-all shadow-[0_20px_40px_-10px_rgba(0,76,153,0.3)] text-[13px] group flex items-center gap-2"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin shrink-0" />
+                        <span>Submitting...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Request Quote</span>
+                        <span className="inline-block ml-3 group-hover:translate-x-1 transition-transform">
+                          →
+                        </span>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
@@ -884,9 +1145,22 @@ function QuotePageContent() {
                   </div>
 
                   <div className="pt-4 mt-2 border-t border-dashed border-slate-200">
-                    <button className="w-full bg-[#0F6393] hover:bg-[#0c537a] text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[12px] flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#0F6393]/10 group">
-                      <ShoppingCart size={16} className="group-hover:-translate-y-0.5 transition-transform" />
-                      Complete Quote
+                    <button
+                      onClick={handleSubmit}
+                      disabled={isSubmitting}
+                      className="w-full bg-[#0F6393] hover:bg-[#0c537a] disabled:bg-slate-400 disabled:cursor-not-allowed text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[12px] flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#0F6393]/10 group"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin shrink-0" />
+                          <span>Submitting...</span>
+                        </>
+                      ) : (
+                        <>
+                          <ShoppingCart size={16} className="group-hover:-translate-y-0.5 transition-transform" />
+                          <span>Request Quote</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
@@ -916,6 +1190,151 @@ function QuotePageContent() {
           </div>
         </div>
       </main>
+      
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccessModal && (
+          <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 md:p-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+              onClick={() => setShowSuccessModal(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative z-10 w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100"
+            >
+              {/* Header Graphic */}
+              <div className="bg-gradient-to-r from-[#0F6393] to-[#00AEEF] px-8 py-10 text-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-xl translate-x-12 -translate-y-12" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-lg -translate-x-6 translate-y-12" />
+                
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto shadow-lg mb-4 animate-in zoom-in-50 duration-500">
+                  <Check size={32} className="text-[#0F6393]" strokeWidth={3.5} />
+                </div>
+                <h3 className="text-2xl font-black text-white uppercase tracking-wider">
+                  Quote Request Received
+                </h3>
+                <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mt-1">
+                  Thank you for choosing Print-X
+                </p>
+              </div>
+
+              <div className="p-8 space-y-6">
+                <div className="text-center space-y-3">
+                  <p className="text-[#0F6393] font-black text-base">
+                    Hi, {formData.fullName}!
+                  </p>
+                  <p className="text-slate-500 text-sm font-medium leading-relaxed">
+                    We've successfully logged your quote request. Our specialized designers are already preparing your visual proof for:
+                  </p>
+                  <div className="inline-block px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 text-xs font-black text-[#0F6393] uppercase tracking-wider">
+                    {selectedStyle?.title} ({formData.height}x{formData.width} {formData.unit === "Centimeter" ? "CM" : formData.unit === "Inches" ? "IN" : "MM"})
+                  </div>
+                </div>
+
+                {/* Summary Box */}
+                <div className="bg-[#F8FAFC] rounded-2xl p-5 border border-slate-100 space-y-3.5">
+                  <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-200/60 pb-2">
+                    Summary of Selections
+                  </h4>
+                  <div className="grid grid-cols-2 gap-4 text-xs font-bold text-[#0F6393]">
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-slate-400 text-[9px] uppercase tracking-wider">Finish</span>
+                      <span className="text-slate-800">{selectedFinish?.title || "Standard"}</span>
+                    </div>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-slate-400 text-[9px] uppercase tracking-wider">Quantity</span>
+                      <span className="text-slate-800">
+                        {formData.quantity === "custom" ? formData.customQuantity : formData.quantity} Pcs
+                      </span>
+                    </div>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-slate-400 text-[9px] uppercase tracking-wider">Backing</span>
+                      <span className="text-slate-800">{selectedBacking?.title || "PVC"}</span>
+                    </div>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-slate-400 text-[9px] uppercase tracking-wider">Colors</span>
+                      <span className="text-slate-800">{selectedColor?.title || "TBD"}</span>
+                    </div>
+                    {designFile && (
+                      <div className="flex flex-col gap-0.5 col-span-2 border-t border-slate-200/40 pt-2">
+                        <span className="text-slate-400 text-[9px] uppercase tracking-wider flex items-center gap-1">
+                          <Paperclip size={10} />
+                          <span>Attached Design</span>
+                        </span>
+                        <span className="text-slate-800 truncate">{designFile.name}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-2 text-slate-400 text-xs font-semibold">
+                  <Clock size={14} className="text-[#00AEEF]" />
+                  <span>Estimated Response Time: <b>2 Hours</b> via WhatsApp & Email</span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  <button
+                    onClick={() => {
+                      setShowSuccessModal(false);
+                      // Reset forms
+                      setFormData({
+                        pinStyle: "",
+                        metalFinish: "",
+                        unit: "Centimeter",
+                        height: "",
+                        width: "",
+                        delivery: "standard",
+                        quantity: "100",
+                        customQuantity: "",
+                        backingType: "",
+                        colorAmount: "",
+                        designName: "",
+                        details: "",
+                        fullName: "",
+                        email: "",
+                        phone: "",
+                        company: "",
+                      });
+                      removeFile();
+                      setFormErrors({});
+                    }}
+                    className="w-full py-4 border-2 border-slate-200 hover:border-slate-300 text-slate-500 font-black uppercase tracking-wider rounded-xl transition-all text-xs flex items-center justify-center"
+                  >
+                    Close Quote Form
+                  </button>
+                  <a
+                    href={`https://wa.me/971507180562?text=${encodeURIComponent(
+                      `Hi! I just submitted a quote request on Print-X for my custom pins:\n\n` +
+                      `- Style: ${selectedStyle?.title || "TBD"}\n` +
+                      `- Finish: ${selectedFinish?.title || "TBD"}\n` +
+                      `- Size: ${formData.height}x${formData.width} ${formData.unit}\n` +
+                      `- Quantity: ${formData.quantity === "custom" ? formData.customQuantity : formData.quantity} pcs\n` +
+                      `- Backing: ${selectedBacking?.title || "TBD"}\n` +
+                      `- Colors: ${selectedColor?.title || "TBD"}\n` +
+                      `- Name: ${formData.fullName}\n` +
+                      `- Email: ${formData.email}\n` +
+                      (designFile ? `- File attached: ${designFile.name}\n` : "") +
+                      `Please let me know the pricing and next steps!`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 bg-[#25D366] hover:bg-[#20ba56] text-white font-black uppercase tracking-wider rounded-xl transition-all text-xs flex items-center justify-center gap-2 shadow-lg shadow-[#25D366]/20"
+                  >
+                    Chat on WhatsApp
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
       <Footer />
     </div>
   );
