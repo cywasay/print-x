@@ -136,21 +136,16 @@ const BACKING_OPTIONS = [
 
 const COLOR_OPTIONS = [
   {
+    id: "3-less",
+    title: "3 Colors or less",
+    image: "/colors-amount/three-colors.png",
+  },
+  {
     id: "5-less",
     title: "5 Colors or less",
     image: "/colors-amount/5-colors.png",
   },
   { id: "6-8", title: "6 to 8 Colors", image: "/colors-amount/8-colors.png" },
-  {
-    id: "9-12",
-    title: "9 to 12 Colors",
-    image: "/colors-amount/12-colors.png",
-  },
-  {
-    id: "13-20",
-    title: "13 to 20 Colors",
-    image: "/colors-amount/20-colors.png",
-  },
 ];
 
 export default function QuotePage() {
@@ -310,9 +305,39 @@ function QuotePageContent() {
     }
 
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setShowSuccessModal(true);
+    setFormErrors({});
+
+    try {
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach((key) => {
+        formDataToSend.append(key, formData[key]);
+      });
+      if (designFile) {
+        formDataToSend.append("designFile", designFile);
+      }
+
+      const response = await fetch("/api/quote", {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || "Failed to submit quote request.");
+      }
+
+      setShowSuccessModal(true);
+    } catch (err) {
+      console.error("Submission error:", err);
+      setFormErrors({ submit: err.message || "An unexpected error occurred. Please try again." });
+      // Scroll to error section so they can see what went wrong
+      setTimeout(() => {
+        const el = document.getElementById("design-details-section");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -756,7 +781,7 @@ function QuotePageContent() {
                   </h3>
                   <div className="w-12 h-1 bg-[#00AEEF] rounded-full" />
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {COLOR_OPTIONS.map((option) => (
                     <div
                       key={option.id}
@@ -1009,6 +1034,7 @@ function QuotePageContent() {
                       {formErrors.fullName && <li>{formErrors.fullName}</li>}
                       {formErrors.email && <li>{formErrors.email}</li>}
                       {formErrors.phone && <li>{formErrors.phone}</li>}
+                      {formErrors.submit && <li className="col-span-full font-bold">{formErrors.submit}</li>}
                     </ul>
                   </div>
                 )}
