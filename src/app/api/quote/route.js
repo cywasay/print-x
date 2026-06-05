@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import fs from "fs";
+import path from "path";
 
 // Mapping helper functions to make the email output beautiful and human-readable
 const PIN_STYLES = {
@@ -41,6 +43,20 @@ const DELIVERY_OPTIONS = {
   "express": "Express Delivery (10 to 20 Days)",
 };
 
+function getMailConfig() {
+  const host = process.env.MAIL_HOST || process.env.SMTP_HOST || "smtp.titan.email";
+  const port = parseInt(process.env.MAIL_PORT || process.env.SMTP_PORT || "465", 10);
+  const user = process.env.MAIL_USERNAME || process.env.SMTP_USER || "";
+  const pass = process.env.MAIL_PASSWORD || process.env.SMTP_PASS || "";
+  const encryption = (process.env.MAIL_ENCRYPTION || "").toLowerCase();
+  const to = process.env.MAIL_TO || process.env.SMTP_TO || user || "info@printx.ae";
+  const secure = encryption === "ssl" || encryption === "smtps" || port === 465;
+
+  return { host, port, user, pass, to, secure };
+}
+
+export const runtime = "nodejs";
+
 export async function POST(request) {
   try {
     const data = await request.formData();
@@ -75,15 +91,10 @@ export async function POST(request) {
     // Format quantity
     const finalQuantity = quantity === "custom" ? `${customQuantity} Pcs (Custom)` : `${quantity} Pcs`;
 
-    // Setup SMTP Transporter using Environment Variables
-    const host = process.env.SMTP_HOST || "smtp.hostinger.com";
-    const port = parseInt(process.env.SMTP_PORT || "465");
-    const user = process.env.SMTP_USER || "info@printx.ae";
-    const pass = process.env.SMTP_PASS;
-    const to = process.env.SMTP_TO || "info@printx.ae";
+    const { host, port, user, pass, to, secure } = getMailConfig();
 
-    if (!pass || pass === "YOUR_EMAIL_PASSWORD_HERE") {
-      console.warn("SMTP email password is not configured in environment variables.");
+    if (!user || !pass || pass === "YOUR_EMAIL_PASSWORD_HERE") {
+      console.warn("Mail credentials are not configured in environment variables.");
       return NextResponse.json(
         { error: "SMTP credentials not configured." },
         { status: 500 }
@@ -93,15 +104,23 @@ export async function POST(request) {
     const transporter = nodemailer.createTransport({
       host,
       port,
-      secure: port === 465, // Use SSL for port 465, TLS for 587
-      auth: {
-        user,
-        pass,
-      },
+      secure,
+      auth: { user, pass },
     });
 
-    // Prepare attachment if a design file is submitted
     const attachments = [];
+    const logoPath = path.join(process.cwd(), "public", "logo-web-white.png");
+    const logoCid = "printx-logo";
+    const hasLogo = fs.existsSync(logoPath);
+
+    if (hasLogo) {
+      attachments.push({
+        filename: "logo-web-white.png",
+        content: fs.readFileSync(logoPath),
+        cid: logoCid,
+      });
+    }
+
     if (designFile && typeof designFile === "object" && typeof designFile.arrayBuffer === "function") {
       const buffer = Buffer.from(await designFile.arrayBuffer());
       attachments.push({
@@ -109,6 +128,20 @@ export async function POST(request) {
         content: buffer,
       });
     }
+
+    const headerHtml = hasLogo
+      ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td width="130" valign="middle" style="padding-right:20px;">
+              <img src="cid:${logoCid}" alt="Print-X" width="120" style="display:block;max-width:120px;height:auto;" />
+            </td>
+            <td valign="middle" style="text-align:left;">
+              <h1 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.5px;color:#ffffff;">New Quote Request</h1>
+              <p style="margin:6px 0 0;font-size:13px;color:#00AEEF;font-weight:600;text-transform:uppercase;letter-spacing:1px;">Print-X Custom Pins Builder</p>
+            </td>
+          </tr>
+        </table>`
+      : `<h1>New Quote Request</h1><p>Print-X Custom Pins Builder</p>`;
 
     // Build premium, responsive HTML Email Body
     const htmlContent = `
@@ -139,8 +172,8 @@ export async function POST(request) {
           .header {
             background-color: #0F6393;
             color: #ffffff;
-            padding: 30px;
-            text-align: center;
+            padding: 24px 28px;
+            text-align: left;
           }
           .header h1 {
             margin: 0;
@@ -214,8 +247,7 @@ export async function POST(request) {
       <body>
         <div class="container">
           <div class="header">
-            <h1>New Quote Request</h1>
-            <p>Print-X Custom Pins Builder</p>
+            ${headerHtml}
           </div>
           
           <div class="content">
@@ -311,9 +343,13 @@ export async function POST(request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error sending quote email:", error);
-    return NextResponse.json(
-      { error: "Failed to send email. Please try again later." },
-      { status: 500 }
-    );
+
+    let message = "Failed to send email. Please try again later.";
+    if (process.env.NODE_ENV === "development" && error.code === "EAUTH") {
+      message =
+        "SMTP authentication failed. Verify MAIL_PASSWORD in .env.local, then in Titan webmail go to Settings → Enable Titan on other apps (and disable 2FA if it is on).";
+    }
+
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

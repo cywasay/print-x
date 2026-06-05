@@ -1,6 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useQuoteScroll } from "./useQuoteScroll";
+import {
+  PinStyleStep,
+  MetalFinishGrid,
+  QuantitySelector,
+  DeliveryStep,
+  BackingGrid,
+  ColorGrid,
+  QuoteSidebar,
+} from "./quote-sections";
 import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,7 +18,6 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import {
   Check,
-  ShoppingCart,
   Info,
   Ruler,
   Truck,
@@ -19,8 +28,8 @@ import {
   FileText,
   Trash2,
   AlertCircle,
-  Clock,
   Paperclip,
+  MessageCircle,
 } from "lucide-react";
 import { Suspense } from "react";
 
@@ -91,17 +100,6 @@ const METAL_FINISHES = [
     title: "Antique Copper",
     image: "/metal-finish/copperv2.png",
   },
-];
-
-const QUANTITY_OPTIONS = [
-  { id: "25", label: "25 Pcs" },
-  { id: "50", label: "50 Pcs" },
-  { id: "100", label: "100 Pcs" },
-  { id: "250", label: "250 Pcs" },
-  { id: "500", label: "500 Pcs" },
-  { id: "1000", label: "1000 Pcs" },
-  { id: "2000", label: "2000 Pcs" },
-  { id: "custom", label: "Custom Quantity" },
 ];
 
 const DELIVERY_OPTIONS = [
@@ -194,6 +192,8 @@ function QuotePageContent() {
   const [formErrors, setFormErrors] = useState({});
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { scrollToSection, scheduleScroll } = useQuoteScroll();
+  const dimensionScrollTimer = useRef(null);
 
   useEffect(() => {
     return () => {
@@ -202,6 +202,15 @@ function QuotePageContent() {
       }
     };
   }, [filePreview]);
+
+  useEffect(() => {
+    if (!showSuccessModal) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [showSuccessModal]);
 
   const handleFile = (file) => {
     setFileError(null);
@@ -288,57 +297,64 @@ function QuotePageContent() {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
-    if (e) e.preventDefault();
-    
-    if (!validateForm()) {
-      if (!formData.pinStyle) {
-        scrollToSection("step-1");
-      } else if (!formData.metalFinish || !formData.height || !formData.width || !formData.quantity || (formData.quantity === "custom" && !formData.customQuantity)) {
-        scrollToSection("step-2");
-      } else if (!formData.backingType || !formData.colorAmount) {
-        scrollToSection("step-3");
-      } else {
-        scrollToSection("design-details-section");
-      }
-      return;
-    }
+  const handleSubmit = useCallback(
+    async (e) => {
+      if (e) e.preventDefault();
 
-    setIsSubmitting(true);
-    setFormErrors({});
-
-    try {
-      const formDataToSend = new FormData();
-      Object.keys(formData).forEach((key) => {
-        formDataToSend.append(key, formData[key]);
-      });
-      if (designFile) {
-        formDataToSend.append("designFile", designFile);
+      if (!validateForm()) {
+        if (!formData.pinStyle) {
+          scrollToSection("step-1");
+        } else if (
+          !formData.metalFinish ||
+          !formData.height ||
+          !formData.width ||
+          !formData.quantity ||
+          (formData.quantity === "custom" && !formData.customQuantity)
+        ) {
+          scrollToSection("step-2");
+        } else if (!formData.backingType || !formData.colorAmount) {
+          scrollToSection("step-3");
+        } else {
+          scrollToSection("design-details-section");
+        }
+        return;
       }
 
-      const response = await fetch("/api/quote", {
-        method: "POST",
-        body: formDataToSend,
-      });
+      setIsSubmitting(true);
+      setFormErrors({});
 
-      if (!response.ok) {
-        const errData = await response.json();
-        throw new Error(errData.error || "Failed to submit quote request.");
+      try {
+        const formDataToSend = new FormData();
+        Object.keys(formData).forEach((key) => {
+          formDataToSend.append(key, formData[key]);
+        });
+        if (designFile) {
+          formDataToSend.append("designFile", designFile);
+        }
+
+        const response = await fetch("/api/quote", {
+          method: "POST",
+          body: formDataToSend,
+        });
+
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(errData.error || "Failed to submit quote request.");
+        }
+
+        setShowSuccessModal(true);
+      } catch (err) {
+        console.error("Submission error:", err);
+        setFormErrors({
+          submit: err.message || "An unexpected error occurred. Please try again.",
+        });
+        scheduleScroll("design-details-section", 100);
+      } finally {
+        setIsSubmitting(false);
       }
-
-      setShowSuccessModal(true);
-    } catch (err) {
-      console.error("Submission error:", err);
-      setFormErrors({ submit: err.message || "An unexpected error occurred. Please try again." });
-      // Scroll to error section so they can see what went wrong
-      setTimeout(() => {
-        const el = document.getElementById("design-details-section");
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    },
+    [formData, designFile, scrollToSection, scheduleScroll],
+  );
 
   useEffect(() => {
     if (styleFromUrl && PIN_STYLES.some((s) => s.id === styleFromUrl)) {
@@ -346,69 +362,146 @@ function QuotePageContent() {
     }
   }, [styleFromUrl]);
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (!element) return;
+  const updateForm = useCallback(
+    (field, value, nextId = null) => {
+      setFormData((prev) => ({ ...prev, [field]: value }));
+      if (nextId) scheduleScroll(nextId);
+    },
+    [scheduleScroll],
+  );
 
-    const headerOffset = 130;
-    const targetPosition = element.getBoundingClientRect().top + window.scrollY - headerOffset;
-    const startPosition = window.scrollY;
-    const distance = targetPosition - startPosition;
-    const duration = 800; // ms
-    let startTime = null;
-
-    const easeInOutCubic = (t) => {
-      return t < 0.5
-        ? 4 * t * t * t
-        : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    };
-
-    const animateScroll = (currentTime) => {
-      if (startTime === null) startTime = currentTime;
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = easeInOutCubic(progress);
-
-      window.scrollTo(0, startPosition + distance * eased);
-
-      if (progress < 1) {
-        requestAnimationFrame(animateScroll);
+  const handlePinStyleSelect = useCallback(
+    (id) => updateForm("pinStyle", id, "step-2"),
+    [updateForm],
+  );
+  const handleMetalFinishSelect = useCallback(
+    (id) => updateForm("metalFinish", id, "dimensions-section"),
+    [updateForm],
+  );
+  const handleQuantitySelect = useCallback(
+    (id) => {
+      if (id === "custom") {
+        updateForm("quantity", id);
+      } else {
+        updateForm("quantity", id, "delivery");
       }
-    };
+    },
+    [updateForm],
+  );
+  const handleDeliverySelect = useCallback(
+    (id) => updateForm("delivery", id, "step-3"),
+    [updateForm],
+  );
+  const handleBackingSelect = useCallback(
+    (id) => updateForm("backingType", id, "color-palette-section"),
+    [updateForm],
+  );
+  const handleColorSelect = useCallback(
+    (id) => updateForm("colorAmount", id, "design-details-section"),
+    [updateForm],
+  );
+  const handleCustomQuantityChange = useCallback(
+    (value) => updateForm("customQuantity", value),
+    [updateForm],
+  );
+  const handleCustomQuantityBlur = useCallback(() => {
+    if (formData.customQuantity) scrollToSection("delivery");
+  }, [formData.customQuantity, scrollToSection]);
 
-    requestAnimationFrame(animateScroll);
+  const selectedStyle = useMemo(
+    () => PIN_STYLES.find((s) => s.id === formData.pinStyle),
+    [formData.pinStyle],
+  );
+  const selectedFinish = useMemo(
+    () => METAL_FINISHES.find((f) => f.id === formData.metalFinish),
+    [formData.metalFinish],
+  );
+  const selectedDelivery = useMemo(
+    () => DELIVERY_OPTIONS.find((d) => d.id === formData.delivery),
+    [formData.delivery],
+  );
+  const selectedBacking = useMemo(
+    () => BACKING_OPTIONS.find((b) => b.id === formData.backingType),
+    [formData.backingType],
+  );
+  const selectedColor = useMemo(
+    () => COLOR_OPTIONS.find((c) => c.id === formData.colorAmount),
+    [formData.colorAmount],
+  );
+
+  const handleDimensionBlur = useCallback(() => {
+    if (!formData.height || !formData.width) return;
+    if (dimensionScrollTimer.current) clearTimeout(dimensionScrollTimer.current);
+    dimensionScrollTimer.current = setTimeout(() => {
+      scrollToSection("quantity-section");
+      dimensionScrollTimer.current = null;
+    }, 500);
+  }, [formData.height, formData.width, scrollToSection]);
+
+  const sidebarUnitSize = useMemo(
+    () =>
+      `${formData.height || "0"}x${formData.width || "0"} ${
+        formData.unit === "Centimeter" ? "CM" : formData.unit === "Inches" ? "IN" : "MM"
+      }`,
+    [formData.height, formData.width, formData.unit],
+  );
+
+  const sidebarQuantity = useMemo(
+    () =>
+      `${formData.quantity === "custom" ? formData.customQuantity : formData.quantity} Units`,
+    [formData.quantity, formData.customQuantity],
+  );
+
+  const resetQuoteForm = () => {
+    setShowSuccessModal(false);
+    setFormData({
+      pinStyle: "",
+      metalFinish: "",
+      unit: "Centimeter",
+      height: "",
+      width: "",
+      delivery: "standard",
+      quantity: "100",
+      customQuantity: "",
+      backingType: "",
+      colorAmount: "",
+      designName: "",
+      details: "",
+      fullName: "",
+      email: "",
+      phone: "",
+      company: "",
+    });
+    removeFile();
+    setFormErrors({});
   };
 
-  const updateForm = (field, value, nextId = null) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    if (nextId) {
-      // Small delay to let the UI update (like checkmarks appearing) before scrolling
-      setTimeout(() => scrollToSection(nextId), 350);
-    }
-  };
+  const firstName = formData.fullName.trim().split(/\s+/)[0] || "there";
+  const unitLabel =
+    formData.unit === "Centimeter" ? "cm" : formData.unit === "Inches" ? "in" : "mm";
+  const quantityLabel =
+    formData.quantity === "custom" ? formData.customQuantity : formData.quantity;
+  const summaryChips = [
+    `${formData.height}×${formData.width} ${unitLabel}`,
+    `${quantityLabel} pcs`,
+    selectedFinish?.title,
+    selectedBacking?.title,
+    selectedColor?.title,
+  ].filter(Boolean);
 
-  const selectedStyle = PIN_STYLES.find((s) => s.id === formData.pinStyle);
-  const selectedFinish = METAL_FINISHES.find(
-    (f) => f.id === formData.metalFinish,
-  );
-  const selectedDelivery = DELIVERY_OPTIONS.find(
-    (d) => d.id === formData.delivery,
-  );
-  const selectedQuantity = QUANTITY_OPTIONS.find(
-    (q) => q.id === formData.quantity,
-  );
-  const selectedBacking = BACKING_OPTIONS.find(
-    (b) => b.id === formData.backingType,
-  );
-  const selectedColor = COLOR_OPTIONS.find(
-    (c) => c.id === formData.colorAmount,
-  );
-
-  const handleDimensionBlur = () => {
-    if (formData.height && formData.width) {
-      setTimeout(() => scrollToSection("quantity-section"), 500);
-    }
-  };
+  const whatsAppHref = `https://wa.me/971507180562?text=${encodeURIComponent(
+    `Hi! I just submitted a quote request on Print-X for my custom pins:\n\n` +
+      `- Style: ${selectedStyle?.title || "TBD"}\n` +
+      `- Finish: ${selectedFinish?.title || "TBD"}\n` +
+      `- Size: ${formData.height}x${formData.width} ${formData.unit}\n` +
+      `- Quantity: ${quantityLabel} pcs\n` +
+      `- Backing: ${selectedBacking?.title || "TBD"}\n` +
+      `- Colors: ${selectedColor?.title || "TBD"}\n` +
+      `- Name: ${formData.fullName}\n` +
+      `- Email: ${formData.email}\n` +
+      (designFile ? `- File attached: ${designFile.name}\n` : "") +
+      `Please let me know the pricing and next steps!`,
+  )}`;
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
@@ -428,66 +521,7 @@ function QuotePageContent() {
               </p>
             </div>
 
-            {/* Step 1 */}
-            <section id="step-1" className="scroll-mt-32">
-              <div className="mb-6">
-                <h2 className="text-2xl font-bold text-[#0F6393] mb-1">
-                  Step 1.{" "}
-                  <span className="text-[#00AEEF]">Select Pin Style</span>
-                </h2>
-                <div className="w-16 h-1 bg-[#00AEEF] rounded-full" />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {PIN_STYLES.map((style) => (
-                  <div
-                    key={style.id}
-                    onClick={() => updateForm("pinStyle", style.id, "step-2")}
-                    className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
-                      formData.pinStyle === style.id
-                        ? "border-[#0F6393] ring-2 ring-[#0F6393]/5 shadow-sm"
-                        : "border-slate-100"
-                    }`}
-                  >
-                    <div className="flex h-full min-h-[140px]">
-                      <div className="w-[42%] relative bg-slate-50 overflow-hidden shrink-0">
-                        <Image
-                          src={style.image}
-                          alt={`Selectable pin style: ${style.title}`}
-                          fill
-                          sizes="(max-width: 768px) 40vw, 200px"
-                          className="object-cover group-hover:scale-110 transition-transform duration-500"
-                          quality={85}
-                          loading="lazy"
-                        />
-                        {formData.pinStyle === style.id && (
-                          <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
-                            <div className="w-10 h-10 bg-[#00AEEF] rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
-                              <Check size={22} className="text-white" strokeWidth={3.5} />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex-1 p-5 flex flex-col justify-center items-center text-center">
-                        <h3 className="text-base font-bold text-[#0F6393] mb-3">
-                          {style.title}
-                        </h3>
-                        <button
-                          className={`px-8 py-2 rounded-full text-[11px] font-black uppercase tracking-wider transition-all ${
-                            formData.pinStyle === style.id
-                              ? "bg-[#0F6393] text-white"
-                              : "border-2 border-[#0F6393] text-[#0F6393] hover:bg-[#0F6393] hover:text-white"
-                          }`}
-                        >
-                          {formData.pinStyle === style.id
-                            ? "Selected"
-                            : "Select"}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
+            <PinStyleStep selectedId={formData.pinStyle} onSelect={handlePinStyleSelect} />
 
             {/* Step 2 */}
             <section id="step-2" className="scroll-mt-32">
@@ -498,43 +532,10 @@ function QuotePageContent() {
                 </h2>
                 <div className="w-16 h-1 bg-[#00AEEF] rounded-full mt-2" />
               </div>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {METAL_FINISHES.map((finish) => (
-                  <div
-                    key={finish.id}
-                    onClick={() => updateForm("metalFinish", finish.id, "dimensions-section")}
-                    className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
-                      formData.metalFinish === finish.id
-                        ? "border-[#0F6393] ring-2 ring-[#0F6393]/5 shadow-sm"
-                        : "border-slate-100"
-                    }`}
-                  >
-                    <div className="aspect-square relative bg-slate-50 overflow-hidden">
-                      <Image
-                        src={finish.image}
-                        alt={`Selectable metal finish: ${finish.title}`}
-                        fill
-                        sizes="(max-width: 768px) 50vw, 25vw"
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        quality={85}
-                        loading="lazy"
-                      />
-                      {formData.metalFinish === finish.id && (
-                        <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
-                          <div className="w-8 h-8 bg-[#00AEEF] rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
-                            <Check size={18} className="text-white" strokeWidth={3.5} />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-3 text-center">
-                      <h3 className="text-xs font-bold text-[#0F6393]">
-                        {finish.title}
-                      </h3>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <MetalFinishGrid
+                selectedId={formData.metalFinish}
+                onSelect={handleMetalFinishSelect}
+              />
 
               {/* Dimensions */}
               <div id="dimensions-section" className="scroll-mt-32 mt-12 bg-white p-8 md:p-10 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group">
@@ -610,121 +611,16 @@ function QuotePageContent() {
                 </div>
               </div>
 
-              {/* Quantity */}
-              <div id="quantity-section" className="scroll-mt-32 mt-12">
-                <div className="mb-8">
-                  <h3 className="text-xl font-bold text-[#0F6393] mb-1">
-                    Select Required Quantity
-                  </h3>
-                  <div className="w-12 h-1 bg-[#00AEEF] rounded-full" />
-                </div>
-                
-                <div className="relative w-full overflow-hidden">
-                  <div className="flex flex-nowrap overflow-x-auto gap-4 px-1 py-4 thin-scrollbar scroll-smooth">
-                    {QUANTITY_OPTIONS.map((option) => (
-                      <div
-                        key={option.id}
-                        onClick={() => {
-                          if (option.id === "custom") {
-                            updateForm("quantity", option.id);
-                          } else {
-                            updateForm("quantity", option.id, "delivery");
-                          }
-                        }}
-                        className={`relative cursor-pointer w-[80px] h-[80px] rounded-lg border-2 shrink-0 transition-all duration-300 flex flex-col items-center justify-center gap-0 group overflow-hidden ${
-                          formData.quantity === option.id
-                            ? "bg-[#0F6393] border-[#0F6393] shadow-lg scale-[1.05] z-10"
-                            : "bg-white border-slate-100 hover:border-[#0F6393]/30 hover:shadow-md"
-                        }`}
-                      >
-                      <span className={`text-lg font-black leading-tight ${
-                        formData.quantity === option.id ? "text-white" : "text-[#0F6393]"
-                      }`}>
-                        {option.id === "custom" ? "+" : option.id}
-                      </span>
-                      <span className={`text-[8px] font-bold uppercase tracking-wider ${
-                        formData.quantity === option.id ? "text-white/70" : "text-slate-400"
-                      }`}>
-                        {option.id === "custom" ? "Custom" : "Pcs"}
-                      </span>
-                      
-                      {formData.quantity === option.id && (
-                        <div className="absolute bottom-1.5 animate-in fade-in zoom-in duration-300">
-                          <Check size={12} className="text-white" strokeWidth={3} />
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                  </div>
-                </div>
-
-                {formData.quantity === "custom" && (
-                  <div className="mt-6 animate-in slide-in-from-top-2 duration-300">
-                    <input
-                      type="number"
-                      placeholder="Enter custom quantity (e.g. 2500)"
-                      value={formData.customQuantity}
-                      onChange={(e) =>
-                        updateForm("customQuantity", e.target.value)
-                      }
-                      onBlur={() => {
-                        if (formData.customQuantity) {
-                          scrollToSection("delivery");
-                        }
-                      }}
-                      className="w-full max-w-md bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none font-bold text-sm text-[#0F6393] placeholder:text-slate-400 placeholder:font-medium focus:border-[#0F6393] transition-colors shadow-sm"
-                    />
-                  </div>
-                )}
-              </div>
+              <QuantitySelector
+                quantity={formData.quantity}
+                customQuantity={formData.customQuantity}
+                onSelect={handleQuantitySelect}
+                onCustomQuantityChange={handleCustomQuantityChange}
+                onCustomQuantityBlur={handleCustomQuantityBlur}
+              />
             </section>
 
-            {/* Delivery */}
-            <section id="delivery" className="scroll-mt-32">
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold text-[#0F6393] mb-4 tracking-tight">
-                  Select <span className="text-[#00AEEF]">Delivery Option</span>
-                </h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {DELIVERY_OPTIONS.map((option) => (
-                  <div
-                    key={option.id}
-                    onClick={() => updateForm("delivery", option.id, "step-3")}
-                    className={`group cursor-pointer p-4 rounded-xl border transition-all duration-300 ${formData.delivery === option.id ? "bg-[#0F6393] text-white shadow-md" : "bg-white border-slate-100"}`}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div
-                        className={`w-12 h-12 rounded-lg flex items-center justify-center ${formData.delivery === option.id ? "bg-white/10" : "bg-slate-50"}`}
-                      >
-                        {option.icon}
-                      </div>
-                      <div>
-                        <h3 className="text-base font-bold mb-0.5">
-                          {option.title}
-                        </h3>
-                        <p
-                          className={`text-[10px] font-semibold ${formData.delivery === option.id ? "text-white/60" : "text-slate-400"}`}
-                        >
-                          {option.time}
-                        </p>
-                      </div>
-                      <div
-                        className={`ml-auto w-5 h-5 rounded-full border flex items-center justify-center ${formData.delivery === option.id ? "bg-[#00AEEF] border-[#00AEEF]" : "border-slate-200"}`}
-                      >
-                        {formData.delivery === option.id && (
-                          <Check
-                            size={10}
-                            className="text-white"
-                            strokeWidth={4}
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
+            <DeliveryStep delivery={formData.delivery} onSelect={handleDeliverySelect} />
 
             {/* Step 3 */}
             <section id="step-3" className="scroll-mt-32 pb-40">
@@ -736,43 +632,10 @@ function QuotePageContent() {
                 <div className="w-16 h-1 bg-[#00AEEF] rounded-full mt-2" />
               </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {BACKING_OPTIONS.map((option) => (
-                  <div
-                    key={option.id}
-                    onClick={() => updateForm("backingType", option.id, "color-palette-section")}
-                    className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
-                      formData.backingType === option.id
-                        ? "border-[#0F6393] ring-2 ring-[#0F6393]/5 shadow-sm"
-                        : "border-slate-100"
-                    }`}
-                  >
-                    <div className="aspect-square relative bg-slate-50 overflow-hidden">
-                      <Image
-                        src={option.image}
-                        alt={`Selectable backing type: ${option.title}`}
-                        fill
-                        sizes="(max-width: 768px) 50vw, 25vw"
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        quality={85}
-                        loading="lazy"
-                      />
-                      {formData.backingType === option.id && (
-                        <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
-                          <div className="w-8 h-8 bg-[#00AEEF] rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
-                            <Check size={18} className="text-white" strokeWidth={3.5} />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-3 text-center">
-                      <h3 className="text-xs font-bold text-[#0F6393]">
-                        {option.title}
-                      </h3>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <BackingGrid
+                selectedId={formData.backingType}
+                onSelect={handleBackingSelect}
+              />
 
               <div id="color-palette-section" className="scroll-mt-32 mt-12">
                 <div className="mb-6">
@@ -781,43 +644,10 @@ function QuotePageContent() {
                   </h3>
                   <div className="w-12 h-1 bg-[#00AEEF] rounded-full" />
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {COLOR_OPTIONS.map((option) => (
-                    <div
-                      key={option.id}
-                      onClick={() => updateForm("colorAmount", option.id, "design-details-section")}
-                      className={`group cursor-pointer bg-white rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-md ${
-                        formData.colorAmount === option.id
-                          ? "border-[#0F6393] ring-2 ring-[#0F6393]/5 shadow-sm"
-                          : "border-slate-100"
-                      }`}
-                    >
-                      <div className="aspect-square relative bg-slate-50 overflow-hidden">
-                        <Image
-                          src={option.image}
-                          alt={`Selectable color amount: ${option.title}`}
-                          fill
-                          sizes="(max-width: 768px) 50vw, 25vw"
-                          className="object-cover group-hover:scale-110 transition-transform duration-500"
-                          quality={85}
-                          loading="lazy"
-                        />
-                        {formData.colorAmount === option.id && (
-                          <div className="absolute inset-0 bg-[#0F6393]/5 flex items-center justify-center relative z-10">
-                            <div className="w-8 h-8 bg-[#00AEEF] rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
-                              <Check size={18} className="text-white" strokeWidth={3.5} />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                      <div className="p-3 text-center">
-                        <h3 className="text-xs font-bold text-[#0F6393]">
-                          {option.title}
-                        </h3>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <ColorGrid
+                  selectedId={formData.colorAmount}
+                  onSelect={handleColorSelect}
+                />
               </div>
 
               {/* Design & Contact Details */}
@@ -1102,258 +932,142 @@ function QuotePageContent() {
             </div>
           )}
 
-          {/* Sidebar */}
-          <div className="w-full lg:w-[380px]">
-            <div className="sticky top-32">
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden font-sans">
-                {/* Specialized Header Strip */}
-                <div className="bg-[#26729D] px-6 py-4 flex items-center justify-between">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-black text-white/70 uppercase tracking-[0.2em] leading-none mb-0.5 text-shadow-sm">Order</span>
-                    <span className="text-[13px] font-black text-white uppercase tracking-widest leading-none">Summary</span>
-                  </div>
-                  <div className="text-[9px] font-black text-white/90 uppercase tracking-widest bg-white/10 px-2 py-1.5 rounded-md border border-white/20 backdrop-blur-sm">
-                    Review Selections
-                  </div>
-                </div>
-
-                <div className="p-6 space-y-4">
-                  {/* Summary Rows */}
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Product Style</span>
-                      <span className="text-[13px] font-bold text-[#0F6393] text-right truncate">
-                        {selectedStyle?.title || "TBD"}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Metal Finish</span>
-                      <span className="text-[13px] font-bold text-[#0F6393] text-right">
-                        {selectedFinish?.title || "TBD"}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Unit Size</span>
-                      <span className="text-[13px] font-bold text-[#0F6393]">
-                        {formData.height || "0"}x{formData.width || "0"} {formData.unit === "Centimeter" ? "CM" : formData.unit === "Inches" ? "IN" : "MM"}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Order Quantity</span>
-                      <span className="text-[13px] font-bold text-[#0F6393]">
-                        {formData.quantity === "custom" ? formData.customQuantity : formData.quantity} Units
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Logistics</span>
-                      <span className="text-[13px] font-bold text-[#0F6393] text-right">
-                        {selectedDelivery?.title || "TBD"}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Backing Type</span>
-                      <span className="text-[13px] font-bold text-[#0F6393] text-right">
-                        {selectedBacking?.title || "TBD"}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0">Color Palette</span>
-                      <span className="text-[13px] font-bold text-[#0F6393] text-right">
-                        {selectedColor?.title || "TBD"}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 mt-2 border-t border-dashed border-slate-200">
-                    <button
-                      onClick={handleSubmit}
-                      disabled={isSubmitting}
-                      className="w-full bg-[#0F6393] hover:bg-[#0c537a] disabled:bg-slate-400 disabled:cursor-not-allowed text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[12px] flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#0F6393]/10 group"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin shrink-0" />
-                          <span>Submitting...</span>
-                        </>
-                      ) : (
-                        <>
-                          <ShoppingCart size={16} className="group-hover:-translate-y-0.5 transition-transform" />
-                          <span>Request Quote</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Support Mini Card */}
-              <a 
-                href="https://wa.me/971507180562" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#25D366]/10 flex items-center justify-center text-[#25D366]">
-                    <Truck size={18} />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[11px] font-black text-slate-800 uppercase tracking-wider">Expert Support</span>
-                    <span className="text-[10px] font-bold text-[#25D366]">Chat on WhatsApp</span>
-                  </div>
-                </div>
-                <div className="text-slate-300 group-hover:text-[#0F6393] transition-colors">
-                  →
-                </div>
-              </a>
-            </div>
-          </div>
+          <QuoteSidebar
+            selectedStyleTitle={selectedStyle?.title || "TBD"}
+            selectedFinishTitle={selectedFinish?.title || "TBD"}
+            unitSizeLabel={sidebarUnitSize}
+            quantityLabel={sidebarQuantity}
+            selectedDeliveryTitle={selectedDelivery?.title || "TBD"}
+            selectedBackingTitle={selectedBacking?.title || "TBD"}
+            selectedColorTitle={selectedColor?.title || "TBD"}
+            isSubmitting={isSubmitting}
+            onSubmit={handleSubmit}
+          />
         </div>
       </main>
       
       {/* Success Modal */}
       <AnimatePresence>
         {showSuccessModal && (
-          <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 md:p-6">
+          <div className="fixed inset-0 z-[120] flex items-end sm:items-center justify-center sm:p-4">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
-              onClick={() => setShowSuccessModal(false)}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="absolute inset-0 bg-slate-900/50 backdrop-blur-[6px]"
+              onClick={resetQuoteForm}
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              className="relative z-10 w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="quote-success-title"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 24 }}
+              transition={{ type: "spring", stiffness: 400, damping: 34 }}
+              className="relative z-10 flex w-full max-w-[400px] max-h-[88dvh] flex-col overflow-hidden rounded-t-2xl border border-slate-200/80 bg-white shadow-[0_24px_48px_-12px_rgba(15,99,147,0.25)] sm:rounded-2xl"
             >
-              {/* Header Graphic */}
-              <div className="bg-gradient-to-r from-[#0F6393] to-[#00AEEF] px-8 py-10 text-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-xl translate-x-12 -translate-y-12" />
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-lg -translate-x-6 translate-y-12" />
-                
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto shadow-lg mb-4 animate-in zoom-in-50 duration-500">
-                  <Check size={32} className="text-[#0F6393]" strokeWidth={3.5} />
+              <div className="relative shrink-0 bg-gradient-to-br from-[#0F6393] via-[#0d7aab] to-[#00AEEF] px-4 py-3.5 sm:px-5">
+                <button
+                  type="button"
+                  onClick={resetQuoteForm}
+                  aria-label="Close"
+                  className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25"
+                >
+                  <X size={14} strokeWidth={2.5} />
+                </button>
+                <div className="flex items-center gap-3 pr-8">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 22, delay: 0.1 }}
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white shadow-md"
+                  >
+                    <Check size={20} className="text-[#0F6393]" strokeWidth={3} />
+                  </motion.div>
+                  <div>
+                    <h3 id="quote-success-title" className="text-[15px] font-bold leading-tight text-white sm:text-base">
+                      Quote received!
+                    </h3>
+                    <p className="mt-0.5 flex items-center gap-1.5 text-[11px] text-white/80">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-60" />
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                      </span>
+                      Reply within 2 hours
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-black text-white uppercase tracking-wider">
-                  Quote Request Received
-                </h3>
-                <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mt-1">
-                  Thank you for choosing Print-X
-                </p>
               </div>
 
-              <div className="p-8 space-y-6">
-                <div className="text-center space-y-3">
-                  <p className="text-[#0F6393] font-black text-base">
-                    Hi, {formData.fullName}!
+              <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-3.5 sm:px-5 sm:py-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.08, duration: 0.25 }}
+                  className="space-y-3"
+                >
+                  <p className="text-[13px] leading-relaxed text-slate-600">
+                    Thanks,{" "}
+                    <span className="font-semibold text-[#0F6393]">{firstName}</span>!
+                    We&apos;re preparing your proof for{" "}
+                    <span className="font-semibold text-slate-800">{selectedStyle?.title}</span>.
                   </p>
-                  <p className="text-slate-500 text-sm font-medium leading-relaxed">
-                    We've successfully logged your quote request. Our specialized designers are already preparing your visual proof for:
-                  </p>
-                  <div className="inline-block px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 text-xs font-black text-[#0F6393] uppercase tracking-wider">
-                    {selectedStyle?.title} ({formData.height}x{formData.width} {formData.unit === "Centimeter" ? "CM" : formData.unit === "Inches" ? "IN" : "MM"})
-                  </div>
-                </div>
 
-                {/* Summary Box */}
-                <div className="bg-[#F8FAFC] rounded-2xl p-5 border border-slate-100 space-y-3.5">
-                  <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-200/60 pb-2">
-                    Summary of Selections
-                  </h4>
-                  <div className="grid grid-cols-2 gap-4 text-xs font-bold text-[#0F6393]">
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-slate-400 text-[9px] uppercase tracking-wider">Finish</span>
-                      <span className="text-slate-800">{selectedFinish?.title || "Standard"}</span>
-                    </div>
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-slate-400 text-[9px] uppercase tracking-wider">Quantity</span>
-                      <span className="text-slate-800">
-                        {formData.quantity === "custom" ? formData.customQuantity : formData.quantity} Pcs
+                  <div className="flex flex-wrap gap-1.5">
+                    {summaryChips.map((chip, i) => (
+                      <motion.span
+                        key={chip}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.12 + i * 0.04, duration: 0.2 }}
+                        className="rounded-full border border-slate-200/80 bg-slate-50 px-2.5 py-1 text-[10px] font-semibold text-[#0F6393]"
+                      >
+                        {chip}
+                      </motion.span>
+                    ))}
+                  </div>
+
+                  {designFile && (
+                    <div className="flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50/80 px-2.5 py-2">
+                      <Paperclip size={12} className="shrink-0 text-[#00AEEF]" />
+                      <span className="min-w-0 truncate text-[11px] font-medium text-slate-600" title={designFile.name}>
+                        {designFile.name}
                       </span>
                     </div>
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-slate-400 text-[9px] uppercase tracking-wider">Backing</span>
-                      <span className="text-slate-800">{selectedBacking?.title || "PVC"}</span>
-                    </div>
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-slate-400 text-[9px] uppercase tracking-wider">Colors</span>
-                      <span className="text-slate-800">{selectedColor?.title || "TBD"}</span>
-                    </div>
-                    {designFile && (
-                      <div className="flex flex-col gap-0.5 col-span-2 border-t border-slate-200/40 pt-2">
-                        <span className="text-slate-400 text-[9px] uppercase tracking-wider flex items-center gap-1">
-                          <Paperclip size={10} />
-                          <span>Attached Design</span>
-                        </span>
-                        <span className="text-slate-800 truncate">{designFile.name}</span>
-                      </div>
-                    )}
+                  )}
+
+                  <div className="flex items-center gap-1 rounded-lg bg-[#F0F9FF] px-2.5 py-2 text-[10px] font-medium text-slate-500">
+                    <span className="flex items-center gap-1 font-semibold text-[#0F6393]">
+                      <Check size={11} strokeWidth={3} />
+                      Received
+                    </span>
+                    <span className="text-slate-300">·</span>
+                    <span>Design proof</span>
+                    <span className="text-slate-300">·</span>
+                    <span>Your quote</span>
                   </div>
-                </div>
+                </motion.div>
+              </div>
 
-                <div className="flex items-center justify-center gap-2 text-slate-400 text-xs font-semibold">
-                  <Clock size={14} className="text-[#00AEEF]" />
-                  <span>Estimated Response Time: <b>2 Hours</b> via WhatsApp & Email</span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div className="shrink-0 border-t border-slate-100 bg-white p-3 sm:p-4">
+                <div className="flex flex-col gap-2 sm:flex-row">
                   <button
-                    onClick={() => {
-                      setShowSuccessModal(false);
-                      // Reset forms
-                      setFormData({
-                        pinStyle: "",
-                        metalFinish: "",
-                        unit: "Centimeter",
-                        height: "",
-                        width: "",
-                        delivery: "standard",
-                        quantity: "100",
-                        customQuantity: "",
-                        backingType: "",
-                        colorAmount: "",
-                        designName: "",
-                        details: "",
-                        fullName: "",
-                        email: "",
-                        phone: "",
-                        company: "",
-                      });
-                      removeFile();
-                      setFormErrors({});
-                    }}
-                    className="w-full py-4 border-2 border-slate-200 hover:border-slate-300 text-slate-500 font-black uppercase tracking-wider rounded-xl transition-all text-xs flex items-center justify-center"
+                    type="button"
+                    onClick={resetQuoteForm}
+                    className="order-2 flex h-10 flex-1 items-center justify-center rounded-xl border border-slate-200 text-[11px] font-bold uppercase tracking-wide text-slate-500 transition-colors hover:border-slate-300 hover:bg-slate-50 sm:order-1"
                   >
-                    Close Quote Form
+                    New quote
                   </button>
                   <a
-                    href={`https://wa.me/971507180562?text=${encodeURIComponent(
-                      `Hi! I just submitted a quote request on Print-X for my custom pins:\n\n` +
-                      `- Style: ${selectedStyle?.title || "TBD"}\n` +
-                      `- Finish: ${selectedFinish?.title || "TBD"}\n` +
-                      `- Size: ${formData.height}x${formData.width} ${formData.unit}\n` +
-                      `- Quantity: ${formData.quantity === "custom" ? formData.customQuantity : formData.quantity} pcs\n` +
-                      `- Backing: ${selectedBacking?.title || "TBD"}\n` +
-                      `- Colors: ${selectedColor?.title || "TBD"}\n` +
-                      `- Name: ${formData.fullName}\n` +
-                      `- Email: ${formData.email}\n` +
-                      (designFile ? `- File attached: ${designFile.name}\n` : "") +
-                      `Please let me know the pricing and next steps!`
-                    )}`}
+                    href={whatsAppHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-4 bg-[#25D366] hover:bg-[#20ba56] text-white font-black uppercase tracking-wider rounded-xl transition-all text-xs flex items-center justify-center gap-2 shadow-lg shadow-[#25D366]/20"
+                    className="order-1 flex h-10 flex-1 items-center justify-center gap-1.5 rounded-xl bg-[#25D366] text-[11px] font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#20ba56] sm:order-2"
                   >
-                    Chat on WhatsApp
+                    <MessageCircle size={14} />
+                    WhatsApp
                   </a>
                 </div>
               </div>

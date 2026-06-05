@@ -1,0 +1,3 @@
+# Keep local build config if a remote merge would remove or overwrite it.
+postcss.config.mjs merge=ours
+next.config.mjs merge=ours
