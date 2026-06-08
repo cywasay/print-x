@@ -1,5 +1,14 @@
 import { Geist, Geist_Mono, Barlow } from "next/font/google";
 import "./globals.css";
+import StructuredData from "@/app/_components/StructuredData";
+import {
+  HOME_SEO,
+  ORGANIZATION_JSON_LD,
+  SITE_NAME,
+  SITE_URL,
+  WEBSITE_JSON_LD,
+  buildPageMetadata,
+} from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,8 +27,24 @@ const barlow = Barlow({
 });
 
 export const metadata = {
-  title: "Print-X",
-  description: "Print-X",
+  metadataBase: new URL(SITE_URL),
+  ...buildPageMetadata({
+    title: HOME_SEO.title,
+    description: HOME_SEO.description,
+    path: "/",
+  }),
+  applicationName: SITE_NAME,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -29,7 +54,11 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} ${barlow.variable} h-full antialiased relative`}
       data-scroll-behavior="smooth"
     >
-      <body className={`${barlow.className} min-h-full flex flex-col relative`}>{children}</body>
+      <body className={`${barlow.className} min-h-full flex flex-col relative`}>
+        <StructuredData data={ORGANIZATION_JSON_LD} />
+        <StructuredData data={WEBSITE_JSON_LD} />
+        {children}
+      </body>
     </html>
   );
 }

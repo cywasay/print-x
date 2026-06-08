@@ -2,7 +2,14 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import StructuredData from "@/app/_components/StructuredData";
 import Header from "@/app/_components/Header";
+import {
+  CATEGORY_SEO,
+  buildFaqJsonLd,
+  buildPageMetadata,
+  buildServiceJsonLd,
+} from "@/lib/seo";
 import Footer from "@/app/_components/Footer";
 import GetAQuote from "@/app/_components/GetAQuote";
 import HowItWorks from "@/app/_components/HowItWorks";
@@ -151,6 +158,21 @@ export function generateStaticParams() {
   return Object.keys(categoryData).map((slug) => ({ slug }));
 }
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const seo = CATEGORY_SEO[slug];
+
+  if (!seo) {
+    return {};
+  }
+
+  return buildPageMetadata({
+    title: seo.title,
+    description: seo.description,
+    path: `/category/${slug}`,
+  });
+}
+
 export default async function CategoryPage({ params }) {
   const { slug } = await params;
   const category = categoryData[slug];
@@ -159,8 +181,20 @@ export default async function CategoryPage({ params }) {
     notFound();
   }
 
+  const seo = CATEGORY_SEO[slug];
+
   return (
     <>
+      {seo && (
+        <StructuredData
+          data={buildServiceJsonLd({
+            name: seo.title.replace(" | PrintX DXB", ""),
+            description: seo.description,
+            path: `/category/${slug}`,
+          })}
+        />
+      )}
+      <StructuredData data={buildFaqJsonLd(category.faqs)} />
       <Header />
       <main className="flex-1 w-full bg-slate-50 relative">
         <section className="pt-12 pb-20 md:py-24 relative overflow-hidden bg-white border-b border-slate-200/50">

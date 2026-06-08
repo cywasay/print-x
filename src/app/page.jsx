@@ -1,5 +1,7 @@
 import FAQ from "@/app/_components/FAQ";
+import StructuredData from "@/app/_components/StructuredData";
 import Header from "@/app/_components/Header";
+import { HOME_SEO, buildFaqJsonLd, buildPageMetadata } from "@/lib/seo";
 import Hero from "@/app/_components/Hero";
 import PinTypes from "@/app/_components/PinTypes";
 import HowItWorks from "@/app/_components/HowItWorks";
@@ -9,6 +11,12 @@ import ExcellenceSection from "@/app/_components/ExcellenceSection";
 import GoogleReviews from "@/app/_components/GoogleReviews";
 import GetAQuote from "@/app/_components/GetAQuote";
 import Footer from "@/app/_components/Footer";
+
+export const metadata = buildPageMetadata({
+  title: HOME_SEO.title,
+  description: HOME_SEO.description,
+  path: "/",
+});
 
 const HOME_FAQS = [
   { question: "What is the minimum order quantity (MOQ)?", answer: "Our standard MOQ starts at 25 pieces for most pin styles. This allows even small organizations and artists to create high-quality custom merchandise." },
@@ -21,6 +29,7 @@ const HOME_FAQS = [
 export default function Home() {
   return (
     <>
+      <StructuredData data={buildFaqJsonLd(HOME_FAQS)} />
       <Header />
       <main className="flex-1 w-full overflow-hidden relative">
         <Hero />
