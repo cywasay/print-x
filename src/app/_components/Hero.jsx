@@ -1,5 +1,26 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const ease = [0.16, 1, 0.3, 1];
+
+const headlineContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.14, delayChildren: 0.15 },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease },
+  },
+};
 
 export default function Hero() {
   return (
@@ -40,24 +61,42 @@ export default function Hero() {
         <div className="max-w-7xl w-full mx-auto px-6 lg:px-12 relative z-10 flex items-center h-full">
           {/* Left Content */}
           <div className="w-full md:w-[65%] lg:w-[60%] flex flex-col items-start justify-start md:justify-center space-y-5 md:space-y-8 z-20">
-            <h1 className="text-[40px] sm:text-4xl md:text-5xl lg:text-[72px] font-semibold leading-[1.1] md:leading-[1.05] tracking-tight text-white drop-shadow-md">
-              Custom Pins.
-              <br />
-              Crafted Perfection.
-            </h1>
-            <p className="text-[17px] sm:text-base lg:text-[22px] text-white/90 font-medium leading-relaxed max-w-xl mt-1 md:mt-2">
-              The UAE's premier manufacturer of custom lapel pins,
+            <motion.h1
+              className="text-[40px] sm:text-4xl md:text-5xl lg:text-[72px] font-semibold leading-[1.1] md:leading-[1.05] tracking-tight text-white drop-shadow-md"
+              variants={headlineContainer}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.span variants={fadeUp} className="block">
+                Custom Pins.
+              </motion.span>
+              <motion.span variants={fadeUp} className="block">
+                Crafted Perfection.
+              </motion.span>
+            </motion.h1>
+            <motion.p
+              className="text-[17px] sm:text-base lg:text-[22px] text-white/90 font-medium leading-relaxed max-w-xl mt-1 md:mt-2"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease, delay: 0.45 }}
+            >
+              The UAE&apos;s premier manufacturer of custom lapel pins,
               <br className="hidden md:block" />
               enamel pins, and premium metal badges.
-            </p>
-            <div className="pt-4 md:pt-6 w-full sm:w-auto">
+            </motion.p>
+            <motion.div
+              className="pt-4 md:pt-6 w-full sm:w-auto"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, ease, delay: 0.62 }}
+            >
               <Link
                 href="/quote"
                 className="px-8 md:px-10 py-3.5 md:py-4 bg-white text-[#0F6393] hover:bg-blue-50 text-[15px] md:text-base font-bold rounded-full transition-all shadow-[0_10px_30px_rgba(255,255,255,0.2)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.3)] hover:-translate-y-1 inline-block text-center"
               >
                 Get a Quote
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

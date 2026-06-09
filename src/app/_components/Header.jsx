@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Search, ShoppingCart, MessageSquare, ChevronDown, Menu, X, Phone, Mail, MapPin, Clock, User } from 'lucide-react';
+import { CONTACT } from '@/lib/contact';
 
 const navLinks = [
   { 
@@ -75,23 +76,23 @@ export default function Header() {
         <div className={`bg-[#0F6393] w-full transition-all duration-300 ease-in-out ${isScrolled ? 'h-0 opacity-0 overflow-hidden' : 'h-[38px] opacity-100'}`}>
           <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-[38px]">
             <div className="hidden md:flex items-center gap-6 text-[12px] text-white/70 font-medium">
-              <a href="tel:+971XXXXXXXX" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <a href={CONTACT.phoneHref} className="flex items-center gap-1.5 hover:text-white transition-colors">
                 <Phone size={12} strokeWidth={2} />
-                <span>+971-XX-XXX-XXXX</span>
+                <span>{CONTACT.phone}</span>
               </a>
-              <a href="mailto:info@pinbadges.ae" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <a href={CONTACT.emailHref} className="flex items-center gap-1.5 hover:text-white transition-colors">
                 <Mail size={12} strokeWidth={2} />
-                <span>info@pinbadges.ae</span>
+                <span>{CONTACT.email}</span>
               </a>
               <span className="flex items-center gap-1.5">
                 <MapPin size={12} strokeWidth={2} />
-                <span>Dubai, UAE</span>
+                <span>{CONTACT.addressShort}</span>
               </span>
             </div>
             <div className="flex items-center gap-4 mx-auto md:mx-0">
               <span className="text-[12px] text-amber-300/90 font-semibold tracking-wide flex items-center gap-1.5">
                 <Clock size={12} />
-                Mon – Sat: 9AM – 7PM
+                {CONTACT.hours}
               </span>
               <span className="hidden sm:inline text-white/30">|</span>
               <span className="hidden sm:inline text-[12px] text-white/60 font-medium">Leading Custom Lapel & Enamel Pins Supplier in Dubai</span>
@@ -178,7 +179,7 @@ export default function Header() {
 
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/971XXXXXXXX"
+                href={CONTACT.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden md:flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white text-[12.5px] font-bold px-4 py-2.5 rounded-full transition-all duration-200 shadow-sm hover:shadow-md ml-1"
@@ -337,7 +338,7 @@ export default function Header() {
             <span>Help Center</span>
           </Link>
           <a
-            href="https://wa.me/971XXXXXXXX"
+            href={CONTACT.whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white text-[14px] font-bold py-3 rounded-full transition-all w-full shadow-sm"

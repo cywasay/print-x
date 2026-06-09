@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, MessageCircle, Send } from "lucide-react";
 import { motion } from "framer-motion";
+import { CONTACT } from "@/lib/contact";
 
 export default function Footer() {
   const cataLogues = [
@@ -50,9 +51,9 @@ export default function Footer() {
                   <div className="mt-1">
                     <Phone size={18} className="text-white" />
                   </div>
-                  <span className="text-[15px] font-medium">
-                    +971 4 223 6434
-                  </span>
+                  <a href={CONTACT.phoneHref} className="text-[15px] font-medium hover:text-white/80 transition-colors">
+                    {CONTACT.phone}
+                  </a>
                 </div>
 
                 <div className="flex items-start gap-4">
@@ -63,18 +64,23 @@ export default function Footer() {
                       className="text-white"
                     />
                   </div>
-                  <span className="text-[15px] font-medium">
-                    +971 50 718 0562
-                  </span>
+                  <a
+                    href={CONTACT.whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[15px] font-medium hover:text-white/80 transition-colors"
+                  >
+                    {CONTACT.whatsapp}
+                  </a>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <div className="mt-1">
                     <Mail size={18} className="text-white" />
                   </div>
-                  <span className="text-[15px] font-medium">
-                    info@printx.ae
-                  </span>
+                  <a href={CONTACT.emailHref} className="text-[15px] font-medium hover:text-white/80 transition-colors">
+                    {CONTACT.email}
+                  </a>
                 </div>
 
                 <div className="flex items-start gap-4">
@@ -82,11 +88,12 @@ export default function Footer() {
                     <MapPin size={18} className="text-white" />
                   </div>
                   <span className="text-[15px] font-medium leading-relaxed">
-                    Shop # 6, Bin Shabib Building 29
-                    <br />
-                    Hor Al Anz, Deira, Dubai. UAE.
-                    <br />
-                    P.O. Box: 81998
+                    {CONTACT.addressLines.map((line, i) => (
+                      <span key={line}>
+                        {line}
+                        {i < CONTACT.addressLines.length - 1 && <br />}
+                      </span>
+                    ))}
                   </span>
                 </div>
               </div>
