@@ -1,3 +1,5 @@
+import { SITE_LOGO } from "@/lib/contact";
+
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://printxdxb.ae";
 
@@ -84,7 +86,7 @@ export const ORGANIZATION_JSON_LD = {
   "@type": "Organization",
   name: SITE_NAME,
   url: SITE_URL,
-  logo: absoluteUrl("/logo-web.png"),
+  logo: absoluteUrl(SITE_LOGO),
   areaServed: {
     "@type": "Country",
     name: "United Arab Emirates",

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Search, ShoppingCart, MessageSquare, ChevronDown, Menu, X, Phone, Mail, MapPin, Clock, User } from 'lucide-react';
-import { CONTACT } from '@/lib/contact';
+import { CONTACT, SITE_LOGO, SITE_LOGO_ALT } from '@/lib/contact';
 
 const navLinks = [
   { 
@@ -106,12 +106,12 @@ export default function Header() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-0 shrink-0 group select-none">
-              <div className={`relative transition-all duration-500 ease-in-out ${isScrolled ? 'h-7 w-24 xl:h-8 xl:w-28' : 'h-9 w-32 xl:h-10 xl:w-36'}`}>
+              <div className={`relative transition-all duration-500 ease-in-out ${isScrolled ? 'h-[42px] w-[73px] xl:h-[47px] xl:w-[83px]' : 'h-[52px] w-[83px] xl:h-[57px] xl:w-[94px]'}`}>
                 <Image
-                  src="/logo-web.png"
-                  alt="PinBadges Logo"
+                  src={SITE_LOGO}
+                  alt={SITE_LOGO_ALT}
                   fill
-                  className="object-contain"
+                  className="object-contain object-right"
                   priority
                   quality={90}
                   sizes="(max-width: 768px) 120px, 150px"
@@ -262,12 +262,12 @@ export default function Header() {
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
           <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
-            <div className="relative h-8 w-28">
+            <div className="relative h-[42px] w-[73px]">
               <Image
-                src="/logo-web.png"
-                alt="PinBadges Logo"
+                src={SITE_LOGO}
+                alt={SITE_LOGO_ALT}
                 fill
-                className="object-contain"
+                className="object-contain object-right"
                 priority
                 sizes="120px"
               />

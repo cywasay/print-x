@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, MessageCircle, Send } from "lucide-react";
 import { motion } from "framer-motion";
-import { CONTACT } from "@/lib/contact";
+import { CONTACT, SITE_LOGO, SITE_LOGO_ALT } from "@/lib/contact";
 
 export default function Footer() {
   const cataLogues = [
@@ -34,12 +34,12 @@ export default function Footer() {
             {/* Column 1: Logo & Contact */}
             <div className="flex flex-col gap-8">
               <Link href="/" className="inline-block">
-                <div className="relative w-[160px] h-[50px]">
+                <div className="relative w-[102px] h-20">
                   <Image
-                    src="/logo-web-white.png"
-                    alt="PrintX Advertising"
+                    src={SITE_LOGO}
+                    alt={SITE_LOGO_ALT}
                     fill
-                    className="object-contain"
+                    className="object-contain object-right grayscale brightness-0 invert"
                     quality={90}
                     sizes="160px"
                   />

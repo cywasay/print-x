@@ -1,3 +1,6 @@
+export const SITE_LOGO = "/pin-x.png";
+export const SITE_LOGO_ALT = "PrintX DXB";
+
 export const CONTACT = {
   phone: "+971 4 223 6434",
   phoneHref: "tel:+97142236434",

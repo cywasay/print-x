@@ -109,13 +109,13 @@ export async function POST(request) {
     });
 
     const attachments = [];
-    const logoPath = path.join(process.cwd(), "public", "logo-web-white.png");
+    const logoPath = path.join(process.cwd(), "public", "pin-x.png");
     const logoCid = "printx-logo";
     const hasLogo = fs.existsSync(logoPath);
 
     if (hasLogo) {
       attachments.push({
-        filename: "logo-web-white.png",
+        filename: "pin-x.png",
         content: fs.readFileSync(logoPath),
         cid: logoCid,
       });
