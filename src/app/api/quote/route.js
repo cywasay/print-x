@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
+import { SITE_LOGO } from "@/lib/contact";
 
 // Mapping helper functions to make the email output beautiful and human-readable
 const PIN_STYLES = {
@@ -109,13 +110,14 @@ export async function POST(request) {
     });
 
     const attachments = [];
-    const logoPath = path.join(process.cwd(), "public", "pin-x.png");
+    const logoFile = SITE_LOGO.replace(/^\//, "");
+    const logoPath = path.join(process.cwd(), "public", logoFile);
     const logoCid = "printx-logo";
     const hasLogo = fs.existsSync(logoPath);
 
     if (hasLogo) {
       attachments.push({
-        filename: "pin-x.png",
+        filename: logoFile,
         content: fs.readFileSync(logoPath),
         cid: logoCid,
       });

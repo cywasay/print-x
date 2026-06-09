@@ -1,4 +1,4 @@
-export const SITE_LOGO = "/pin-x.png";
+export const SITE_LOGO = "/pin-x-new.png";
 export const SITE_LOGO_ALT = "PrintX DXB";
 
 export const CONTACT = {
