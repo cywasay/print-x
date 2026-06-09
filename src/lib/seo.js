@@ -9,6 +9,8 @@ export const HOME_SEO = {
     "custom enamel pins, lapel pins and metal badges in Dubai UAE. Get premium quality designs, fast delivery and competitive prices today. Order Now !",
 };
 
+export const BING_SITE_VERIFICATION = "4AE720252699F788824EE7998C0EEACD";
+
 export const QUOTE_SEO = {
   title: "Get a Custom Pin Quote Dubai UAE | PrintX DXB",
   description:
