@@ -14,6 +14,7 @@ import {
   AlertCircle,
   ShoppingCart,
 } from "lucide-react";
+import { WhatsAppTrigger } from "@/app/_components/WhatsAppWidget";
 
 export const PinStyleStep = memo(function PinStyleStep({ selectedId, onSelect }) {
   return (
@@ -412,12 +413,7 @@ export const QuoteSidebar = memo(function QuoteSidebar({
           </div>
         </div>
 
-        <a
-          href="https://wa.me/971507180562"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all group"
-        >
+        <WhatsAppTrigger className="mt-4 w-full flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all group text-left">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#25D366]/10 flex items-center justify-center text-[#25D366]">
               <Truck size={18} />
@@ -430,7 +426,7 @@ export const QuoteSidebar = memo(function QuoteSidebar({
             </div>
           </div>
           <div className="text-slate-300 group-hover:text-[#0F6393] transition-colors">→</div>
-        </a>
+        </WhatsAppTrigger>
       </div>
     </div>
   );

@@ -13,6 +13,8 @@ import {
 } from "./quote-sections";
 import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
+import { WhatsAppProvider } from "@/app/_components/WhatsAppWidget";
+import { WHATSAPP_CONTACTS } from "@/lib/contact";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -489,7 +491,7 @@ function QuotePageContent() {
     selectedColor?.title,
   ].filter(Boolean);
 
-  const whatsAppHref = `https://wa.me/971507180562?text=${encodeURIComponent(
+  const whatsAppHref = `${WHATSAPP_CONTACTS[0].href}?text=${encodeURIComponent(
     `Hi! I just submitted a quote request on Print-X for my custom pins:\n\n` +
       `- Style: ${selectedStyle?.title || "TBD"}\n` +
       `- Finish: ${selectedFinish?.title || "TBD"}\n` +
@@ -504,6 +506,7 @@ function QuotePageContent() {
   )}`;
 
   return (
+    <WhatsAppProvider>
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
       <Header />
 
@@ -1077,5 +1080,6 @@ function QuotePageContent() {
       </AnimatePresence>
       <Footer />
     </div>
+    </WhatsAppProvider>
   );
 }

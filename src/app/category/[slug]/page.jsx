@@ -11,6 +11,7 @@ import {
   buildServiceJsonLd,
 } from "@/lib/seo";
 import Footer from "@/app/_components/Footer";
+import { WhatsAppProvider } from "@/app/_components/WhatsAppWidget";
 import GetAQuote from "@/app/_components/GetAQuote";
 import HowItWorks from "@/app/_components/HowItWorks";
 import VisualSteps from "@/app/_components/VisualSteps";
@@ -184,6 +185,7 @@ export default async function CategoryPage({ params }) {
   const seo = CATEGORY_SEO[slug];
 
   return (
+    <WhatsAppProvider>
     <>
       {seo && (
         <StructuredData
@@ -288,5 +290,6 @@ export default async function CategoryPage({ params }) {
       </main>
       <Footer />
     </>
+    </WhatsAppProvider>
   );
 }

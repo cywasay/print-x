@@ -16,6 +16,7 @@ import ExcellenceSection from "@/app/_components/ExcellenceSection";
 import GoogleReviews from "@/app/_components/GoogleReviews";
 import GetAQuote from "@/app/_components/GetAQuote";
 import Footer from "@/app/_components/Footer";
+import { WhatsAppProvider } from "@/app/_components/WhatsAppWidget";
 
 export const metadata = {
   ...buildPageMetadata({
@@ -40,7 +41,7 @@ const HOME_FAQS = [
 
 export default function Home() {
   return (
-    <>
+    <WhatsAppProvider>
       <StructuredData data={buildFaqJsonLd(HOME_FAQS)} />
       <Header />
       <main className="flex-1 w-full overflow-hidden relative">
@@ -55,6 +56,6 @@ export default function Home() {
         <GoogleReviews />
       </main>
       <Footer />
-    </>
+    </WhatsAppProvider>
   );
 }
