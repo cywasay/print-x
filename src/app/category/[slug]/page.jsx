@@ -24,7 +24,15 @@ const categoryData = {
     pinStyleId: "hard-enamel",
     name: "Hard Enamel Pins",
     desc: "The highest quality, jewelry-like pin with a smooth finish.",
-    detailedDesc: "Hard enamel pins are highly durable and offer a classic, premium look. They are baked at high temperatures to cure the enamel, then polished flat so the metal borders and enamel colors are on the exact same level. Perfect for high-end corporate gifts and creative artist pins.",
+    detailedDesc: `Custom Hard Enamel Pins are the premium choice for businesses, organizations, artists, and brands looking for high-quality custom pin badges with a smooth, polished finish. Manufactured using a high-temperature baking process, hard enamel pins are known for their exceptional durability, vibrant colors, and professional appearance.
+
+Unlike other pin styles like [Soft Enamel](/category/soft-enamel-pins) pins, hard enamel pins are polished until the enamel and metal borders are perfectly level, creating a jewelry-like finish that offers a refined and elegant look. Their scratch-resistant surface and long-lasting quality make them ideal for corporate branding, employee recognition, promotional events, schools, clubs, and creative merchandise.
+
+Our Custom Hard Enamel Pins can be fully customized with your logo, artwork, brand colors, and unique design requirements. Whether you need custom lapel pins for a corporate event, premium metal badges for recognition programs, or branded pins for marketing campaigns, hard enamel pins provide a sophisticated solution that leaves a lasting impression.
+
+As a trusted supplier of custom enamel pins in Dubai and across the UAE, we produce high-quality hard enamel pin badges in various shapes, sizes, and finishes. From small business orders to large corporate projects, we ensure precision craftsmanship, premium materials, and outstanding attention to detail.
+
+Order Custom Hard Enamel Pins today and create durable, premium-quality pin badges that showcase your brand with style and professionalism.`,
     img: "/lapel-categories/hard-enamel-pin.jpg",
     features: ["Smooth, flush surface", "Highest perceived value", "Extremely durable", "Bright, vivid colors"],
     video: "/videos/hard-enamel-pin.mp4",
@@ -46,7 +54,15 @@ const categoryData = {
     pinStyleId: "soft-enamel",
     name: "Soft Enamel Pins",
     desc: "The most popular, budget-friendly pin with a textured, 3D feel.",
-    detailedDesc: "Soft enamel pins have raised metal borders and recessed enamel colors, giving them a textured feel. Fast, cost-effective, and versatile, they are the most popular choice for trading pins, promotional merch, and creative designs.",
+    detailedDesc: `Custom Soft Enamel Pins are one of the most popular and budget-friendly options for creating high-quality custom pin badges with a detailed and textured finish. These pins feature raised metal borders with recessed enamel colors, giving them a distinctive 3D feel that makes designs stand out with depth and clarity.
+
+Soft enamel pins are widely used for trading pins, promotional merchandise, corporate branding, events, schools, clubs, and creative artwork. Their versatile design and cost-effective production make them an ideal choice for both small and large-scale orders, alongside classic [Die Struck](/category/die-struck-pin-badges) pins.
+
+Our Custom Soft Enamel Pins can be fully personalized with your logo, artwork, brand message, and custom shapes. Whether you need custom lapel pins for marketing campaigns, branded pins for giveaways, or creative designs for merchandise, soft enamel pins offer flexibility and strong visual impact.
+
+As a trusted supplier of custom enamel pins in Dubai and across the UAE, we produce high-quality soft enamel pin badges using durable materials and precise manufacturing techniques. Each pin is crafted to ensure sharp detailing, vibrant colors, and a long-lasting finish suitable for everyday use.
+
+Order Custom Soft Enamel Pins today and create affordable, eye-catching pin badges that effectively represent your brand, organization, or creative design.`,
     img: "/lapel-categories/soft-enamel-pin.jpg",
     features: ["Textured 3D feel", "More cost-effective", "Great for intricate designs", "Can be combined with epoxy dome"],
     video: "/videos/product.mp4",
@@ -68,7 +84,17 @@ const categoryData = {
     pinStyleId: "die-struck",
     name: "Die Struck Pin Badges",
     desc: "Classic all-metal pins with no enamel colors, featuring raised and recessed areas.",
-    detailedDesc: "Die-struck pins offer a highly sophisticated, jewelry-like finish without the use of enamel. The design is stamped into the metal, creating raised and recessed areas. Perfect for subdued branding, corporate recognition, and academic awards.",
+    detailedDesc: `Custom Die Struck Pin Badges are classic all-metal pins designed for a timeless and premium appearance. These badges feature raised and recessed metal areas without enamel colors, giving a clean and sophisticated look with a jewelry-like finish.
+
+The design is created using a precision stamping process where the artwork is pressed directly into high-quality metal, ensuring sharp detailing and durability. This makes them ideal for professional branding and formal recognition purposes.
+
+[3D cast pins Badges](/category/3d-cast-pin-badges) are also a premium all-metal option, designed for more complex and detailed shapes. The casting process allows deeper textures, curves, and multi-layered effects, making them perfect for intricate logos and creative designs that require a strong 3D appearance.
+
+Both Die Struck and 3D Cast Pin Badges are widely used for corporate recognition, employee awards, academic achievements, clubs, military insignia, and premium branding projects. Their durable metal finish ensures long-lasting quality and a professional impression.
+
+We provide fully customized metal pin badges in Dubai and across the UAE, allowing you to design unique shapes, logos, and finishes according to your requirements. Each pin is crafted with precision to ensure high-quality detailing and a polished final look.
+
+Order Custom Die Struck Pin Badges or 3D Cast Pin Badges today to create premium metal pins that reflect professionalism and brand identity.`,
     img: "/lapel-categories/die-cast-pin.jpg",
     features: ["All-metal finish", "Elegant, timeless look", "Variety of metal platings", "Sandblasted options available"],
     video: "/videos/die-struct-pin.mp4",
@@ -90,7 +116,17 @@ const categoryData = {
     pinStyleId: "3d-cast",
     name: "3D Cast Pin Badges",
     desc: "Incredible depth and detail for sculptural, multi-level designs.",
-    detailedDesc: "Unlike standard 2D pins, 3D cast pins are crafted using a mold to allow for rounded edges, complex curves, and varying levels of depth. They're perfect for recreating lifelike faces, detailed vehicles, miniature animals, or sculptural logos.",
+    detailedDesc: `Custom 3D Cast Pin Badges are designed to deliver incredible depth and detail for sculptural, multi-level designs. These pins are ideal for brands and creators who want a highly detailed and premium metal finish that stands out with a strong visual impact.
+
+Unlike standard 2D pins, 3D cast pins are crafted using a mold-based casting process that allows for rounded edges, complex curves, and varying levels of depth. This technique makes it possible to recreate highly detailed designs such as lifelike faces, vehicles, miniature animals, and sculptural logos with precision.
+
+For added protection and premium finishing, 3D cast pins can also be combined with [Epoxy Pins](/category/photo-dome-pins) or Epoxy Badges coating, which adds a glossy protective layer to the surface. This improves durability, enhances color protection, and gives the pin a smooth, polished appearance.
+
+These Custom 3D Cast Pin Badges are widely used for corporate branding, promotional merchandise, collector items, event souvenirs, and artistic designs where detail and quality matter the most.
+
+We provide fully customized 3D cast pin solutions in Dubai and across the UAE, allowing full control over shape, texture, and finish. Each pin is manufactured with high precision to ensure a premium look and long-lasting durability.
+
+Order Custom 3D Cast Pin Badges today and create highly detailed metal pins that showcase your brand with depth, creativity, and professional quality.`,
     img: "/lapel-categories/3d-cast-pin.jpg",
     features: ["Sculptural 3D levels", "High-impact realism", "Heavier, premium weight", "Ideal for complex objects"],
     video: "/videos/3D-cast-pin.mp4",
@@ -113,7 +149,17 @@ const categoryData = {
     name: "Photo Dome Pins",
     heading: "Epoxy Pins",
     desc: "Offset-printed designs sealed with a protective crystal-clear epoxy dome.",
-    detailedDesc: "When a design has gradients, drop shadows, or intricate photographic details that cannot be broken down into solid enamel colors, photo dome (offset printed) pins are the solution. The art is printed directly onto the metal and protected with a durable epoxy dome.",
+    detailedDesc: `Epoxy Pins are offset-printed custom pins designed with a protective crystal-clear epoxy dome that enhances both durability and visual appeal. These pins are ideal for highly detailed artwork that cannot be achieved with traditional enamel filling.
+
+When a design includes gradients, drop shadows, or intricate photographic details that cannot be broken down into solid enamel colors, photo dome (offset printed) pins become the perfect solution. The artwork is printed directly onto the metal base and then sealed under a strong epoxy coating, ensuring long-lasting protection and a smooth glossy finish.
+
+In modern manufacturing, similar effects can also be achieved using Custom UV Pins technology, which allows full-color printing with sharp details and vibrant results. This makes UV printed pins a great alternative for designs that require high-resolution graphics, logos, and complex color transitions.
+
+Epoxy Pins are widely used for promotional merchandise, corporate branding, event giveaways, and custom collectibles. They are also popular choices for [Trading pins Badges](/category/trading-pin-badges) where fine detail and color accuracy are important.
+
+We provide fully customized Epoxy Pins in Dubai and across the UAE, along with Custom UV Pins options for advanced full-color printing requirements. Each pin is produced with precision to ensure clarity, durability, and professional quality.
+
+Order Epoxy Pins or Custom UV Pins today and create eye-catching, high-detail pins that represent your brand with maximum impact.`,
     img: "/epoxy.png",
     features: ["Supports full-color gradients", "Exact color matching", "Clear protective epoxy dome", "Fastest production time"],
     video: "/videos/epoxy.mp4",
@@ -135,7 +181,15 @@ const categoryData = {
     pinStyleId: "custom-uv",
     name: "Custom UV Pins",
     desc: "Highly customized, interactive pins perfect for events, sports teams, and collections.",
-    detailedDesc: "Trading pins are an essential part of sports tournaments and fan events. To make them truly stand out, they often incorporate special add-ons like glitters, spinners, sliders, bobbleheads, or blinking LED lights to increase their trade value.",
+    detailedDesc: `Custom UV Pins are highly detailed, full-color printed pins designed for sharp graphics, vibrant colors, and modern branding needs. These pins use advanced UV printing technology to directly apply high-resolution artwork onto the metal surface, making them ideal for complex designs that require photo-quality results.
+
+Highly customized Custom UV Pins are perfect for events, sports teams, promotional campaigns, and collector merchandise. Their ability to capture fine details and bright color transitions makes them a popular choice for brands looking to create visually striking pin designs.
+
+Trading pins are an essential part of sports tournaments and fan events, and Custom UV Pins play a major role in making them stand out. To increase their value and appeal, these pins can also include special add-ons such as glitter effects, spinners, sliders, bobbleheads, or blinking LED lights, making them more interactive and collectible.
+
+We provide fully customized [Custom Pins](/) in Dubai and across the UAE, offering complete flexibility in design, shape, and finishing. Each pin is produced with high-precision UV printing to ensure durability, sharp detailing, and long-lasting color vibrancy.
+
+Order Custom UV Pins today and create eye-catching, interactive pins that elevate your brand, team identity, or event experience.`,
     img: "/lapel-categories/custom-UV-pin.jpg",
     features: ["Interactive options (sliders, spinners)", "High collectible value", "Glow-in-the-dark & glitter options", "Perfect for youth sports"],
     video: "/videos/custom-UV-pin.mp4",
@@ -172,6 +226,55 @@ export async function generateMetadata({ params }) {
     description: seo.description,
     path: `/category/${slug}`,
   });
+}
+
+function renderTextWithLinks(text) {
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    const [_, anchorText, url] = match;
+    const matchIndex = match.index;
+
+    if (matchIndex > lastIndex) {
+      parts.push(text.substring(lastIndex, matchIndex));
+    }
+
+    const isExternal = url.startsWith("http");
+    if (isExternal) {
+      parts.push(
+        <a
+          key={matchIndex}
+          href={url}
+          className="text-[#0F6393] underline hover:text-[#00AEEF] transition-colors font-bold"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {anchorText}
+        </a>
+      );
+    } else {
+      parts.push(
+        <Link
+          key={matchIndex}
+          href={url}
+          className="text-[#0F6393] underline hover:text-[#00AEEF] transition-colors font-bold"
+        >
+          {anchorText}
+        </Link>
+      );
+    }
+
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
 }
 
 export default async function CategoryPage({ params }) {
@@ -220,9 +323,11 @@ export default async function CategoryPage({ params }) {
               <p className="text-lg text-slate-500 font-bold leading-relaxed mb-4">
                 {category.desc}
               </p>
-              <p className="text-[15px] text-slate-600 font-medium leading-relaxed mb-8">
-                {category.detailedDesc}
-              </p>
+              <div className="text-[15px] text-slate-600 font-medium leading-relaxed mb-8 space-y-4">
+                {category.detailedDesc.split("\n\n").map((para, index) => (
+                  <p key={index}>{renderTextWithLinks(para)}</p>
+                ))}
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                 {category.features.map((feat, i) => (

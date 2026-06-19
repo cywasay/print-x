@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function SeoContent() {
   return (
@@ -32,7 +33,7 @@ export default function SeoContent() {
               Custom pins and metal badges are more impactful than they first appear. They can boost staff relations, energize your brand, and engage your audience with extras. We deliver branded <span className="text-[#0F6393] font-bold">bespoke lapel pins</span> that bring great value to your business!
             </p>
             <p>
-              We've led the way in using custom metallic products to grab attention for over 10 years. As the top enamel pin suppliers in Dubai, UAE, we help companies connect better with their target customers through constant innovation.
+              We've led the way in using custom metallic products to grab attention for over 10 years. As the top <Link href="/category/hard-enamel-pins" className="text-[#0F6393] font-bold hover:underline">enamel pin suppliers</Link> in Dubai, UAE, we help companies connect better with their target customers through constant innovation.
             </p>
 
             <h3 className="text-[20px] font-extrabold text-[#0F6393] pt-4 leading-tight">
