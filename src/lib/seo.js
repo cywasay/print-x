@@ -19,6 +19,13 @@ export const QUOTE_SEO = {
     "Request a quote for custom enamel pins, lapel pins and metal badges in Dubai UAE. Configure your design online and get a fast response from PrintX DXB.",
 };
 
+export const BLOG_SEO = {
+  title: "Custom Pin & Enamel Badge Design Blog | PrintX DXB",
+  description:
+    "Explore expert tips on custom lapel pin design, metal plating options, enamel badge manufacturing, and corporate branding strategies in Dubai, UAE.",
+};
+
+
 export const CATEGORY_SEO = {
   "hard-enamel-pins": {
     title: "Custom Hard Enamel Pins Dubai UAE | PrintX DXB",
@@ -142,3 +149,28 @@ export function buildServiceJsonLd({ name, description, path }) {
     },
   };
 }
+
+export function buildBlogPostingJsonLd({ title, description, path, datePublished, authorName, image }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    url: absoluteUrl(path),
+    datePublished,
+    author: {
+      "@type": "Person",
+      name: authorName || SITE_NAME,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl(SITE_LOGO),
+      },
+    },
+    image: image ? absoluteUrl(image) : absoluteUrl(SITE_LOGO),
+  };
+}
+

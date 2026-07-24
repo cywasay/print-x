@@ -23,6 +23,7 @@ const navLinks = [
   },
   { label: "Reviews", href: "#", hasDropdown: false },
   { label: "Portfolio", href: "#", hasDropdown: false },
+  { label: "Blog", href: "/blog", hasDropdown: false },
   { label: "Contact Us", href: "#", hasDropdown: false },
 ];
 

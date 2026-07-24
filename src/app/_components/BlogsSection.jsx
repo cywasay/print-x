@@ -1,29 +1,11 @@
 "use client";
 
-import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, CheckCircle2 } from 'lucide-react';
+import { getAllBlogs } from '@/lib/blogs';
 
-const blogData = [
-  {
-    title: "Design Tips for Custom Lapel Pins That Stand Out",
-    date: "July 2, 2025",
-    excerpt: "Custom lapel pins are powerful branding tools. Whether for business or events, they must leave a lasting impression.",
-    img: "/hero_gifts_1775637506200.png"
-  },
-  {
-    title: "Choosing the Right Plating Options for Enamel Badges",
-    date: "April 7, 2025",
-    excerpt: "Discover the best metal finishes for your custom pins, from classic gold to sleek black nickel depending on your design.",
-    img: "/hero_printing_1775637492071.png"
-  },
-  {
-    title: "Why Custom Lapel Pins Are Essential for Corporate Events",
-    date: "April 7, 2025",
-    excerpt: "Despite the digital shift, wearing custom branded badges carries an unmatched weight in professional brand promotion.",
-    img: "/hero_products_1775637475637.png"
-  }
-];
+const blogData = getAllBlogs().slice(0, 3);
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -72,9 +54,9 @@ export default function BlogsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <a href="#" className="flex items-center gap-2 text-[#0F6393] font-bold text-sm hover:translate-x-1 transition-all duration-300">
+            <Link href="/blog" className="flex items-center gap-2 text-[#0F6393] font-bold text-sm hover:translate-x-1 transition-all duration-300">
               View All Articles <ArrowRight size={16} />
-            </a>
+            </Link>
           </motion.div>
         </div>
 
@@ -86,41 +68,64 @@ export default function BlogsSection() {
           viewport={{ once: true, margin: "-100px" }}
         >
           {blogData.map((blog, idx) => (
-            <motion.div key={idx} variants={itemVariants} className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] flex flex-col group hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12)] transition-all duration-500">
-              
-              <div className="w-full aspect-[16/10] relative overflow-hidden bg-slate-50 border-b border-slate-50">
-                <Image 
-                  src={blog.img} 
-                  alt={blog.title} 
-                  fill 
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-1000 cubic-bezier(0.16, 1, 0.3, 1)" 
-                  quality={85}
-                  loading="lazy"
-                />
-              </div>
-              
-              <div className="p-8 flex flex-col flex-grow">
-                <div className="flex items-center gap-2 text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-4">
-                   <Calendar size={12} />
-                   {blog.date}
+            <motion.div
+              key={idx}
+              variants={itemVariants}
+              className="bg-white rounded-3xl border border-slate-200/80 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] hover:border-[#0F6393]/30 hover:shadow-[0_20px_40px_-12px_rgba(15,99,147,0.12)] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+            >
+              <div className="p-8 flex flex-col flex-1">
+                {/* Category Pill & Index Number */}
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="text-[10px] font-black tracking-widest text-[#0F6393] uppercase bg-[#0F6393]/8 px-3 py-1 rounded-full border border-[#0F6393]/10">
+                    {blog.category}
+                  </span>
+                  <span className="text-[11px] font-black text-slate-300 tracking-wider">
+                    0{idx + 1}
+                  </span>
                 </div>
-                
-                <h3 className="text-[19px] font-extrabold text-[#0F6393] leading-snug mb-3 group-hover:text-[#0F6393] transition-colors duration-300">
-                  {blog.title}
+
+                {/* Title */}
+                <h3 className="text-[19px] font-extrabold text-[#0F6393] leading-snug mb-3 group-hover:text-[#00AEEF] transition-colors duration-300">
+                  <Link href={`/blog/${blog.slug}`}>
+                    {blog.title}
+                  </Link>
                 </h3>
                 
-                <p className="text-slate-500 text-[14px] leading-relaxed mb-6 font-medium line-clamp-2">
+                {/* Excerpt */}
+                <p className="text-slate-500 text-[13.5px] leading-relaxed mb-5 font-medium line-clamp-3">
                   {blog.excerpt}
                 </p>
-                
-                <a href="#" className="mt-auto flex items-center gap-2 text-[#0F6393] font-bold text-[13px] group/link">
-                  <span className="relative">
-                    Read Article
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0F6393]/20 group-hover/link:w-full transition-all duration-300"></span>
+
+                {/* Takeaway Bullets Preview */}
+                {blog.keyTakeaways && blog.keyTakeaways.length > 0 && (
+                  <div className="bg-[#f8fafc] rounded-2xl p-3.5 border border-slate-100 mb-6 mt-auto">
+                    <div className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">Key Takeaways</div>
+                    <div className="text-[11.5px] font-semibold text-slate-600 flex items-start gap-1.5 leading-snug line-clamp-2">
+                      <CheckCircle2 size={13} className="text-[#0F6393] shrink-0 mt-0.5" />
+                      <span>{blog.keyTakeaways[0]}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Footer Metadata */}
+              <div className="px-8 pb-7 pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="flex items-center gap-3 text-slate-400 text-[11px] font-bold">
+                  <span className="flex items-center gap-1">
+                    <Clock size={12} />
+                    {blog.readTime}
                   </span>
-                  <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
-                </a>
+                  <span>•</span>
+                  <span className="flex items-center gap-1">
+                    <Calendar size={12} />
+                    {blog.date}
+                  </span>
+                </div>
+                
+                <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1.5 text-[#0F6393] font-extrabold text-[12.5px] group/link">
+                  <span>Read</span>
+                  <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform text-[#00AEEF]" />
+                </Link>
               </div>
             </motion.div>
           ))}
