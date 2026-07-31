@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
+import FAQ from "@/app/_components/FAQ";
 import StructuredData from "@/app/_components/StructuredData";
 import { WhatsAppProvider, WhatsAppTrigger } from "@/app/_components/WhatsAppWidget";
 import { getBlogBySlug, getRelatedBlogs, BLOG_POSTS } from "@/lib/blogs";
@@ -36,8 +37,8 @@ export async function generateMetadata({ params }) {
   }
 
   return buildPageMetadata({
-    title: `${post.title} | PrintX DXB`,
-    description: post.excerpt,
+    title: post.metaTitle || `${post.title} | PrintX DXB`,
+    description: post.metaDescription || post.excerpt,
     path: `/blog/${post.slug}`,
   });
 }
@@ -207,23 +208,7 @@ export default async function BlogPostPage({ params }) {
 
             {/* Article FAQs Section */}
             {post.faqs && post.faqs.length > 0 && (
-              <div className="pt-8 border-t border-slate-100 space-y-6">
-                <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F6393] tracking-tight">
-                  Frequently Asked Questions (FAQs)
-                </h3>
-                <div className="space-y-4">
-                  {post.faqs.map((faq, fIdx) => (
-                    <div key={fIdx} className="bg-slate-50 rounded-2xl p-5 border border-slate-100 space-y-2">
-                      <h4 className="text-sm sm:text-base font-extrabold text-[#0F6393]">
-                        {faq.question}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <FAQ faqs={post.faqs} title="Article Insights" subtitle="Frequently Asked Questions" embedded={true} />
             )}
 
             {/* Tags */}

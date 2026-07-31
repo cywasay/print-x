@@ -183,7 +183,7 @@ export default function BlogListClient({ initialBlogs }) {
         </div>
 
         {filteredBlogs.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className={`grid grid-cols-1 ${filteredBlogs.length <= 2 ? 'md:grid-cols-2 max-w-5xl mx-auto' : 'md:grid-cols-3'} gap-8`}>
             {filteredBlogs.map((blog, idx) => (
               <article
                 key={blog.slug}

@@ -11,6 +11,8 @@ export const BLOG_POSTS = [
       role: "Custom Pin Specialists",
     },
     excerpt: "Design premium custom soft enamel pins in Dubai with PrintXDXB. Perfect for corporate branding, events, schools, clubs, and promotional campaigns. Fast production and premium quality.",
+    metaTitle: "Custom Soft Enamel Pins | Premium Enamel Pins by PrintXDXB",
+    metaDescription: "Create custom soft enamel pins with PrintXDXB. Premium quality, colorful, and durable enamel pins for branding, events, clubs, promotions, and businesses.",
     featured: false,
     tags: ["Soft Enamel Pins", "Dubai Business", "Corporate Branding", "Promotional Products", "Lapel Pins"],
     keyTakeaways: [
@@ -259,6 +261,8 @@ export const BLOG_POSTS = [
       role: "Custom Pin Specialists",
     },
     excerpt: "In today's competitive business landscape, creating a memorable brand identity requires more than traditional marketing. Discover how Custom Hard Enamel Pins provide an elegant, durable branding solution for businesses across Dubai and the UAE.",
+    metaTitle: "Custom Hard Enamel Pins | Premium Pins by PrintXDXB",
+    metaDescription: "Get premium custom hard enamel pin badges from PrintXDXB. Durable, stylish, and fully customized metal pins for branding, events, awards, and businesses.",
     featured: true,
     tags: ["Hard Enamel Pins", "Dubai Business", "Corporate Branding", "Pin Badges", "UAE Trade Shows"],
     keyTakeaways: [
@@ -437,186 +441,232 @@ export const BLOG_POSTS = [
     ]
   },
   {
-    slug: "design-tips-custom-lapel-pins",
-    title: "Design Tips for Custom Lapel Pins That Stand Out",
-    subtitle: "Master line weight, color selection, and metal plating to create memorable custom pin badges.",
-    category: "Design Guide",
-    date: "July 2, 2025",
-    readTime: "5 min read",
-    author: {
-      name: "PrintX Design Team",
-      role: "Lapel Pin Specialists"
-    },
-    excerpt: "Custom lapel pins are powerful branding tools. Whether for business or events, they must leave a lasting impression.",
-    featured: false,
-    tags: ["Design", "Enamel Pins", "Branding", "Lapel Pins"],
-    keyTakeaways: [
-      "Keep metal line thickness above 0.2mm for crisp enamel fill separations.",
-      "Limit enamel color palettes to 4-6 bold PMS colors for cleaner visual impact.",
-      "Match plating finishes (Gold, Silver, Black Nickel) with artwork contrast."
-    ],
-    content: [
-      {
-        type: "paragraph",
-        text: "Custom lapel pins have evolved from traditional corporate service awards into highly collectible fashion items, brand identity symbols, and powerful event merchandise. Creating an eye-catching pin requires balancing creative design with precise manufacturing rules."
-      },
-      {
-        type: "heading",
-        text: "1. Simplify Details & Respect Line Weights"
-      },
-      {
-        type: "paragraph",
-        text: "Enamel pins are physical metal badges with colored liquid enamel poured into recessed channels (die struck cavities). Thin lines or micro-text that look great on a digital screen may bleed or disappear when stamped into metal. Always ensure metal divider lines are at least 0.2mm (0.6pt) thick."
-      },
-      {
-        type: "heading",
-        text: "2. Choose Hard Enamel vs Soft Enamel Wisely"
-      },
-      {
-        type: "paragraph",
-        text: "Understanding the difference between Hard and Soft Enamel is crucial for your outcome. Hard Enamel is polished flat until the enamel sits perfectly flush with the metal lines, delivering a smooth, jewelry-grade finish. Soft Enamel features recessed enamel cells underneath raised metal edges, providing a tactile 3D dimensional feel."
-      },
-      {
-        type: "quote",
-        text: "A well-designed lapel pin isn't just a badge — it's a wearable piece of your brand's story that people wear proudly on jackets, bags, and lanyards."
-      },
-      {
-        type: "heading",
-        text: "3. Choose the Right Metal Plating Finish"
-      },
-      {
-        type: "paragraph",
-        text: "The metal plating finish acts as the frame for your artwork. Classic Polished Gold gives a luxurious, high-end feel for corporate recognition. Shiny Silver and Chrome offer modern versatility, while Antique Bronze and Black Nickel produce dramatic high-contrast artwork accents."
-      }
-    ]
-  },
-  {
-    slug: "choosing-right-plating-options-enamel-badges",
-    title: "Choosing the Right Plating Options for Enamel Badges",
-    subtitle: "A comprehensive guide to gold, silver, black nickel, antique bronze, and dual plating.",
-    category: "Manufacturing",
-    date: "April 7, 2025",
-    readTime: "4 min read",
-    author: {
-      name: "Manufacturing Division",
-      role: "Metal Plating Experts"
-    },
-    excerpt: "Discover the best metal finishes for your custom pins, from classic gold to sleek black nickel depending on your artwork contrast and brand personality.",
-    featured: false,
-    tags: ["Plating", "Enamel Badges", "Metal Finishes", "Manufacturing"],
-    keyTakeaways: [
-      "Shiny Gold & Silver suit corporate awards and official emblem badges.",
-      "Black Nickel creates striking dark outlines ideal for pop art and modern logos.",
-      "Antique finishes highlight subtle 3D textures and vintage crest details."
-    ],
-    content: [
-      {
-        type: "paragraph",
-        text: "Selecting the correct plating for your custom enamel badges defines how light reflects off raised borders and metal surfaces. Plating finish dramatically influences the final tone and perceived value of your pin badges."
-      },
-      {
-        type: "heading",
-        text: "High Polish Plating: Gold, Nickel & Rose Gold"
-      },
-      {
-        type: "paragraph",
-        text: "High-polish plating electroplates electro-deposited metallic layers over brass or iron die castings. Mirror-like reflections make shiny gold ideal for luxury brand lapel pins, government insignia, and corporate milestone awards."
-      },
-      {
-        type: "heading",
-        text: "Dark & Contemporary: Black Nickel & Anodized Colors"
-      },
-      {
-        type: "paragraph",
-        text: "For dark background artwork or vibrant neon pin designs, Black Nickel provides deep gunmetal borders that make colored enamels pop off the surface without overpowering reflection."
-      },
-      {
-        type: "quote",
-        text: "Matching metal plating with your brand's color palette elevates custom pins from ordinary giveaway trinkets to coveted collectible pins."
-      }
-    ]
-  },
-  {
-    slug: "why-custom-lapel-pins-essential-corporate-events",
-    title: "Why Custom Lapel Pins Are Essential for Corporate Events",
-    subtitle: "Boost brand visibility, VIP recognition, and team cohesion at trade shows and summits in Dubai.",
+    slug: "custom-die-struck-pin-badges-dubai",
+    title: "Custom Die Struck Pin Badges: A Timeless Choice for Premium Branding and Recognition",
+    subtitle: "Discover why Custom Die Struck Pin Badges are an elegant, durable choice for corporate branding, employee recognition, and events.",
     category: "Corporate Branding",
-    date: "April 7, 2025",
-    readTime: "6 min read",
+    date: "July 31, 2026",
+    readTime: "7 min read",
     author: {
-      name: "Event Relations Team",
-      role: "Branding Consultants"
+      name: "PrintX DXB Team",
+      role: "Custom Pin Specialists",
     },
-    excerpt: "Despite the digital shift, wearing custom branded badges carries unmatched prestige in professional networking, executive summits, and international trade shows.",
+    metaTitle: "Custom Die Struck Pin Badges | Premium Pins by PrintXDXB",
+    metaDescription: "Order custom die struck pin badges from PrintXDXB. Premium metal badges with detailed designs, durable finishes, and custom options for brands and events.",
+    excerpt: "Order custom die struck pin badges from PrintXDXB. Premium metal badges with detailed designs, durable finishes, and custom options for brands and events.",
     featured: false,
-    tags: ["Corporate Events", "Dubai Business", "Trade Shows", "Branding"],
+    tags: ["Die Struck Pins", "Metal Badges", "Corporate Branding", "Dubai Business", "Pin Badges"],
     keyTakeaways: [
-      "Custom pins serve as instant visual indicators for VIPs, staff, and speakers.",
-      "High perceived value encourages attendees to retain badges long after events.",
-      "Fast production options ensure tight event deadlines are met reliably."
+      "Custom die struck badges feature raised and recessed 3D metal detailing without enamel fill.",
+      "High durability with premium metal finishes including Gold, Silver, Antique Brass, and Black Nickel.",
+      "Ideal for corporate branding, employee recognition awards, anniversaries, and official emblem badges."
     ],
     content: [
       {
         type: "paragraph",
-        text: "In major business hubs like Dubai, standing out at global exhibitions, corporate galas, and trade shows requires thoughtful physical branding touchpoints. Custom lapel pins remain one of the most effective tools for corporate identity."
-      },
-      {
-        type: "heading",
-        text: "Instant Staff & VIP Identification"
+        text: "In today's competitive business environment, creating a strong and memorable brand identity is essential. High-quality promotional products help businesses stand out, and custom die struck pin badges are one of the most elegant and effective ways to promote a brand, recognize achievements, and create a lasting impression."
       },
       {
         type: "paragraph",
-        text: "At multi-national summits with thousands of delegates, custom lapel badges allow security teams and guests to instantly distinguish speakers, VIP delegates, media partners, and booth staff."
-      },
-      {
-        type: "heading",
-        text: "Unmatched Keepsake Value"
+        text: "These premium metal badges are known for their durability, sophisticated appearance, and timeless design. They are widely used by businesses, schools, sports clubs, charities, government organizations, and professional associations."
       },
       {
         type: "paragraph",
-        text: "Unlike paper pamphlets or disposable plastic badges, premium metal pin badges are kept, worn, and collected on blazers, lanyard straps, and display boards long after the event concludes."
+        text: "At PrintXDXB, we specialize in creating high-quality custom die struck pin badges that combine expert craftsmanship, premium materials, and modern manufacturing techniques. Whether you need badges for corporate branding, employee recognition, promotional campaigns, or special events, our custom solutions are designed to represent your brand professionally."
+      },
+      {
+        type: "heading",
+        text: "What Are Custom Die Struck Pin Badges?"
+      },
+      {
+        type: "paragraph",
+        text: "Custom die struck pin badges are premium metal badges created by stamping a custom design into a metal surface using a specially engraved steel die. This process creates raised and recessed areas that give the badge a unique three-dimensional appearance."
+      },
+      {
+        type: "paragraph",
+        text: "Unlike printed badges, die struck badges highlight the natural beauty of metal finishes. The detailed design, polished surface, and professional look make them a preferred choice for organizations looking for premium-quality branding products."
+      },
+      {
+        type: "paragraph",
+        text: "At PrintXDXB, every badge is carefully manufactured to ensure sharp details, excellent finishing, and long-lasting durability."
+      },
+      {
+        type: "heading",
+        text: "Why Choose Custom Die Struck Pin Badges?"
+      },
+      {
+        type: "list",
+        items: [
+          "Premium Appearance: Die struck pin badges provide a luxurious metallic finish that instantly reflects quality and professionalism. The raised design creates depth and makes logos, symbols, and artwork stand out.",
+          "Exceptional Durability: Made from strong materials such as brass, iron, and zinc alloy, custom die struck badges are designed for long-term use. They maintain their appearance even with regular handling.",
+          "Precision Detailing: The die striking process allows manufacturers to reproduce detailed logos, text, and artwork with high accuracy, ensuring your brand design looks professional.",
+          "Timeless Branding Solution: Unlike temporary promotional items, metal badges maintain their value and appearance for years, making them a reliable branding investment."
+        ]
+      },
+      {
+        type: "heading",
+        text: "Why Choose PrintXDXB for Custom Die Struck Pin Badges?"
+      },
+      {
+        type: "paragraph",
+        text: "At PrintXDXB, we understand that every badge represents your brand. Our goal is to provide premium-quality products that help businesses create a professional image:"
+      },
+      {
+        type: "list",
+        items: [
+          "High-Quality Materials: We use durable metals and premium finishing techniques to create badges that look impressive and last longer.",
+          "Complete Customization: From custom shapes and sizes to finishes and attachment options, PrintXDXB provides complete customization according to your requirements.",
+          "Professional Manufacturing: Our experienced team uses advanced production methods to ensure every badge meets strict quality standards.",
+          "Competitive Pricing: Whether you require a small quantity or a large bulk order, we provide cost-effective solutions without compromising quality.",
+          "Customer-Focused Service: From design assistance to final delivery, our team works closely with customers to provide a smooth and reliable experience."
+        ]
+      },
+      {
+        type: "heading",
+        text: "Popular Uses for Custom Die Struck Pin Badges"
+      },
+      {
+        type: "paragraph",
+        text: "Custom die struck pin badges are widely used for:"
+      },
+      {
+        type: "list",
+        items: [
+          "Corporate branding",
+          "Employee recognition programs",
+          "Company anniversaries",
+          "Trade shows and exhibitions",
+          "Business conferences",
+          "School and university awards",
+          "Sports clubs",
+          "Charity events",
+          "Government organizations",
+          "Military units",
+          "Membership organizations",
+          "Promotional campaigns",
+          "Retail merchandise",
+          "Collectible products"
+        ]
+      },
+      {
+        type: "heading",
+        text: "Customization Options Available at PrintXDXB"
+      },
+      {
+        type: "paragraph",
+        text: "Every brand has unique requirements, which is why PrintXDXB offers complete customization options:"
+      },
+      {
+        type: "list",
+        items: [
+          "Metal Finishes: Gold, Silver, Antique Gold, Antique Silver, Copper, Antique Copper, Black Nickel, and Bronze.",
+          "Custom Shapes: Round, Square, Rectangle, Oval, Shield, Star, and custom die-cut logo shapes.",
+          "Attachment Options: Butterfly clutch, Rubber clutch, Safety pin, Magnetic backing, and Deluxe locking clasp."
+        ]
+      },
+      {
+        type: "heading",
+        text: "How Custom Die Struck Pin Badges Are Manufactured"
+      },
+      {
+        type: "list",
+        items: [
+          "Step 1: Design Preparation – Your logo or artwork is reviewed and prepared for manufacturing.",
+          "Step 2: Die Creation – A custom steel die is created using your approved design.",
+          "Step 3: Metal Stamping – The design is pressed into the metal to create raised and recessed details.",
+          "Step 4: Polishing and Finishing – Each badge is polished and prepared with the selected metal finish.",
+          "Step 5: Quality Inspection – Every product goes through quality checks before packaging and delivery."
+        ]
+      },
+      {
+        type: "heading",
+        text: "Benefits of Custom Die Struck Pin Badges for Businesses"
+      },
+      {
+        type: "list",
+        items: [
+          "Improve Brand Recognition: Branded badges increase visibility and help customers remember your company.",
+          "Recognize Employees and Members: Custom badges are a meaningful way to reward achievements and celebrate milestones.",
+          "Create a Professional Image: Premium badges help employees and representatives present a consistent brand identity.",
+          "Long-Term Marketing Value: Unlike disposable advertising products, metal badges continue promoting your brand for years."
+        ]
+      },
+      {
+        type: "heading",
+        text: "Tips for Designing the Perfect Custom Badge"
+      },
+      {
+        type: "list",
+        items: [
+          "Keep your logo clear and simple.",
+          "Use strong design elements.",
+          "Select the right metal finish.",
+          "Choose a suitable size.",
+          "Avoid excessive small details.",
+          "Work with an experienced manufacturer like PrintXDXB."
+        ]
+      },
+      {
+        type: "heading",
+        text: "Why Quality Matters"
+      },
+      {
+        type: "paragraph",
+        text: "A low-quality badge can negatively affect your brand image. Premium custom die struck pin badges provide a professional appearance and long-lasting performance. At PrintXDXB, we focus on quality craftsmanship, durable materials, and customer satisfaction to deliver badges that represent your brand effectively."
+      },
+      {
+        type: "heading",
+        text: "Order Custom Die Struck Pin Badges from PrintXDXB"
+      },
+      {
+        type: "paragraph",
+        text: "If you are searching for premium custom die struck pin badges, PrintXDXB provides reliable and professional badge manufacturing solutions. From initial design to final production, our team helps you create customized badges that match your branding goals and leave a lasting impression."
+      },
+      {
+        type: "heading",
+        text: "Conclusion"
+      },
+      {
+        type: "paragraph",
+        text: "Custom die struck pin badges are an excellent choice for businesses and organizations looking for a premium branding solution. Their elegant appearance, durability, and professional finish make them perfect for recognition programs, promotional campaigns, and corporate identity building."
+      },
+      {
+        type: "paragraph",
+        text: "With PrintXDXB, you can create high-quality custom die struck pin badges that represent your brand with confidence and professionalism. Choose PrintXDXB for premium badges designed to make a lasting impression."
       }
-    ]
-  },
-  {
-    slug: "lapel-pin-backing-types-guide",
-    title: "The Ultimate Guide to Lapel Pin Backing Attachments",
-    subtitle: "Butterfly clutches, rubber caps, strong magnetic backings, and safety pins compared.",
-    category: "Guide",
-    date: "March 15, 2025",
-    readTime: "5 min read",
-    author: {
-      name: "PrintX Technical Team",
-      role: "Product Hardware Specialists"
-    },
-    excerpt: "Choose the perfect attachment for your custom lapel pins. Compare butterfly clutches, comfortable rubber backs, premium magnetic attachments, and tie tacks.",
-    featured: false,
-    tags: ["Backings", "Hardware", "Pin Accessories", "Guide"],
-    keyTakeaways: [
-      "Butterfly clutches are classic, secure, and cost-effective standard options.",
-      "Rubber clutches offer maximum comfort against clothing and sensitive skin.",
-      "Magnetic backings attach securely without piercing fine suits or delicate fabrics."
     ],
-    content: [
+    faqs: [
       {
-        type: "paragraph",
-        text: "The backing attachment determines how securely and comfortably your custom pin attaches to clothing, jackets, neckties, bags, or hats. Picking the right clutch attachment enhances user satisfaction and prevents lost pins."
+        question: "What are custom die struck pin badges?",
+        answer: "Custom die struck pin badges are metal badges made by stamping a custom design into metal using a specially created die. This process creates raised and recessed details for a premium three-dimensional look."
       },
       {
-        type: "heading",
-        text: "1. Military / Butterfly Clutch"
+        question: "Are custom die struck pin badges durable?",
+        answer: "Yes, die struck pin badges are highly durable because they are made from strong metals and designed to maintain their appearance for many years."
       },
       {
-        type: "paragraph",
-        text: "The military butterfly clutch is the industry standard for custom lapel pins. Squeezing the tiny metal wings releases the spring mechanism, allowing easy attachment to suits, jackets, and uniform lapels."
+        question: "Can I customize the design of my pin badge?",
+        answer: "Yes, PrintXDXB offers fully customized designs including logos, symbols, text, shapes, sizes, and finishes."
       },
       {
-        type: "heading",
-        text: "2. Premium Magnetic Backings"
+        question: "What materials are used for die struck pin badges?",
+        answer: "Common materials include brass, iron, and zinc alloy, which provide strength and excellent detailing."
       },
       {
-        type: "paragraph",
-        text: "For executive suits, silk shirts, and fine corporate attire, magnetic backings allow pin attachment without making holes in clothing fabrics. Dual-neodymium magnets hold pins firmly in place."
+        question: "Where can custom die struck pin badges be used?",
+        answer: "They are commonly used for corporate branding, employee awards, schools, sports clubs, events, memberships, promotional campaigns, and collectible merchandise."
+      },
+      {
+        question: "What finishes are available for custom badges?",
+        answer: "PrintXDXB offers finishes such as gold, silver, antique gold, antique silver, copper, bronze, and black nickel."
+      },
+      {
+        question: "Can PrintXDXB handle bulk badge orders?",
+        answer: "Yes, PrintXDXB provides both small and large quantity orders with consistent quality and professional production."
+      },
+      {
+        question: "How do I order custom die struck pin badges from PrintXDXB?",
+        answer: "You can contact PrintXDXB with your design requirements, preferred size, quantity, and finish options. Our team will guide you through the customization and production process."
       }
     ]
   }

@@ -47,43 +47,51 @@ const FAQItem = ({ question, answer, isOpen, onClick, index }) => {
   );
 };
 
-export default function FAQ({ faqs, title = "Common Questions", subtitle = "Frequently Asked Questions" }) {
+export default function FAQ({ faqs, title = "Common Questions", subtitle = "Frequently Asked Questions", embedded = false }) {
   const [openIndex, setOpenIndex] = useState(0);
 
   if (!faqs || faqs.length === 0) return null;
 
+  const content = (
+    <div className={embedded ? "w-full" : "max-w-4xl mx-auto px-6"}>
+      <div className="text-center mb-12">
+        <span className="text-[11px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-3 block">
+          {title}
+        </span>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0F6393] tracking-tight">
+          {subtitle}
+        </h2>
+        <div className="w-12 h-1 bg-[#00AEEF] rounded-full mx-auto mt-4" />
+      </div>
+
+      <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-[0_30px_60px_-15px_rgba(15,99,147,0.05)]">
+        {faqs.map((faq, index) => (
+          <FAQItem
+            key={index}
+            index={index}
+            question={faq.question}
+            answer={faq.answer}
+            isOpen={openIndex === index}
+            onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
+          />
+        ))}
+      </div>
+
+      <div className="mt-10 text-center">
+        <p className="text-sm font-bold text-slate-400">
+          Still have questions? <a href="/quote" className="text-[#0F6393] hover:underline decoration-2 underline-offset-4">Get in touch with our experts.</a>
+        </p>
+      </div>
+    </div>
+  );
+
+  if (embedded) {
+    return <div className="py-8 border-t border-slate-100">{content}</div>;
+  }
+
   return (
     <section className="py-24 bg-slate-50">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="text-[11px] font-black tracking-[0.4em] text-[#00AEEF] uppercase mb-3 block">
-            {title}
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0F6393] tracking-tight">
-            {subtitle}
-          </h2>
-          <div className="w-12 h-1 bg-[#00AEEF] rounded-full mx-auto mt-6" />
-        </div>
-
-        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-[0_30px_60px_-15px_rgba(15,99,147,0.05)]">
-          {faqs.map((faq, index) => (
-            <FAQItem
-              key={index}
-              index={index}
-              question={faq.question}
-              answer={faq.answer}
-              isOpen={openIndex === index}
-              onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-            />
-          ))}
-        </div>
-
-        <div className="mt-12 text-center">
-            <p className="text-sm font-bold text-slate-400">
-                Still have questions? <a href="/quote" className="text-[#0F6393] hover:underline decoration-2 underline-offset-4">Get in touch with our experts.</a>
-            </p>
-        </div>
-      </div>
+      {content}
     </section>
   );
 }

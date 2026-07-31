@@ -61,7 +61,7 @@ export default function BlogsSection() {
         </div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className={`grid grid-cols-1 ${blogData.length === 2 ? 'md:grid-cols-2 max-w-5xl mx-auto' : 'md:grid-cols-3'} gap-8`}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
